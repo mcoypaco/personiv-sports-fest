@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('api/players', 'PlayerController',
+                ['only' => ['index', 'create','store']]);
+
+Route::resource('api/teams', 'TeamController',
+                ['only' => ['index', 'create','store','show']]);
