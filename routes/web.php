@@ -16,7 +16,7 @@ Route::get('/', function () {
 });
 
 Route::resource('api/players', 'PlayerController',
-                ['only' => ['index', 'create','store']]);
+                ['only' => ['index', 'create','store','show','update']]);
 
 Route::resource('api/teams', 'TeamController',
                 ['only' => ['index', 'create','store','show']]);

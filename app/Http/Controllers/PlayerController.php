@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Player;
+use App\Team;
+
 use Illuminate\Http\Request;
 
 class PlayerController extends Controller
@@ -48,7 +50,8 @@ class PlayerController extends Controller
      */
     public function show($id)
     {
-        //
+        $player = Player::find($id);
+        return response()->json($player);
     }
 
     /**
@@ -71,7 +74,10 @@ class PlayerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $team = new Team();
+      $team->addRemovePlayer($request , $id);
+
+      return response()->json($request->all());
     }
 
     /**
