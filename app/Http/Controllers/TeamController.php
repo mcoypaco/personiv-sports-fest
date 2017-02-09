@@ -37,7 +37,7 @@ class TeamController extends Controller
     public function store(Request $request)
     {
         Team::create($request->all());
-        return redirect('api/teams');
+        return $request->all();
     }
 
     /**
@@ -48,8 +48,8 @@ class TeamController extends Controller
      */
     public function show($id)
     {
-        $team = Team::find($id);
-        return response()->json($team);
+        $this_team = Team::find($id);
+        return response()->json(['players' => $this_team->players]);
     }
 
     /**
@@ -72,7 +72,7 @@ class TeamController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //$team = Team::find($id);
     }
 
     /**

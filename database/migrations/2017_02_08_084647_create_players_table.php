@@ -14,11 +14,17 @@ class CreatePlayersTable extends Migration
     public function up()
     {
         Schema::create('players', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
+            $table->increments('id')->unique();
+            $table->string('employee_id')->unique();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('tower_lead');
+            $table->string('team_lead');
             $table->double('height');
             $table->double('weight');
             $table->integer('cellphone_number');
+            $table->integer('team_id')->unsigned()->nullable();
+            $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
             $table->timestamps();
         });
     }

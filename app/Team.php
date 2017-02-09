@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
 {
-    protected $fillable = ['name','player_id'];
-    
+    protected $fillable = ['name'];
+
     public function players() {
-      return $this->hasMany('App/Player');
+      return $this->hasMany(Player::class);
     }
 
 }
