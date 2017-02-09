@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Team;
 use Illuminate\Http\Request;
 
-class TeamController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +13,7 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $team = Team::all();
-        return response()->json($team);
+        //
     }
 
     /**
@@ -36,8 +34,7 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        Team::create($request->all());
-        return $request->all();
+        //
     }
 
     /**
@@ -48,8 +45,7 @@ class TeamController extends Controller
      */
     public function show($id)
     {
-        $this_team = Team::find($id);
-        return response()->json(['player' => $this_team->players]);
+        //
     }
 
     /**
@@ -72,9 +68,7 @@ class TeamController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $team = new Team();
-        $team.addRemovePlayer($request , $id);
-
+        //
     }
 
     /**
