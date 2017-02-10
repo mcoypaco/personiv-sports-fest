@@ -11,12 +11,23 @@
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
-Route::resource('api/players', 'PlayerController',
+Route::group(['prefix' => 'api'], function()
+{
+	Route::resource('players', 'PlayerController',
                 ['only' => ['index', 'create','store','show','update']]);
 
-Route::resource('api/teams', 'TeamController',
+	Route::resource('teams', 'TeamController',
                 ['only' => ['index', 'create','store','show']]);
+    
+    Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
+    
+    Route::post('authenticate', 'AuthenticateController@authenticate');
+});
