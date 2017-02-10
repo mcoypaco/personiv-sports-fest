@@ -20,3 +20,9 @@ Route::resource('api/players', 'PlayerController',
 
 Route::resource('api/teams', 'TeamController',
                 ['only' => ['index', 'create','store','show']]);
+
+Route::resource('api/users', 'UserController',
+                ['only' => ['index' , 'store' , 'show']]);
+
+Route::resource('api/roles' , 'RoleController',
+                ['only' => ['index' , 'store' , 'show']]);

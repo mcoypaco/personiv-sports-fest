@@ -3,20 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
+use App\Role;
 
-class UserController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct(){
+      $this->middleware('role:admin' , ['only' => ['index']]);
+    }
+
     public function index()
     {
-        $user = User::all();
+        $role = Role::all();
 
-        return response()->json($user);
+        return response()->json($role);
     }
 
     /**
@@ -37,16 +42,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::create([
-          'email' => $request->email,
-          'password' => bcrypt($request->password),
-          'first_name' => $request->first_name,
-          'last_name' => $request->last_name,
-          'cellphone_number' => $request->cellphone_number,
-          'role_id' => $request->role_id,
-        ]);
+        Role::create($request->all());
 
-        return response()->json($user);
+        return redirect('api/roles');
     }
 
     /**
@@ -57,9 +55,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
+        $role = Role::find($id);
 
-        return response()->json($user);
+        return $role->users;
     }
 
     /**
