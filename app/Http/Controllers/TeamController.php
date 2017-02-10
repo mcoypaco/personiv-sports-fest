@@ -12,6 +12,7 @@ class TeamController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $team = Team::all();
@@ -37,7 +38,7 @@ class TeamController extends Controller
     public function store(Request $request)
     {
         Team::create($request->all());
-        return $request->all();
+        return redirect('api/teams');
     }
 
     /**
@@ -72,8 +73,6 @@ class TeamController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $team = new Team();
-        $team.addRemovePlayer($request , $id);
 
     }
 

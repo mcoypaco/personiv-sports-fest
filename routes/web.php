@@ -26,8 +26,14 @@ Route::group(['prefix' => 'api'], function()
 
 	Route::resource('teams', 'TeamController',
                 ['only' => ['index', 'create','store','show']]);
-    
-    Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
-    
-    Route::post('authenticate', 'AuthenticateController@authenticate');
+
+  Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
+
+  Route::post('authenticate', 'AuthenticateController@authenticate');
+
+  Route::resource('users', 'UserController',
+                  ['only' => ['index' , 'store' , 'show']]);
+
+  Route::resource('roles' , 'RoleController',
+                  ['only' => ['index' , 'store' , 'show']]);
 });

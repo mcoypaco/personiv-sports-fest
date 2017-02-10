@@ -39,6 +39,7 @@ class PlayerController extends Controller
     public function store(Request $request)
     {
         Player::create($request->all());
+
         return redirect('api/players');
     }
 
@@ -51,6 +52,7 @@ class PlayerController extends Controller
     public function show($id)
     {
         $player = Player::find($id);
+
         return response()->json($player);
     }
 
@@ -76,7 +78,6 @@ class PlayerController extends Controller
     {
       $team = new Team();
       $team->addRemovePlayer($request , $id);
-
       return response()->json($request->all());
     }
 
