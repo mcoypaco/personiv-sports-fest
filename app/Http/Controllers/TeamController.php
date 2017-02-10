@@ -49,7 +49,7 @@ class TeamController extends Controller
     public function show($id)
     {
         $this_team = Team::find($id);
-        return response()->json(['players' => $this_team->players]);
+        return response()->json(['player' => $this_team->players]);
     }
 
     /**
@@ -72,7 +72,9 @@ class TeamController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //$team = Team::find($id);
+        $team = new Team();
+        $team.addRemovePlayer($request , $id);
+
     }
 
     /**

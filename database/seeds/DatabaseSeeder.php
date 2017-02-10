@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,4 +17,5 @@ class DatabaseSeeder extends Seeder
         $this->call(SportTableSeeder::class);
 
      }
+
 }

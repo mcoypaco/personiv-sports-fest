@@ -22,7 +22,7 @@ class CreatePlayersTable extends Migration
             $table->string('team_lead');
             $table->double('height');
             $table->double('weight');
-            $table->integer('cellphone_number');
+            $table->string('cellphone_number')->unique();
             $table->integer('team_id')->unsigned()->nullable();
             $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
             $table->timestamps();
