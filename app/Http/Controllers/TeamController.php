@@ -37,8 +37,8 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        Team::create($request->all());
-        return redirect('api/teams');
+        $team = Team::firstOrCreate($request->all());
+        return response()->json($team);
     }
 
     /**

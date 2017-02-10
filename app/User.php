@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use JWTAuth;
 
 class User extends Authenticatable
 {
@@ -33,6 +34,18 @@ class User extends Authenticatable
 
     public function hasRole($role) {
       return $this->role->name == $role ;
+    }
+
+    public function getRole() {
+      return $this->role->name ;
+    }
+
+    public function roleIs()
+    {
+      $user = JWTAuth::parseToken()->authenticate();
+      $getUser = $this->find($user->id);
+
+      return $getUser;
     }
 
 

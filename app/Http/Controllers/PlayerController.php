@@ -14,6 +14,11 @@ class PlayerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+     {
+       $this->middleware('role:admin');
+     }
+
     public function index()
     {
       $player = Player::all();
@@ -39,7 +44,6 @@ class PlayerController extends Controller
     public function store(Request $request)
     {
         Player::create($request->all());
-
         return redirect('api/players');
     }
 

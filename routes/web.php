@@ -31,6 +31,8 @@ Route::group(['prefix' => 'api'], function()
 
   Route::post('authenticate', 'AuthenticateController@authenticate');
 
+  Route::get('getAuthenticatedUser', 'AuthenticateController@getAuthenticatedUser');
+
   Route::resource('users', 'UserController',
                   ['only' => ['index' , 'store' , 'show']]);
 
