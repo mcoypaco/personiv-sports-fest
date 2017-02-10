@@ -34,4 +34,16 @@ class PositionController extends Controller
         $position->save();
         return response()->json($position);
     }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        Position::destroy($id);
+    
+        return response()->json(array('success' => true));
+    }
 }

@@ -15,7 +15,7 @@ class SportController extends Controller
      */
     public function index()
     {
-        return response()->json(Sport::get());
+        return response()->json(Sport::with('positions')->get());
     }
 
     /**

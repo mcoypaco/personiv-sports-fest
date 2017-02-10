@@ -28,7 +28,13 @@
                  <md-input-container class="md-block">
                     <input type="text" class="form-control input-lg" ng-model="new.description" placeholder="Description">
                  </md-input-container>
-            
+                 <md-list ng-if="sportItem.positions.length != 0">
+                    <b>Positions:</b> 
+                     <md-list-item ng-repeat="position in sportItem.positions">
+                         <p>{{position.name}}</p>
+                         <md-button class="md-raised" ng-click="sport.deletePosition(position.id)">X</md-button>
+                    </md-list-item>  
+                </md-list>
                 <section layout="row" layout-align="end end" layout-wrap>
                     <md-button class="md-primary md-raised" ng-click="sport.addModalPosition($event, sportItem.id)">
                         Add a position

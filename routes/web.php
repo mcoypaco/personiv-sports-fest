@@ -31,7 +31,7 @@ Route::group(['prefix' => 'api'], function()
                 ['only' => ['index', 'store', 'show', 'update', 'destroy']]);
 
     Route::resource('positions', 'PositionController',
-                ['only' => ['index', 'store']]);
+                ['only' => ['index', 'store', 'destroy']]);
     
     Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
     

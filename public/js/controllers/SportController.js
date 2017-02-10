@@ -67,22 +67,8 @@ angular.module('sportCtrl', [])
         });
     }
 
-    vm.showPosition = function(id){
-        console.log(id);
-        $http({
-            method: 'GET',
-            url: 'api/sports/' + id,
-        }).then(function (success){
-            console.log(success.data)
-            vm.sports[id - 1] =  success.data;
-        },function (error){
-            console.log(error)
-        });
-    }
-
     vm.addModalPosition = function(ev, id){
-        console.log("wow")
-        var confirm = $mdDialog.prompt()
+         var confirm = $mdDialog.prompt()
         .title('Please write the name of the position')
         .placeholder('Position name')
         .ariaLabel('Position name')
@@ -94,6 +80,17 @@ angular.module('sportCtrl', [])
         $mdDialog.show(confirm).then(function(result) {
             vm.newPosition.name = result;
             vm.addPosition(id);
+        });
+    }
+
+    vm.deletePosition = function(id){
+        $http({
+            method: 'DELETE',
+            url: 'api/positions/' + id
+        }).then(function (success){
+            console.log(success.data)
+        },function (error){
+            console.log(error)
         });
     }
 });
