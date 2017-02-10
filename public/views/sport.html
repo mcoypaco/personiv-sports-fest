@@ -1,0 +1,42 @@
+<md-content>   
+    <!--adding a new sport -->
+    <form ng-submit="sport.submit()">
+        <div>
+            <md-input-container>
+                <input type="text" class="form-control input-sm" ng-model="sport.data.name" placeholder="Name">
+            </md-input-container>
+        </div>
+        <div>
+            <md-input-container class="md-block">
+                <input type="text" class="form-control input-lg" ng-model="sport.data.description" placeholder="Description">
+            </md-input-container>
+        </div>
+        
+        <md-button class="md-raised md-primary" type="submit">Add Sport</md-button>
+    </form>
+    <!--end of adding a new sport-->
+    <md-list ng-init="sport.getSports()">
+        <md-list-item class="md-3-line" ng-repeat="sportItem in sport.sports" ng-click="editable=!editable">
+            <div class="md-list-item-text" layout="column" ng-if="!editable">
+                <h3>{{sportItem.name}}</h3>
+                <p>{{sportItem.description}}</p>
+            </div>
+            <div class="md-list-item-text" ng-if="editable" ng-init="new=sportItem">
+                <md-input-container>
+                    <input type="text" class="form-control input-sm" ng-model="new.name" placeholder="Name">
+                </md-input-container>
+                 <md-input-container class="md-block">
+                    <input type="text" class="form-control input-lg" ng-model="new.description" placeholder="Description">
+                 </md-input-container>
+            
+                <section layout="row" layout-align="end end" layout-wrap>
+                    <md-button class="md-primary md-raised" ng-click="sport.addModalPosition($event, sportItem.id)">
+                        Add a position
+                    </md-button>
+                    <md-button class="md-raised" ng-click="sport.update(sportItem.id, new)">update</md-button>
+                    <md-button class="md-raised" ng-click="sport.delete(sportItem.id)">Delete</md-button>
+                </section>
+            </div>
+        </md-list-item>
+    </md-list>
+</md-content>

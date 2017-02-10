@@ -26,6 +26,12 @@ Route::group(['prefix' => 'api'], function()
 
 	Route::resource('teams', 'TeamController',
                 ['only' => ['index', 'create','store','show']]);
+
+    Route::resource('sports', 'SportController',
+                ['only' => ['index', 'store', 'show', 'update', 'destroy']]);
+
+    Route::resource('positions', 'PositionController',
+                ['only' => ['index', 'store']]);
     
     Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
     
