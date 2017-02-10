@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::resource('api/sports', 'SportController',
+             ['only' => ['index', 'create', 'store']]);
+
 Route::resource('api/players', 'PlayerController',
                 ['only' => ['index', 'create','store']]);
 
