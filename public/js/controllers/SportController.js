@@ -5,6 +5,7 @@ angular.module('sportCtrl', [])
     var vm = this;
     vm.sports;
     vm.newPosition = {};
+    vm.editable = false;
        
     vm.submit = function(){
         $http({
