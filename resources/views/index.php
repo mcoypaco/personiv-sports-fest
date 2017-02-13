@@ -22,6 +22,7 @@
     <script src="node_modules/angular-material/angular-material.min.js"></script>
     <script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="node_modules/satellizer/dist/satellizer.js"></script>
+    <script src="node_modules/jquery/jquery-2.1.1.min.js"></script>
 
     <!-- Application Scripts -->
     <script src="js/app.js"></script>
@@ -31,6 +32,7 @@
     <!-- Controllers -->
     <!-- <script src="js/controllers/mainCtrl.js"></script> -->
     <script src="js/controllers/HomeController.js"></script>
+    <script src="js/controllers/SportController.js"></script>
 
     <!-- Services -->
     <!-- <script src="js/services/commentService.js"></script> -->

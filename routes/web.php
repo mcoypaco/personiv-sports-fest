@@ -47,4 +47,12 @@ Route::group(['prefix' => 'api'], function()
 
   Route::get('getAuthenticatedUser', 'AuthenticateController@getAuthenticatedUser');
 
+  Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
+
+  Route::resource('positions', 'PositionController',
+              ['only' => ['index', 'store', 'destroy']]);
+
+  Route::resource('sports', 'SportController',
+              ['only' => ['index', 'store', 'show', 'update', 'destroy']]);
+
 });

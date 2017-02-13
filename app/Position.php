@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Position extends Model
 {
-    protected $fillable = ['name', "sport_id"];
-    
+    protected $fillable = ['name'];
+
     public function sport()
     {
         return $this->belongsTo(Sport::class);
