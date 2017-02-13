@@ -15,6 +15,7 @@
         <md-button class="md-raised md-primary" type="submit">Add Sport</md-button>
     </form>
     <!--end of adding a new sport-->
+    <!--foreach of the sports items and their CRUD-->
     <md-list ng-init="sport.getSports()">
         <md-list-item class="md-3-line" ng-repeat="sportItem in sport.sports" ng-click="sport.editable=true">
             <div class="md-list-item-text" layout="column" ng-if="!sport.editable">
@@ -33,6 +34,7 @@
                  <md-input-container class="md-block">
                     <input type="text" class="form-control input-lg" ng-model="new.description" placeholder="Description">
                  </md-input-container>
+    <!--foreach of the positions in sport-->
                  <md-list ng-if="sportItem.positions.length != 0">
                     <b>Positions:</b> 
                      <md-list-item ng-repeat="position in sportItem.positions">

@@ -13,7 +13,8 @@ angular.module('sportCtrl', [])
             url: 'api/sports',
             data: $.param(vm.data),
             headers: { 'Content-Type' : 'application/x-www-form-urlencoded' }
-        })
+        });
+        vm.getSports();
     }        
 
     vm.getSports = function(){
@@ -51,6 +52,7 @@ angular.module('sportCtrl', [])
         },function (error){
             console.log(error)
         });
+        vm.getSports();
     }
 
     vm.addPosition = function(id){
@@ -66,6 +68,7 @@ angular.module('sportCtrl', [])
         },function (error){
             console.log(error)
         });
+        vm.getSports();
     }
 
     vm.addModalPosition = function(ev, id){
@@ -94,4 +97,5 @@ angular.module('sportCtrl', [])
             console.log(error)
         });
     }
+    vm.getSports();
 });

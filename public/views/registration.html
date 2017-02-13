@@ -1,0 +1,49 @@
+
+<!--adding a new player -->
+    <form ng-submit="player.submit()">
+        <div>
+            <md-input-container>
+                <input type="text" class="form-control input-sm" ng-model="player.data.employee_id" required placeholder="Employee Id">
+            </md-input-container>
+         </div>
+         <div>
+            <md-input-container>
+                <input type="text" class="form-control input-sm" ng-model="player.data.last_name"  required placeholder="Last Name">
+           </md-input-container>
+           <md-input-container>
+                <input type="text" class="form-control input-sm" ng-model="player.data.first_name"  required placeholder="First Name">
+            </md-input-container>
+        </div>
+        <div>
+            <md-input-container>
+                <input class="form-control input-sm" ng-model="player.data.height"  required placeholder="Height">
+           </md-input-container>
+           <md-input-container>
+                <input class="form-control input-sm" ng-model="player.data.weight"  required placeholder="Weight">
+            </md-input-container>
+        </div>
+        <div>
+            <md-input-container>
+                <input class="form-control input-lg" ng-model="player.data.cellphone_number" required placeholder="Cellphone Number">
+            </md-input-container>
+        </div>
+        <div>
+            <md-input-container>
+                <input class="form-control input-lg" ng-model="player.data.tower_lead" required placeholder="Tower Lead">
+            </md-input-container>
+        </div>
+        <div>
+            <md-input-container>
+                <input class="form-control input-lg" ng-model="player.data.team_lead" required placeholder="Team Leader">
+            </md-input-container>
+        </div>
+        <div>
+            <md-input-container ng-init="player.getSports()" class="md-block">
+                <md-select multiple ng-model="player.data.sports" placeholder="please select">
+                <md-option ng-repeat="sport in player.sports" value="{{sport.id}}">{{sport.name}}</md-option>
+                </md-select>
+            </md-input-container>
+        </div>     
+        <md-button class="md-raised md-primary" type="submit">REGISTER</md-button>
+    </form>    
+    <!--end of adding a new player-->

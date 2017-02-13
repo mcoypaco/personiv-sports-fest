@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Player;
 use App\Team;
+use App\Sport;
 
 use Illuminate\Http\Request;
 
@@ -38,8 +39,9 @@ class PlayerController extends Controller
      */
     public function store(Request $request)
     {
-        Player::create($request->all());
-        return redirect('api/players');
+        $player = Player::create($request->except(['sports']));
+        $player->sports()->attach($request->input('sports'));
+        return response()->json(array('success' => true));
     }
 
     /**
@@ -88,6 +90,8 @@ class PlayerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Player::destroy($id);
+    
+        return response()->json(array('success' => true));
     }
 }
