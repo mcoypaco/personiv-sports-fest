@@ -5,20 +5,201 @@
 }
 
 .logo {
-    display: inline-block;
-    vertical-align: top;
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-    margin-left: 20px;
-    margin-top: 1px;    /* if you want it vertically middle of the navbar. */
+    /*display: inline-block;*/
+    /*vertical-align: top;*/
+    width: 100px;
+    height: 100px;
+    /*margin-right: 10px;*/
+    margin-left: 25px;
+    margin-top: 10px;    /* if you want it vertically middle of the navbar. */
 }
 
 .img-circle {
     border-radius: 50%;
     width: 50px;
+    margin-left: 20px;
+}
+
+p, ul {
+    padding: 0;
+    margin: 0;
+}
+
+.menu-items {
+	background-color: #e8e8e8;
 }
 
 md-nav-bar .md-nav-bar {
-  background: #f7f4f7;
+    background: #f7f4f7;
+}
+
+.card-media {
+    background-color: #999999; 
+}
+
+.md-card-image {
+	width:100%;
+}
+
+.capitalize {
+   text-transform: capitalize;
+}
+
+/*$main-bg-color: #ECECEC;*/
+/*$text-color: #7A7A7A;*/
+/*$accent-color: rgb(0, 150, 136);*/
+/*$warning-color: #E75753;*/
+
+/*$left-sidenav-width: 110px;*/
+/*$widget-height: 310px;*/
+/*$font-weight-bold: 600;*/
+/*$font-size-large: 22px;*/
+
+
+// LAYOUT
+body {
+  color: #7A7A7A;
+}
+
+.toolbar-button {
+  min-width: 20px;
+}
+
+.share-label {
+  vert-align: middle;
+  margin-left: 10px;
+}
+
+.page-content {
+  background-color: #ECECEC;
+}
+
+.widget-progress {
+  width: 95% !important;
+  margin-left: 10px;
+}
+
+
+// UTILS
+.capitalize {
+  text-transform: capitalize;
+}
+
+/*.img-circle {
+  height: 50px;
+  border-radius: 50%;
+  margin: 0 10px;
+}*/
+
+
+// COMPONENTS
+.messages {
+  position: relative;
+
+  &-content {
+    height: 100vh;
+  }
+}
+
+.notifications-label {
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  text-align: center;
+  border-radius: 50%;
+  position: absolute;
+  font-size: 12px;
+  top: 2px;
+  right: 2px;
+  background-color: #E75753;
+}
+
+// panel-widget
+.panel-widget {
+  background-color: white;
+
+  &-toolbar {
+    box-shadow: none;
+    margin: 0;
+  }
+
+  &-tittle {
+    color: #7A7A7A;
+  }
+}
+
+.options {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.options.ng-hide {
+  opacity:0;
+}
+
+.fixed-height-widget {
+  height: 310px;
+}
+
+// charts
+.donut-chart-title{
+  text-align: center;
+}
+
+.custom-tooltip {
+  font-size: 22px;
+  color: #7A7A7A;
+  text-align: center;
+}
+
+
+// OVERRIDES
+// angular material overrides
+md-radio-group {
+  border: none;
+}
+
+md-icon {
+  height: auto;
+}
+
+md-sidenav.md-locked-open.md-sidenav-left {
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+}
+
+a.md-button.md-warn.md-raised, a.md-button.md-warn.md-fab, .md-button.md-warn.md-raised, .md-button.md-warn.md-fab {
+  color: white;
+}
+
+md-radio-button.md-accent.md-checked .md-label span {
+  color: rgb(0, 150, 136);
+}
+
+.md-toolbar-tools h1 {
+  font-size: 22px;
+}
+
+
+md-backdrop.md-sidenav-backdrop {
+  position: fixed;
+}
+
+// libs overrides
+.material-icons {
+  vertical-align: middle;
+}
+
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+.orange .md-bar2 {
+  background-color: orange;
+}
+
+.orange .md-container {
+  background-color: rgb(255, 236, 201)
 }

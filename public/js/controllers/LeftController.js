@@ -1,4 +1,4 @@
-angular.module('leftCtrl', [])
+angular.module('app.controllers')
 
 .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
 	$scope.close = function () {
