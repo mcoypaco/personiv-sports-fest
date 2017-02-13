@@ -5,6 +5,14 @@
             <md-input-container>
                 <input type="text" class="form-control input-sm" ng-model="data.name" placeholder="Name">
             </md-input-container>
+            <md-input-container>
+            <label>Poc</label>
+            <md-select ng-model="data.user_id" ng-init="team.getPocs()">
+                <md-option ng-repeat="poc in team.poc track by poc.id" ng-value="poc.id">
+                {{poc.first_name}} {{poc.last_name}}
+                </md-option>
+            </md-select>
+            </md-input-container>
         </div>
         <md-button class="md-raised md-primary" type="submit">Add Team</md-button>
     </form>

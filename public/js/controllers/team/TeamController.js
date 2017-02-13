@@ -43,13 +43,26 @@ angular.module('teamCtrl' , [])
       })
     }
 
-    vm.getNoTeamPlayer = function() {
+    vm.getNoTeamPlayer = function()
+    {
       $http({
         method:'GET',
         url: 'api/players/noteam'
-      }).then(function (player) {
+      }).then(function(player) {
         vm.noTeamPlayer = player.data
       })
+    }
+
+    vm.getPocs = function()
+    {
+       $http({
+        method:'GET',
+        url: 'api/users/poc'
+      }).then(function(poc) {
+        vm.poc = poc.data
+      })
+
+      return vm.poc
     }
 
   })
