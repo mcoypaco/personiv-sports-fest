@@ -43,7 +43,7 @@ class PositionController extends Controller
     public function destroy($id)
     {
         Position::destroy($id);
-    
+
         return response()->json(array('success' => true));
     }
 }

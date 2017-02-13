@@ -13,6 +13,7 @@ class SportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         return response()->json(Sport::with('positions')->get());
@@ -25,7 +26,7 @@ class SportController extends Controller
      */
     public function create()
     {
-        // 
+
     }
 
     /**
@@ -40,7 +41,7 @@ class SportController extends Controller
             'name' => Input::get('name'),
             'description' => Input::get('description')
         ));
-        
+
         return response()->json(array('success' => true));
     }
 
@@ -91,7 +92,49 @@ class SportController extends Controller
     public function destroy($id)
     {
         Sport::destroy($id);
-    
+
+        return response()->json(array('success' => true));
+>>>>>>> 2bf5a111e3b1e9860dbf7ea9ba69fb2f921b6822
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $sport = Sport::find($id);
+        $sport->name = Input::get('name');
+        $sport->description = Input::get('description');
+        $sport->push();
+        return response()->json(array('success' => true));
+     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        Sport::destroy($id);
+
         return response()->json(array('success' => true));
     }
+
 }

@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Position extends Model
+class Role extends Model
 {
     protected $fillable = ['name'];
 
-    public function sport()
-    {
-        return $this->belongsTo(Sport::class);
+    public function users() {
+      return $this->hasMany(User::class);
     }
+
 }
