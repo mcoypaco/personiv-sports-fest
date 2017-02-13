@@ -22,17 +22,31 @@ Route::get('/', function () {
 Route::group(['prefix' => 'api'], function()
 {
   // Player routes
-  Route::post('players','PlayerController@store');
-  Route::get('players','PlayerController@index')->middleware('role:poc,admin');
-  Route::post('players/{id}','PlayerController@update')->middleware('role:admin');
-  Route::get('players/{id}','PlayerController@show')->middleware('role:poc,admin');
+
+  // Route::post('players','PlayerController@store');
+  // Route::get('players','PlayerController@index')->middleware('role:poc,admin');
+  // Route::post('players/{id}','PlayerController@update')->middleware('role:admin');
+  // Route::get('players/{id}','PlayerController@show')->middleware('role:poc,admin');
+
 
 
   // Team routes
-  Route::post('teams', 'TeamController@store')->middleware('role:admin');
-  Route::get('teams', 'TeamController@index')->middleware('role:admin,poc');
-  Route::post('teams/{id}', 'TeamController@update')->middleware('role:admin');
-  Route::get('teams/{id}', 'TeamController@show')->middleware('role:admin,poc');
+  // Route::post('teams', 'TeamController@store')->middleware('role:admin');
+  // Route::get('teams', 'TeamController@index')->middleware('role:admin,poc');
+  // Route::post('teams/{id}', 'TeamController@update')->middleware('role:admin');
+  // Route::get('teams/{id}', 'TeamController@show')->middleware('role:admin,poc');
+
+  //test
+  Route::post('teams', 'TeamController@store');
+  Route::get('teams', 'TeamController@index');
+  Route::post('teams/{id}', 'TeamController@update');
+  Route::get('teams/{id}', 'TeamController@show');
+  Route::get('players/noteam' , 'PlayerController@noTeam');
+
+  Route::post('players','PlayerController@store');
+  Route::get('players','PlayerController@index');
+  Route::post('players/{id}','PlayerController@update');
+  Route::get('players/{id}','PlayerController@show');
 
 
   // Roles routes

@@ -10,7 +10,7 @@
     <body ng-app="Sportsfest" ng-cloak>
         <div class="container">
             <div ui-view></div>
-        </div>        
+        </div>
 
     </body>
 
@@ -33,7 +33,7 @@
     <!-- <script src="js/controllers/mainCtrl.js"></script> -->
     <script src="js/controllers/HomeController.js"></script>
     <script src="js/controllers/SportController.js"></script>
-
+    <script src="js/controllers/team/TeamController.js"></script>
     <!-- Services -->
     <!-- <script src="js/services/commentService.js"></script> -->
 </html>

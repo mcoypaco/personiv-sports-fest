@@ -6,7 +6,7 @@ angular.module('sportCtrl', [])
     vm.sports;
     vm.newPosition = {};
     vm.editable = false;
-       
+
     vm.submit = function(){
         $http({
             method: 'POST',
@@ -14,7 +14,7 @@ angular.module('sportCtrl', [])
             data: $.param(vm.data),
             headers: { 'Content-Type' : 'application/x-www-form-urlencoded' }
         })
-    }        
+    }
 
     vm.getSports = function(){
         $http({

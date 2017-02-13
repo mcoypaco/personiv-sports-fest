@@ -1,6 +1,6 @@
 var sportsFest = angular.module('Sportsfest', [
 	'ui.router', 'satellizer', 'ngMaterial',
-	'homeCtrl','sportCtrl'
+	'homeCtrl','sportCtrl','teamCtrl'
 	]);
 
 sportsFest.config(function($stateProvider, $urlRouterProvider, $authProvider, $httpProvider, $provide) {
@@ -9,7 +9,7 @@ sportsFest.config(function($stateProvider, $urlRouterProvider, $authProvider, $h
     // Redirect to the auth state if any other states
     // are requested other than users
     $urlRouterProvider.otherwise('/home');
-    
+
     $stateProvider
         // .state('auth', {
         //     url: '/auth',
@@ -30,5 +30,15 @@ sportsFest.config(function($stateProvider, $urlRouterProvider, $authProvider, $h
             url: '/sports',
             templateUrl: '../views/sport.html',
             controller: 'SportController as sport'
-        });
+        })
+				.state('teams', {
+					url: '/teams',
+					templateUrl: '../views/team/_team.html',
+					controller: 'TeamController as team'
+				})
+				.state('teams.view' , {
+					url: '/teams/{id}',
+					templateUrl: '../views/team/_view-team.html',
+					controller: 'TeamController as team'
+				})
 });

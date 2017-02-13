@@ -91,4 +91,11 @@ class PlayerController extends Controller
     {
         //
     }
+
+    public function noTeam()
+    {
+      $player = Player::where('team_id', null);
+
+      return response()->json($player->get());
+    }
 }
