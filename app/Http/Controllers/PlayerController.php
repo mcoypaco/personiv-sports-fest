@@ -18,8 +18,8 @@ class PlayerController extends Controller
 
     public function index()
     {
-      $player = Player::all();
-      return response()->json($player);
+    //   $player = Player::all();
+      return  response()->json(Player::with('positions', 'team', 'sports')->get());
     }
 
     /**
@@ -40,8 +40,9 @@ class PlayerController extends Controller
      */
     public function store(Request $request)
     {
-        $player = Player::create($request->except(['sports']));
+        $player = Player::create($request->except(['sports','positions']));
         $player->sports()->attach($request->input('sports'));
+        $player->positions()->attach($request->input('positions'));
         return response()->json(array('success' => true));
     }
 

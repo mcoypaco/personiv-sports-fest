@@ -12,4 +12,9 @@ class Position extends Model
     {
         return $this->belongsTo(Sport::class);
     }
+
+    public function players()
+    {
+        return $this->belongsToMany(Player::class);
+    }
 }

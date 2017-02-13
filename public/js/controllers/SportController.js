@@ -7,12 +7,12 @@ angular.module('sportCtrl', [])
     vm.newPosition = {};
     vm.editable = false;
        
-    vm.submit = function(){
+    vm.submit = function(data){
         $http({
             method: 'POST',
             url: 'api/sports',
-            data: $.param(vm.data),
-            headers: { 'Content-Type' : 'application/x-www-form-urlencoded' }
+            data: data,
+            headers: { 'Content-Type' : 'application/json' }
         });
         vm.getSports();
     }        
@@ -45,8 +45,8 @@ angular.module('sportCtrl', [])
         $http({
             method: 'PUT',
             url: 'api/sports/' + id,
-            data: $.param(newData),
-            headers: { 'Content-Type' : 'application/x-www-form-urlencoded' }
+            data: newData,
+            headers: { 'Content-Type' : 'application/json' }
         }).then(function (success){
             console.log(success)
         },function (error){
@@ -61,8 +61,8 @@ angular.module('sportCtrl', [])
         $http({
             method: 'POST',
             url: 'api/positions',
-            data: $.param(vm.newPosition),
-            headers: { 'Content-Type' : 'application/x-www-form-urlencoded' }
+            data: vm.newPosition,
+            headers: { 'Content-Type' : 'application/json' }
         }).then(function (success){
             console.log(success)
         },function (error){

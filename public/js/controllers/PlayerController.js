@@ -4,20 +4,22 @@ angular.module('playerCtrl', [])
 
     var vm = this;
     vm.sports;
+    vm.players;
+    vm.i = 0;
           
-    vm.submit = function(){
+    vm.submit = function(data){
         $http({
             method: 'POST',
             url: 'api/players',
-            data: $.param(vm.data),
-            headers: { 'Content-Type' : 'application/x-www-form-urlencoded' }
+            data: data,
+            headers: { 'Content-Type' : 'application/json' }
         }).then(function (success){
            console.log(success.data)
         },function (error){
             console.log(error)
         });
     }
-
+   
     vm.getSports = function(){
         $http({
             method: 'GET',
@@ -27,6 +29,12 @@ angular.module('playerCtrl', [])
             console.log(success.data)
         },function (error){
             console.log(error.data)
+        });
+    }
+
+    vm.getSport = function(id){
+        return vm.sports.filter(function(item){
+            return (item.id.toString() === id);
         });
     }       
     

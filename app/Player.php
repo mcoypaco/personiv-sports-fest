@@ -18,4 +18,9 @@ class Player extends Model
       return $this->belongsToMany(Sport::class);
   }
 
+   public function positions()
+  {
+      return $this->belongsToMany(Position::class);
+  }
+
 }
