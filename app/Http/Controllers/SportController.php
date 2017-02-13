@@ -12,9 +12,11 @@ class SportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
       $sport = Sport::all();
       return response()->json($sport);
     }
+
 }

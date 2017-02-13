@@ -21,11 +21,25 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'api'], function()
 {
-	Route::resource('players', 'PlayerController',
-                ['only' => ['index', 'create','store','show','update']]);
+  // Player routes
+  Route::post('players','PlayerController@store');
+  Route::get('players','PlayerController@index')->middleware('role:poc,admin');
+  Route::post('players/{id}','PlayerController@update')->middleware('role:admin');
+  Route::get('players/{id}','PlayerController@show')->middleware('role:poc,admin');
 
-	Route::resource('teams', 'TeamController',
-                ['only' => ['index', 'create','store','show']]);
+
+  // Team routes
+  Route::post('teams', 'TeamController@store')->middleware('role:admin');
+  Route::get('teams', 'TeamController@index')->middleware('role:admin,poc');
+  Route::post('teams/{id}', 'TeamController@update')->middleware('role:admin');
+  Route::get('teams/{id}', 'TeamController@show')->middleware('role:admin,poc');
+
+
+  // Roles routes
+  Route::resource('roles','RoleController',['middleware' => 'role:admin']);
+
+  //Users routes
+  Route::resource('users','UserController',['middleware' => 'role:admin']);
 
   Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
 
@@ -33,9 +47,4 @@ Route::group(['prefix' => 'api'], function()
 
   Route::get('getAuthenticatedUser', 'AuthenticateController@getAuthenticatedUser');
 
-  Route::resource('users', 'UserController',
-                  ['only' => ['index' , 'store' , 'show']]);
-
-  Route::resource('roles' , 'RoleController',
-                  ['only' => ['index' , 'store' , 'show']]);
 });

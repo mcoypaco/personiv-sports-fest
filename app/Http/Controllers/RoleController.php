@@ -13,12 +13,6 @@ class RoleController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct()
-    {
-      $this->middleware('poc',['except' => ['index']]);
-      $this->middleware('admin');
-    }
-
     public function index()
     {
         $role = Role::all();
