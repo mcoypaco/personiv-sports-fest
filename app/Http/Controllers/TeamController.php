@@ -49,9 +49,8 @@ class TeamController extends Controller
      */
     public function show($id)
     {
-        //$team = Team::whereId($id)->with('players')->get();
-        $team = Team::find($id);
-        return response()->json($team->poc()->get());
+        $team = Team::whereId($id)->with('players')->get();
+        return response()->json($team);
     }
 
     /**

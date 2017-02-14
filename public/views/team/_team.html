@@ -19,19 +19,9 @@
 
     <!--end of adding a new team-->
     <md-list ng-init="team.getTeams()">
-        <md-list-item class="md-3-line" ng-repeat="teamItem in team.teams" ng-click="team.editable=true">
-            <div class="md-list-item-text" layout="column" ng-if="!team.editable">
+        <md-list-item class="md-3-line" ng-repeat="teamItem in team.teams" ng-click="team.showTeam(teamItem.id)">
+            <div class="md-list-item-text" layout="column"  >
                 <h3>{{teamItem.name}}</h3>
-            </div>
-            <div class="md-list-item-text" ng-if="team.editable" ng-init="new=teamItem">
-                <section layout="row" layout-align="end start" layout-wrap>
-                    <md-button class="md-icon-button" aria-label="Exit" ng-click="team.editable = false">
-                        <md-icon md-svg-src="img/icons/close.svg"></md-icon>
-                    </md-button>
-                </section>
-                <md-input-container>
-                    <input type="text" class="form-control input-sm" ng-model="new.name" value={{teamItem.name}}>
-                </md-input-container>
             </div>
         </md-list-item>
     </md-list>

@@ -36,8 +36,8 @@ sportsFest.config(function($stateProvider, $urlRouterProvider, $authProvider, $h
 					templateUrl: '../views/team/_team.html',
 					controller: 'TeamController as team'
 				})
-				.state('teams.view' , {
-					url: '/teams/{id}',
+				.state('team_view' , {
+					url: '/teams/:id',
 					templateUrl: '../views/team/_view-team.html',
 					controller: 'TeamController as team'
 				})
