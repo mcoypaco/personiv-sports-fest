@@ -48,6 +48,7 @@
 
     <!-- Team -->
     <script src="app/team/TeamController.js"></script>
+    <script src="app/team/TeamFactory.js"></script>
 
     <!-- Position -->
     <script src="app/position/PositionFactory.js"></script>

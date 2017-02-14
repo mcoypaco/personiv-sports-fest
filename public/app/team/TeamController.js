@@ -1,68 +1,69 @@
-// angular.module('app.controllers')
-sportsFest
-  .controller('TeamController', function($http , $mdDialog) {
+sportsFest.controller('TeamController', ["$http", "User", "Team", 
+  function($http, User, Team) {
 
     var vm = this;
-    vm.teams;
     vm.editable = false;
 
+    //add team to database
     vm.addTeam = function(data){
-      $http({
-        method: 'POST',
-        url: 'api/teams',
-        data: data,
-        headers: { 'Content-Type' : 'application/json'}
-      }).then(function(response) {
-        console.log(data);
+      Team.store(data).then(function(response) {
         console.log(response);
       }).catch(function(err){
-        console.log(data);
         console.log(err);
       })
     }
 
+    //retrieve teams from api/teams
     vm.getTeams = function() {
-      $http({
-          method: 'GET',
-          url: 'api/teams'
-      }).then(function (team) {
+      Team.get().then(function (team) {
         vm.teams = team.data
       }, function(error){
         console.log(error)
       })
     }
 
-    vm.showTeam = function(id) {
-      $http({
-        mehod: 'GET',
-        url: 'api/team/' + id
-      }).then(function(team) {
-        vm.team = team.data
+    //get team from api/teams/{id}
+    vm.getTeam = function() {
+      Team.show($stateParams.id).then(function(team) {
+        vm.data = team.data[0];
+        vm.getTeamPoc(team.data[0].user_id);
+        console.log(vm.data);
       }).catch(function(err) {
         console.log(err);
       })
     }
 
-    vm.getNoTeamPlayer = function()
-    {
-      $http({
-        method:'GET',
-        url: 'api/players/noteam'
-      }).then(function(player) {
-        vm.noTeamPlayer = player.data
-      })
+    //go to team route
+    vm.showTeam = function(id) {
+      $state.go("team_view" ,{id:id});
     }
 
+    //get the POCs
     vm.getPocs = function()
     {
-       $http({
-        method:'GET',
-        url: 'api/users/poc'
-      }).then(function(poc) {
+      User.poc().then(function(poc) {
         vm.poc = poc.data
       })
-
-      return vm.poc
     }
 
-  })
+    vm.getSports = function() {
+      $http({
+        method: 'GET',
+        url: 'api/sports'
+      }).then(function(sports) {
+        vm.sports = sports.data
+        console.log(sports.data);
+      })
+    }
+
+    //retrieve poc from apo/users/{id}
+    vm.getTeamPoc = function(id)
+    {
+      User.show(id).then(function(poc) {
+       vm.data.poc = poc.data
+     }).catch(function(err){
+       console.log(err);
+     })
+    }
+
+}])

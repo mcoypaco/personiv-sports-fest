@@ -12,10 +12,14 @@ class SportTableSeeder extends Seeder
     public function run()
     {
         DB::table('sports')->delete();
-        
+
         $sports = [
-            ['name' => "basketball"],
-            ['name' => "volleyball"]
+            ['name' => "basketball",
+              'description' => "This is basketball"
+            ],
+            ['name' => "volleyball",
+              'description' => "This is vaolleyball"
+            ]
         ];
 
         DB::table('sports')->insert($sports);

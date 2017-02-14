@@ -22,6 +22,8 @@ Route::get('/', function () {
 Route::group(['prefix' => 'api'], function()
 {
   // Player routes
+
+ 
   // Route::post('players','PlayerController@store');
   // Route::get('players','PlayerController@index')->middleware('role:poc,admin');
   // Route::post('players/{id}','PlayerController@update')->middleware('role:admin');

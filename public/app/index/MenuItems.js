@@ -37,12 +37,12 @@ sportsFest
             type: 'link',
             icon: 'people'
         },
-        // {
-        //     name: 'Wheat',
-        //     state: 'home.home',
-        //     type: 'link',
-        //     icon: 'close'
-        // }
+        {
+            name: 'Teams',
+            state: 'home.teams',
+            type: 'link',
+            icon: 'person_add'
+        }
         ]
     });
 

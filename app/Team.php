@@ -7,11 +7,16 @@ use Illuminate\Http\Request;
 
 class Team extends Model
 {
-    protected $fillable = ['name','user_id'];
+    protected $fillable = ['name','user_id','sport_id'];
 
     public function players()
     {
       return $this->hasMany(Player::class);
+    }
+
+    public function sport()
+    {
+      return $this->belongsTo(Sport::class);
     }
 
     public function poc()
