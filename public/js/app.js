@@ -1,6 +1,6 @@
 var sportsFest = angular.module('Sportsfest', [
 	'ui.router', 'satellizer', 'ngMaterial',
-	'homeCtrl','sportCtrl','teamCtrl'
+	'homeCtrl','sportCtrl','teamCtrl','playerCtrl'
 	]);
 
 sportsFest.config(function($stateProvider, $urlRouterProvider, $authProvider, $httpProvider, $provide) {
@@ -41,4 +41,9 @@ sportsFest.config(function($stateProvider, $urlRouterProvider, $authProvider, $h
 					templateUrl: '../views/team/_view-team.html',
 					controller: 'TeamController as team'
 				})
+        .state('register', {
+            url: '/register',
+            templateUrl: '../views/registration.html',
+            controller: 'PlayerController as player'
+        });
 });

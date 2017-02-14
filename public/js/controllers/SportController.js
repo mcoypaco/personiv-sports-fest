@@ -7,13 +7,14 @@ angular.module('sportCtrl', [])
     vm.newPosition = {};
     vm.editable = false;
 
-    vm.submit = function(){
+    vm.submit = function(data){
         $http({
             method: 'POST',
             url: 'api/sports',
-            data: $.param(vm.data),
-            headers: { 'Content-Type' : 'application/x-www-form-urlencoded' }
-        })
+            data: data,
+            headers: { 'Content-Type' : 'application/json' }
+        });
+        vm.getSports();
     }
 
     vm.getSports = function(){
@@ -44,13 +45,14 @@ angular.module('sportCtrl', [])
         $http({
             method: 'PUT',
             url: 'api/sports/' + id,
-            data: $.param(newData),
-            headers: { 'Content-Type' : 'application/x-www-form-urlencoded' }
+            data: newData,
+            headers: { 'Content-Type' : 'application/json' }
         }).then(function (success){
             console.log(success)
         },function (error){
             console.log(error)
         });
+        vm.getSports();
     }
 
     vm.addPosition = function(id){
@@ -59,13 +61,14 @@ angular.module('sportCtrl', [])
         $http({
             method: 'POST',
             url: 'api/positions',
-            data: $.param(vm.newPosition),
-            headers: { 'Content-Type' : 'application/x-www-form-urlencoded' }
+            data: vm.newPosition,
+            headers: { 'Content-Type' : 'application/json' }
         }).then(function (success){
             console.log(success)
         },function (error){
             console.log(error)
         });
+        vm.getSports();
     }
 
     vm.addModalPosition = function(ev, id){
@@ -94,4 +97,5 @@ angular.module('sportCtrl', [])
             console.log(error)
         });
     }
+    vm.getSports();
 });

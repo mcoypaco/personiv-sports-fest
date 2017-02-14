@@ -34,6 +34,7 @@
     <script src="js/controllers/HomeController.js"></script>
     <script src="js/controllers/SportController.js"></script>
     <script src="js/controllers/team/TeamController.js"></script>
+    <script src="js/controllers/PlayerController.js"></script>
     <!-- Services -->
     <!-- <script src="js/services/commentService.js"></script> -->
 </html>
