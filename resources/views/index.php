@@ -36,5 +36,7 @@
     <script src="js/controllers/team/TeamController.js"></script>
     <script src="js/controllers/PlayerController.js"></script>
     <!-- Services -->
+    <script src="js/controllers/User/UserFactory.js"></script>
+    <script src="js/controllers/team/TeamFactory.js"></script>
     <!-- <script src="js/services/commentService.js"></script> -->
 </html>
