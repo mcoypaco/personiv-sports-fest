@@ -22,6 +22,9 @@
     "angular-messages": "^1.5.9",
     "angular-ui-router": "^0.4.2",
     "bootstrap": "^3.3.7",
-    "satellizer": "^0.15.5"
+    "ioredis": "^2.5.0",
+    "laravel-echo": "^1.2.4",
+    "satellizer": "^0.15.5",
+    "socket.io": "^1.7.2"
   }
 }

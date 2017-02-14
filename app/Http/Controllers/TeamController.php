@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Team;
 use Illuminate\Http\Request;
+use App\Events\ChangedTeam;
 
 class TeamController extends Controller
 {
@@ -38,6 +39,7 @@ class TeamController extends Controller
     public function store(Request $request)
     {
         $team = Team::firstOrCreate($request->all());
+        event(new ChangedTeam($request));
         return response()->json($team);
     }
 

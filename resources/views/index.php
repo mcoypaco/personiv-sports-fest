@@ -5,7 +5,12 @@
         <title>Index Page</title>
         <!-- <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css"> -->
         <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
-
+        <script>
+            window.Laravel = <?php echo json_encode([
+              'csrfToken' => csrf_token(),
+            ]); ?>
+        </script>
+        <script src="//localhost:6001/socket.io/socket.io.js"></script>
     </head>
     <body ng-app="Sportsfest" ng-cloak>
         <div class="container">
@@ -15,6 +20,7 @@
     </body>
 
     <!-- Application Dependencies -->
+
     <script src="node_modules/angular/angular.js"></script>
     <script src="node_modules/angular-animate/angular-animate.min.js"></script>
     <script src="node_modules/angular-aria/angular-aria.min.js"></script>
@@ -26,6 +32,7 @@
 
     <!-- Application Scripts -->
     <script src="js/app.js"></script>
+    <script src="js/app-socket.js"></script>
 <!--     <script src="js/controllers/authController.js"></script>
     <script src="js/controllers/userController.js"></script> -->
 

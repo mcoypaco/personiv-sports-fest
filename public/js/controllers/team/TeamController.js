@@ -8,7 +8,10 @@ angular.module('teamCtrl' , [])
     //add team to database
     vm.addTeam = function(data){
       Team.store(data).then(function(response) {
-        console.log(response);
+      window.Echo.channel('changed-team-channel')
+       .listen('ChangedTeam', (e) => {
+           console.log(e);
+       });
       }).catch(function(err){
         console.log(err);
       })
