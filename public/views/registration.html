@@ -46,7 +46,7 @@
             <md-input-container ng-init="player.getSports()" class="md-block">
                 <label>Sports</label>
                 <md-select multiple ng-model="data.sports" placeholder="please select your sport">
-                <md-option ng-repeat="sport in player.sports" value="{{sport.id}}">{{sport.name}}</md-option>
+                    <md-option ng-repeat="sport in player.sports" value="{{sport.id}}">{{sport.name}}</md-option>
                 </md-select>
             </md-input-container>
         </div>

@@ -35,5 +35,10 @@ sportsFest.config(function($stateProvider, $urlRouterProvider, $authProvider, $h
             url: '/register',
             templateUrl: '../views/registration.html',
             controller: 'PlayerController as player'
+        })
+        .state('players', {
+            url: '/players',
+            templateUrl: '../views/players.html',
+            controller: 'PlayerController as player'
         });
 });

@@ -23,7 +23,8 @@ Route::group(['prefix' => 'api'], function()
 {
   // Player routes
   Route::post('players','PlayerController@store');
-  Route::get('players','PlayerController@index')->middleware('role:poc,admin');
+//   Route::get('players','PlayerController@index')->middleware('role:poc,admin');
+Route::get('players','PlayerController@index');
   Route::post('players/{id}','PlayerController@update')->middleware('role:admin');
   Route::get('players/{id}','PlayerController@show')->middleware('role:poc,admin');
 
