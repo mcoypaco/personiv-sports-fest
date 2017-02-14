@@ -92,9 +92,7 @@ class SportController extends Controller
     public function destroy($id)
     {
         Sport::destroy($id);
-
         return response()->json(array('success' => true));
-    }  
-    
+    }
 
 }

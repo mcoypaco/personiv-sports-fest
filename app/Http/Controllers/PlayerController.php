@@ -93,7 +93,14 @@ class PlayerController extends Controller
     public function destroy($id)
     {
         Player::destroy($id);
-    
+
         return response()->json(array('success' => true));
+    }
+
+    public function noTeam()
+    {
+      $player = Player::where('team_id', null);
+
+      return response()->json($player->get());
     }
 }

@@ -96,4 +96,10 @@ class UserController extends Controller
     {
         //
     }
+
+    public function poc()
+    {
+      $user = new User();
+      return response()->json($user->poc());
+    }
 }

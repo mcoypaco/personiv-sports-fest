@@ -28,25 +28,47 @@ class User extends Authenticatable
         'password', 'remember_token'
     ];
 
-    public function role() {
+    public function role()
+    {
       return $this->belongsTo(Role::class);
     }
 
-    public function hasRole($role) {
+    public function team()
+    {
+      return $this->hasOne(Team::class ,'user_id');
+    }
+
+    public function hasRole($role)
+    {
       return $this->role->name == $role ;
     }
 
-    public function getRole() {
+    public function getRole()
+    {
       return $this->role->name ;
     }
 
-    public function roleIs()
+    public function autUser()
     {
       $user = JWTAuth::parseToken()->authenticate();
-      $getUser = $this->find($user->id);
+      $auth = $this->find($user->id);
 
-      return $getUser;
+      return $auth;
     }
 
+    public function poc()
+    {
+      $noTeam = [];
 
+      $poc = User::whereHas('role' , function($q) {
+        $q->where('name','poc');
+      });
+
+      foreach ($poc->get() as $value){
+        if(is_null(Team::where('user_id', $value->id)->first())){
+          array_push($noTeam , $value);
+        }
+      }
+      return $noTeam;
+    }
 }

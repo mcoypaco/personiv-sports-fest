@@ -1,0 +1,34 @@
+<md-content>
+    <!--adding a new sport -->
+    <form ng-submit="team.addTeam(data)">
+        <div>
+            <md-input-container>
+                <input type="text" class="form-control input-sm" ng-model="data.name" placeholder="Name">
+            </md-input-container>
+            <md-input-container>
+            <label>Sport</label>
+            <md-select ng-model="data.sport_id" ng-init="team.getSports()">
+                <md-option ng-repeat="sport in team.sports track by sport.id" ng-value="sport.id">
+                {{sport.name}}
+                </md-option>
+            </md-select>
+            </md-input-container>
+            <md-input-container>
+            <label>Poc</label>
+            <md-select ng-model="data.user_id" ng-init="team.getPocs()">
+                <md-option ng-repeat="poc in team.poc track by poc.id" ng-value="poc.id">
+                {{poc.first_name}} {{poc.last_name}}
+                </md-option>
+            </md-select>
+            </md-input-container>
+        </div>
+        <md-button class="md-raised md-primary" type="submit">Add Team</md-button>
+    </form>
+
+    <!--end of adding a new team-->
+    <md-list ng-init="team.getTeams()">
+        <md-list-item class="md-3-line" ng-repeat="teamItem in team.teams" ng-click="team.showTeam(teamItem.id)">
+                <h3>{{teamItem.name}}</h3>
+        </md-list-item>
+    </md-list>
+</md-content>

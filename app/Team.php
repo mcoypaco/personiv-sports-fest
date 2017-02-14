@@ -7,25 +7,41 @@ use Illuminate\Http\Request;
 
 class Team extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['name','user_id','sport_id'];
 
-    public function players() {
+    public function players()
+    {
       return $this->hasMany(Player::class);
     }
 
-    public function addRemovePlayer(Request $request , $id){
+    public function sport()
+    {
+      return $this->belongsTo(Sport::class);
+    }
+
+    public function poc()
+    {
+      return $this->belongsTo(User::class , 'user_id');
+    }
+
+    public function addRemovePlayer(Request $request , $id)
+    {
       $player = Player::find($id);
       $team = Team::find($request->team_id);
 
-      if(is_null($player->team_id)){
+      if(is_null($player->team_id))
+      {
         $player->team()->associate($team);
       }
-      else{
-        if(is_null($request->team_id)) {
+      else {
+        if(is_null($request->team_id))
+        {
           $player->team()->dissociate($team);
         }
       }
 
       $player->save();
     }
+
+
 }

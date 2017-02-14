@@ -1,4 +1,4 @@
-<md-content>   
+<md-content>
     <!--adding a new sport -->
     <form ng-submit="sport.submit(data)">
         <div>
@@ -11,7 +11,7 @@
                 <input type="text" class="form-control input-lg" ng-model="data.description" placeholder="Description">
             </md-input-container>
         </div>
-        
+
         <md-button class="md-raised md-primary" type="submit">Add Sport</md-button>
     </form>
     <!--end of adding a new sport-->
@@ -36,12 +36,12 @@
                  </md-input-container>
     <!--foreach of the positions in sport-->
                  <md-list ng-if="sportItem.positions.length != 0">
-                    <b>Positions:</b> 
+                    <b>Positions:</b>
                      <md-list-item ng-repeat="position in sportItem.positions">
                          <p>{{position.name}}</p>
                          <md-button class="md-raised" ng-click="sport.deletePosition(position.id)">Delete position</md-button>
                     </md-list-item>  
-                </md-list>                
+                </md-list>
                 <section layout="row" layout-align="end end" layout-wrap>
                     <md-button class="md-primary md-raised" ng-click="sport.addModalPosition($event, sportItem.id)">
                         Add a position
