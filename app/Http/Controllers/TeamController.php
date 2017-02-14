@@ -12,6 +12,7 @@ class TeamController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $team = Team::all();
@@ -36,8 +37,8 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        Team::create($request->all());
-        return $request->all();
+        $team = Team::firstOrCreate($request->all());
+        return response()->json($team);
     }
 
     /**
@@ -48,8 +49,9 @@ class TeamController extends Controller
      */
     public function show($id)
     {
-        $this_team = Team::find($id);
-        return response()->json(['player' => $this_team->players]);
+        //$team = Team::whereId($id)->with('players')->get();
+        $team = Team::find($id);
+        return response()->json($team->poc()->get());
     }
 
     /**
@@ -72,8 +74,6 @@ class TeamController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $team = new Team();
-        $team.addRemovePlayer($request , $id);
 
     }
 

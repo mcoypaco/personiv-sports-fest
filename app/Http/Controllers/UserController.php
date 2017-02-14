@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class UserController extends Controller
 {
@@ -11,9 +12,12 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        //
+        $user = User::all();
+
+        return response()->json($user);
     }
 
     /**
@@ -34,7 +38,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = User::create([
+          'email' => $request->email,
+          'password' => bcrypt($request->password),
+          'first_name' => $request->first_name,
+          'last_name' => $request->last_name,
+          'cellphone_number' => $request->cellphone_number,
+          'role_id' => $request->role_id,
+        ]);
+
+        return response()->json($user);
     }
 
     /**
@@ -45,7 +58,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+
+        return response()->json($user);
     }
 
     /**
@@ -80,5 +95,11 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function poc()
+    {
+      $user = new User();
+      return response()->json($user->poc());
     }
 }

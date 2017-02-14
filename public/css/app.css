@@ -1,8 +1,8 @@
-.navBardemoBasicUsage md-content .ext-content {
+/*.navBardemoBasicUsage md-content .ext-content {
   padding: 10px;
   margin: 10px;
   background-color: #FFF2E0;
-}
+}*/
 
 .logo {
     /*display: inline-block;*/
@@ -43,6 +43,21 @@ md-nav-bar .md-nav-bar {
 
 .capitalize {
    text-transform: capitalize;
+}
+
+.whiteframe {
+  background-color: white;
+}
+
+.img-logo {
+  width: 70%;
+}
+
+.page-login md-card {
+  padding: 0!important;
+}
+.page-login md-card md-card-title {
+  background-color: dodgerblue;
 }
 
 /*$main-bg-color: #ECECEC;*/

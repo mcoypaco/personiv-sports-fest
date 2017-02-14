@@ -19,13 +19,13 @@ class AuthenticateController extends Controller
        $this->middleware('jwt.auth', ['except' => ['authenticate']]);
    }
 
-	public function index()
-	{
-	    // Retrieve all the users in the database and return them
-	    $users = User::all();
-	    return $users;
-	} 
-  
+    public function index()
+    {
+        // Retrieve all the users in the database and return them
+        $users = User::all();
+        return $users;
+    }
+
     public function authenticate(Request $request)
     {
         $credentials = $request->only('email', 'password');

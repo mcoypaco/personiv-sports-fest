@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Sport;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class SportController extends Controller
 {
@@ -12,9 +13,86 @@ class SportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-      $sport = Sport::all();
-      return response()->json($sport);
+        return response()->json(Sport::with('positions')->get());
     }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        Sport::create(array(
+            'name' => Input::get('name'),
+            'description' => Input::get('description')
+        ));
+
+        return response()->json(array('success' => true));
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        return response()->json(Sport::with('positions')->find($id));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $sport = Sport::find($id);
+        $sport->name = Input::get('name');
+        $sport->description = Input::get('description');
+        $sport->push();
+        return response()->json(array('success' => true));
+     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        Sport::destroy($id);
+        return response()->json(array('success' => true));
+    }
+
 }

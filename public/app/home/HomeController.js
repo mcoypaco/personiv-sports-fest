@@ -1,6 +1,6 @@
-angular.module('app.controllers')
-
-.controller('HomeController', function($scope, $http, $timeout, $mdSidenav, $log) { 
+// angular.module('app.controllers')
+sportsFest
+.controller('HomeController', ["$scope", function($scope) { 
 	 var vm = this;
 
 	 vm.hello = "hello!!";
@@ -29,4 +29,4 @@ angular.module('app.controllers')
 		image: "bowling"
 	}
 	];
-});
+}]);

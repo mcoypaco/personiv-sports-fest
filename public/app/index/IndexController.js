@@ -1,33 +1,30 @@
-angular.module('app.controllers', [])
+sportsFest.controller('IndexController', 
+    ["$scope", "$mdToast", "$mdDialog", "$log", "$mdSidenav", "$mdBottomSheet", "$q", "MenuItemsService", "$mdMenu", "$auth", "$state", "$window",
+        function($scope, $mdToast, $mdDialog, $log, $mdSidenav, $mdBottomSheet, $q, MenuItemsService, $mdMenu, $auth, $state, $window) { 
+	 
+    var vm = this;
+	  vm.user;
 
-.controller('IndexController', function($scope, $http, $timeout, $mdToast, $mdDialog, $log, $mdSidenav, $mdBottomSheet, $q, MenuItemsService) { 
-	 var vm = this;
-	 var originatorEv;
-
-	 vm.hello = "hello!!";
-
-	//
-    $scope.currentNavItem = 'home';
-
-    $scope.setHome = function() {
-    	$scope.currentNavItem = 'home';
+    vm.logout = function() {
+        $mdSidenav('right').toggle();
+        localStorage.removeItem('user');
+        $auth.logout();
+        $state.go("home.home");
+        $window.location.reload();
     }
 
-    $scope.announceClick = function() {
-        $mdDialog.show(
-        $mdDialog.alert()
-            .title('You clicked!')
-            .textContent('You clicked')
-            .ok('Nice')
-            .targetEvent(originatorEv)
-        );
-        originatorEv = null;
+    vm.isAuthenticated = function() {
+        return $auth.isAuthenticated();
     };
+
+    $scope.setHome = function() {
+    	 $scope.currentNavItem = 'home';
+    }
 
     vm.toggleRightSidebar = toggleRightSidebar;
     vm.toggleItemsList = toggleItemsList;
-	vm.selectItem = selectItem;
-	vm.showSimpleToast = showSimpleToast;
+  	vm.selectItem = selectItem;
+  	vm.showSimpleToast = showSimpleToast;
 
     function toggleRightSidebar() {
         $mdSidenav('right').toggle();
@@ -35,7 +32,6 @@ angular.module('app.controllers', [])
 
     function toggleItemsList() {
       var pending = $mdBottomSheet.hide() || $q.when(true);
-      console.log(pending)
       pending.then(function(){
         $mdSidenav('left').toggle();
       });
@@ -51,7 +47,7 @@ angular.module('app.controllers', [])
       $mdToast.show(
         $mdToast.simple()
           .content(title)
-          .hideDelay(2000)
+          .hideDelay(1500)
           .position('bottom right')
       );
     }
@@ -79,4 +75,4 @@ angular.module('app.controllers', [])
         function toggleOpen(section) {
           MenuItemsService.toggleSelectSection(section);
         }
-});
+}]);

@@ -1,6 +1,4 @@
-<h1>USER VIEW {DYNAMIC}</h1>
-
-<div>
+<div ng-if="isAuthenticated()">
   <md-content class="md-padding" layout-xs="column" layout="row">
     <!-- first -->
     <div ng-repeat="remainder in [0,1,2]" flex-xs="" flex-gt-xs="50" layout="column">
@@ -17,21 +15,23 @@
           </p>
         </md-card-content>
         <md-card-actions layout="column" layout-align="start">
-          <md-button class="md-raised md-warn">Register</md-button>
+          <md-button class="md-raised md-primary">View Players</md-button>
         </md-card-actions>
       </md-card>
     </div>
     
   </md-content>
+  <md-button>VIEW ALL PLAYERS</md-button>
+  <md-button>MANAGE USERS</md-button>
+  <md-button>ETC</md-button>
 </div>
 
+<div>
+  <img ng-src="img/2Color-Logo_247px-1024x195.png">
+  
+</div>
 <!--
 Copyright 2016 Google Inc. All Rights Reserved. 
 Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at http://material.angularjs.org/HEAD/license.
 -->
 
-<h1>ADMIN VIEW</h1>
-
-<md-button>VIEW ALL PLAYERS</md-button>
-<md-button>MANAGE USERS</md-button>
-<md-button>ETC</md-button>

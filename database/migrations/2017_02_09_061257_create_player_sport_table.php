@@ -14,11 +14,11 @@ class CreatePlayerSportTable extends Migration
     public function up()
     {
         Schema::create('player_sport', function (Blueprint $table) {
-            $table->integer('player_id')->unsigned()->nullable();
+            $table->integer('player_id')->unsigned();
             $table->foreign('player_id')->references('id')
                     ->on('players')->onDelete('cascade');
 
-            $table->integer('sport_id')->unsigned()->nullable();
+            $table->integer('sport_id')->unsigned();
             $table->foreign('sport_id')->references('id')
                 ->on('sports')->onDelete('cascade');
             

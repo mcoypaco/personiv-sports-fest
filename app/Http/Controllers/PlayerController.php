@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Player;
 use App\Team;
+use App\Sport;
 
 use Illuminate\Http\Request;
 
@@ -14,10 +15,11 @@ class PlayerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-      $player = Player::all();
-      return response()->json($player);
+    //   $player = Player::all();
+      return  response()->json(Player::with('positions', 'team', 'sports')->get());
     }
 
     /**
@@ -38,8 +40,10 @@ class PlayerController extends Controller
      */
     public function store(Request $request)
     {
-        Player::create($request->all());
-        return redirect('api/players');
+        $player = Player::create($request->except(['sports','positions']));
+        $player->sports()->attach($request->input('sports'));
+        $player->positions()->attach($request->input('positions'));
+        return response()->json(array('success' => true));
     }
 
     /**
@@ -51,6 +55,7 @@ class PlayerController extends Controller
     public function show($id)
     {
         $player = Player::find($id);
+
         return response()->json($player);
     }
 
@@ -76,7 +81,6 @@ class PlayerController extends Controller
     {
       $team = new Team();
       $team->addRemovePlayer($request , $id);
-
       return response()->json($request->all());
     }
 
@@ -88,6 +92,15 @@ class PlayerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Player::destroy($id);
+
+        return response()->json(array('success' => true));
+    }
+
+    public function noTeam()
+    {
+      $player = Player::where('team_id', null);
+
+      return response()->json($player->get());
     }
 }

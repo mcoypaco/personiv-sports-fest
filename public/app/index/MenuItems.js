@@ -1,21 +1,24 @@
-angular.module('app.services', [])
-
+// angular.module('app.services', [])
+sportsFest
 .service('MenuItemsService', ['$q', function($q) {
 	var menuItems = [
       {
         name: 'Home',
         icon: 'dashboard',
-        sref: '.home'
+        sref: '.home',
+        show: true
       },
       {
         name: 'Draft',
         icon: 'swap_vert',
-        sref: '.draft'
+        sref: '.draft',
+        show: false
       },
       {
         name: 'Players',
         icon: 'person',
-        sref: '.players'
+        sref: '.players',
+        show: false
       }
     ];
 
@@ -30,7 +33,7 @@ angular.module('app.services', [])
             icon: 'blur_circular'
         }, {
             name: 'Users',
-            state: 'home.home',
+            state: 'home.users',
             type: 'link',
             icon: 'people'
         },
