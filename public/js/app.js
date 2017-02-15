@@ -1,5 +1,5 @@
 var sportsFest = angular.module('Sportsfest', [
-	'ui.router', 'satellizer', 'ngMaterial', 'ngMessages', 'ngMdIcons', 'ui.router.title',
+	'ui.router', 'satellizer', 'ngMaterial', 'ngMessages', 'ngMdIcons', 'ui.router.title', 'lfNgMdFileInput',
 	// 'app.controllers', 'app.services',
 	]);
 

@@ -1,6 +1,5 @@
-<div>
+<div ng-if="!isAuthenticated()">
   <img ng-src="img/2Color-Logo_247px-1024x195.png">
-  
 </div>
 
 <div ng-if="isAuthenticated()">
@@ -8,7 +7,7 @@
     <!-- first -->
     <div ng-repeat="remainder in [0,1,2]" flex-xs="" flex-gt-xs="50" layout="column">
       <md-card ng-repeat="sport in home.sports" ng-if="$index % 3 == remainder">
-        <img ng-src="img/{{sport.image}}.jpg" class="md-card-image" alt="Washed Out">
+        <img ng-src="uploads/sports/{{sport.id}}.jpeg" class="md-card-image" alt="Washed Out">
         <md-card-title>
           <md-card-title-text>
             <span class="md-headline">{{sport.name}}</span>

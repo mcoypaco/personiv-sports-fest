@@ -12,17 +12,35 @@ sportsFest.controller('SportController',
             .success(function(successData) {
                 console.log(successData);
                 vm.getSports();
+                vm.upload(successData.id);
             })
             .error(function(err) {
                 console.log(err);
             })
     }
 
+    vm.upload = function(id) {
+        var formData = new FormData();
+        formData.append("file", $scope.files[0].lfFile);
+        //multiple upload
+        // angular.forEach($scope.files, function(obj) {
+        //     if(!obj.isRemote) {
+        //         formData.append('files[]', obj.lfFile);
+        //     }
+        // });
+        Sport.upload(formData, id)
+            .then(function(result) {
+                console.log(result)
+            }, function(err) {
+                console.log(err)
+            });
+    }
+
     vm.getSports = function() {
         Sport.get()
             .then(function (success) {
                 vm.sports = success.data
-            console.log(success.data)
+                console.log(success.data)
             }, function (error) {
                 console.log(error)
             })
