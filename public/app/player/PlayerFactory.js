@@ -3,10 +3,16 @@ sportsFest.factory("Player", ["$q", "$http",
   	return {
   		get : function() {
   			return $http({
-            method: 'GET',
-            url: 'api/players'
-        });
+				method: 'GET',
+				url: 'api/players'
+        	});
   		},
+		noTeamGet : function() {
+			return $http({
+				method: 'GET',
+				url: 'api/players/noteam'
+			});
+		},
 
   		store : function(data) {
   			return $http({
@@ -21,8 +27,13 @@ sportsFest.factory("Player", ["$q", "$http",
   			return $http.get('/api/players/' + id);
   		},
 
-  		update : function() {
-
+  		update : function(id, data) {
+			return $http({
+	            method: 'POST',
+	            url: 'api/players/' + id,
+	            data: data,
+	            headers: { 'Content-Type' : 'application/json' }
+	        });
   		},
 
   		destroy : function(id) {

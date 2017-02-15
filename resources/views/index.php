@@ -66,4 +66,7 @@
     <script src="app/user/UserFactory.js"></script>
     <script src="app/user/RoleFactory.js"></script>
 
+    <!--draft-->
+    <script src="app/draft/DraftController.js"></script>
+
 </html>

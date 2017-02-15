@@ -100,8 +100,7 @@ class PlayerController extends Controller
 
     public function noTeam()
     {
-      $player = Player::where('team_id', null);
-
+      $player = Player::with('positions', 'team', 'sports')->where('team_id', null);
       return response()->json($player->get());
     }
 

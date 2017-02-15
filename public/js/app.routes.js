@@ -57,6 +57,8 @@ sportsFest.config(function($stateProvider, $urlRouterProvider, $authProvider, $h
   })
   .state('home.draft', {
     url: '/draft',
+    templateUrl: '../app/draft/_draft.html',
+    controller: 'DraftController as draft',
     data: {
       requireLogin: true
     },
@@ -105,7 +107,7 @@ sportsFest.config(function($stateProvider, $urlRouterProvider, $authProvider, $h
       $title: function() { return 'Register'; }
     }
   });
-
+  
   $mdThemingProvider
   .theme('default')
   .primaryPalette('grey', {

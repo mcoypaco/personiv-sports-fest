@@ -8,6 +8,7 @@
         <md-divider></md-divider>
         <!-- <md-button class="md-primary md-raised" ng-click="showConfirm($event)">
           Confirm Dialog
+
       </md-button> -->
       <md-list ng-init="sport.getSports()">
         <md-list-item class="md-3-line" ng-repeat="sportItem in sport.sports" ng-click="editable=!editable">
@@ -15,7 +16,7 @@
                 <h3>{{sportItem.name}}</h3>
                 <p>{{sportItem.description}}</p>
             </div>
-            <div class="md-list-item-text" ng-if="editable" ng-init="new=sportItem">
+            <div class="md-list-item-text" ng-if="editable" ng-init="new.name=sportItem.name;new.description=sportItem.description">
                 <section layout="row" layout-align="end start" layout-wrap>
                     <md-button class="md-icon-button" aria-label="Exit" ng-click="$parent.editable = false">
                         <md-icon md-svg-src="img/icons/close.svg"></md-icon>
@@ -31,11 +32,11 @@
                 <md-list ng-if="sportItem.positions.length != 0">
                     <b>Positions:</b>
                     <md-list-item ng-repeat="position in sportItem.positions">
-                       <p>{{position.name}}</p>
-                       <md-button class="md-raised" ng-click="sport.deletePosition(position.id)">Delete position</md-button>
-                   </md-list-item>  
-               </md-list>
-               <section layout="row" layout-align="end end" layout-wrap>
+                     <p>{{position.name}}</p>
+                     <md-button class="md-raised" ng-click="sport.deletePosition(position.id)">Delete position</md-button>
+                 </md-list-item>  
+             </md-list>
+             <section layout="row" layout-align="end end" layout-wrap>
                 <md-button class="md-primary md-raised" ng-click="sport.addModalPosition($event, sportItem.id)">
                     Add a position
                 </md-button>

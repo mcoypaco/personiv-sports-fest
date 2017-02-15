@@ -71,8 +71,6 @@ sportsFest.controller('PlayerController',
     }
 
     vm.getPosition = function(arr, id) {
-        // console.log(arr);
-        // console.log(id);
         return arr.filter(function(item) {
             return (item.sport_id === id);
         });
