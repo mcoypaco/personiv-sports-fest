@@ -41,6 +41,7 @@ Route::group(['prefix' => 'api'], function()
   Route::post('teams/{id}', 'TeamController@update');
   Route::get('teams/{id}', 'TeamController@show');
   Route::get('players/noteam' , 'PlayerController@noTeam');
+  Route::get('players/export/{type}','PlayerController@exportExcel');
 
   Route::post('players','PlayerController@store');
   Route::get('players','PlayerController@index');

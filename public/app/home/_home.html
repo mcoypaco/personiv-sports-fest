@@ -4,7 +4,6 @@
 
 <div ng-if="isAuthenticated()">
   <md-content class="md-padding" layout-xs="column" layout="row">
-    <!-- first -->
     <div ng-repeat="remainder in [0,1,2]" flex-xs="" flex-gt-xs="50" layout="column">
       <md-card ng-repeat="sport in home.sports" ng-if="$index % 3 == remainder">
         <img ng-src="uploads/sports/{{sport.id}}.jpeg" class="md-card-image" alt="Washed Out">
@@ -29,10 +28,3 @@
   <md-button>MANAGE USERS</md-button>
   <md-button>ETC</md-button>
 </div>
-
-
-<!--
-Copyright 2016 Google Inc. All Rights Reserved. 
-Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at http://material.angularjs.org/HEAD/license.
--->
-

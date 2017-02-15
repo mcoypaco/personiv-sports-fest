@@ -27,8 +27,10 @@
     <!-- Application Scripts -->
     <script src="js/app.js"></script>
     <script src="js/app.routes.js"></script>
-<!--     <script src="js/controllers/authController.js"></script>
-    <script src="js/controllers/userController.js"></script> -->
+
+    <!-- Directives -->
+    <script src="js/directives/MenuLink.js"></script>
+    <script src="js/directives/MenuToggle.js"></script>
 
     <!-- draft -->
     <!-- <script src="app/draft/DraftController.js"></script> -->

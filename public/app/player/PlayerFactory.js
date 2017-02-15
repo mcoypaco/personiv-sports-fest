@@ -27,6 +27,14 @@ sportsFest.factory("Player", ["$q", "$http",
 
   		destroy : function(id) {
   			return $http.delete('/api/players/' + id);
-  		}
+  		},
+
+      export : function(type) {
+        return $http({
+          method: 'GET',
+          url: '/api/players/export/' + type,
+          headers: {'Content-Type' : 'application/csv; charset=UTF-8'},
+        });
+      }
   	}
 }])
