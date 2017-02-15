@@ -15,7 +15,7 @@ class TeamController extends Controller
 
     public function index()
     {
-        $team = Team::all();
+        $team = Team::with('players')->get();
         return response()->json($team);
     }
 
@@ -85,5 +85,14 @@ class TeamController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function addPlayers(Request $request, $id)
+    {
+        $team = Team::find($id);
+        foreach($request.data as $item){
+            $team->addRemovePlayer( $item );
+        }
+        return $request.data;
     }
 }

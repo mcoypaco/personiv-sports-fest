@@ -15,7 +15,7 @@
                     <h3>{{sportItem.name}}</h3>
                     <p>{{sportItem.description}}</p>
                 </div>
-                <div class="md-list-item-text" ng-if="editable" ng-init="new=sportItem">
+                <div class="md-list-item-text" ng-if="editable" ng-init="new.name=sportItem.name;new.description=sportItem.description">
                     <section layout="row" layout-align="end start" layout-wrap>
                         <md-button class="md-icon-button" aria-label="Exit" ng-click="$parent.editable = false">
                             <md-icon md-svg-src="img/icons/close.svg"></md-icon>

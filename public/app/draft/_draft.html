@@ -1,0 +1,47 @@
+<md-content class="whiteframe" layout="row" ng-init="draft.getSports()" >
+    <!--<div class="md-padding" layout="column" flex="30">
+        <md-list ng-init="draft.getTeams()">
+            <md-list-item class="md-3-line" ng-repeat="teamItem in draft.teams" ng-click="null">
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{draft.teams.indexOf(teamItem) + 1}}. {{teamItem.name}}</h3>
+                </div>
+                <md-divider ng-if="!$last"></md-divider>               
+            </md-list-item>
+        </md-list>
+    </div>-->
+    <div layout="column" flex=90>
+        <md-input-container layout="column" class="md-block">
+            <input type="text" class="form-control input-sm" ng-model="draft.search" placeholder="Search Name">
+        </md-input-container>
+        <div class="md-padding" layout="column" flex ng-init="draft.getPlayers()">
+            <div layout="column" flex>
+                <div layout="row" flex>
+                    <div class="myCell" flex><b>Player</b></div>
+                    <div class="myCell" flex><b>Position</b></div>
+                    <div class="myCell" flex="15"><b>Height</b></div>
+                    <div class="myCell" flex="15"><b>Weight</b></div>
+                    <div class="myCell" flex="25"><b>Teams</b></div>
+                </div>
+                <div layout="row" ng-repeat="playerItem in draft.players | filter: {first_name: draft.search}|| filter: {last_name:draft.search}" flex>
+                    <div class="myCell" flex>
+                        <p>{{playerItem.last_name}}, {{playerItem.first_name}}</p>
+                    </div>
+                    <div class="myCell" flex>{{draft.getBasketballPosition(playerItem.positions)}}</div>
+                    <div class="myCell" flex=15>{{playerItem.height}} cm</div>
+                    <div class="myCell" flex=15>{{playerItem.weight}} kg</div>
+                    <div flex="25" class="myCell" layout="row" layout-align="center center">
+                        <md-input-container flex=60>
+                            <label>Sport</label>
+                            <md-select ng-model="playerItem.team_id" placeholder="Select Team">
+                                <md-option ng-repeat="team in draft.teams" value="{{team.id}}">{{team.name}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container flex=30 ng-if="playerItem.team_id != null">
+                            <md-button class="md-raised md-primary" ng-click="draft.updatePlayer(playerItem.id, playerItem)">Save</md-button>
+                        </md-input-container>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</md-content>
