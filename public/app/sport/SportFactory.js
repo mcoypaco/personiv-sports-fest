@@ -35,6 +35,13 @@ sportsFest.factory("Sport", ["$q", "$http",
             method: 'DELETE',
             url: 'api/sports/' + id
         });
-  		}
+  		},
+
+      upload : function(formData, id) {
+        return $http.post('/api/upload/image/' + id, formData, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        });
+      }
   	}
 }])
