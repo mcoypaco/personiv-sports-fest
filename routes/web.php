@@ -46,6 +46,7 @@ Route::group(['prefix' => 'api'], function()
   Route::get('players','PlayerController@index');
   Route::post('players/{id}','PlayerController@update');
   Route::get('players/{id}','PlayerController@show');
+  Route::get('players/exportPlayers','PlayerController@exportPlayers');
   Route::resource('roles','RoleController');
   //end of test
 

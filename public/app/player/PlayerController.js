@@ -78,6 +78,17 @@ sportsFest.controller('PlayerController',
         });
     }
 
+    vm.exportPlayers = function(){
+        Player.export()
+            .then(function (success) {
+                console.log('controller')
+                vm.players = success.data;
+                vm.filteredPlayers = success.data;
+            },function (error) {
+                console.log(error.data)
+            });
+    }
+
     $scope.$watch(function () {
         return vm.selectedSport;
     }, function(newValue, oldValue) {

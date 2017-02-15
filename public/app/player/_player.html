@@ -1,5 +1,6 @@
 <md-content>
     <h1>   PLAYERS: </h1>
+    <md-button class="md-raised md-primary" ng-click="player.exportPlayers()">EXPORT</md-button>
     <md-input-container ng-init="player.getSports()" class="md-block">
         <label>Sports</label>
         <md-select ng-model="player.selectedSport" placeholder="sport">
@@ -15,7 +16,7 @@
         </md-select>
     </md-input-container>
     <md-list ng-init="player.getPlayers()">
-        <md-list-item class="md-3-line" ng-repeat="playerItem in player.filteredPlayers" ng-click="showAll = !showAll">
+        <md-list-item class="md-3-line" ng-repeat="playerItem in player.filteredPlayers track by $index" ng-click="showAll = !showAll">
             <div class="md-list-item-text" layout="column">
                 <h3>{{playerItem.first_name}} {{playerItem.last_name}}</h3>
                 <p>Height: {{playerItem.height}} cm</p>
