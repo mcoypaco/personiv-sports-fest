@@ -9,13 +9,13 @@
                 </md-input-container>
              </div>
             <div>
-                <md-input-container>
-                    <input type="password" class="form-control input-sm" ng-model="data.password"  required placeholder="Password">
-               </md-input-container>
-               <md-input-container>
-                    <input type="password" class="form-control input-sm" ng-model="dataConfirm.password"  required placeholder="Confim Password">
-                </md-input-container>
-                <span ng-show="data.password !== dataConfirm.password">Password doesn't match</span>
+                    <md-input-container>
+                        <input type="password" class="form-control input-sm" ng-model="data.password"  required placeholder="Password">
+                   </md-input-container>
+                   <md-input-container>
+                        <input type="password" class="form-control input-sm" ng-model="dataConfirm.password"  required placeholder="Confim Password">
+                    </md-input-container>
+                <br><span ng-show="data.password !== dataConfirm.password" id='warning'>Password doesn't match</span>
             </div>
              <div>
                 <md-input-container>

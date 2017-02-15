@@ -187,6 +187,9 @@ md-sidenav.md-locked-open.md-sidenav-left {
 a.md-button.md-warn.md-raised, a.md-button.md-warn.md-fab, .md-button.md-warn.md-raised, .md-button.md-warn.md-fab {
   color: white;
 }
+md-button {
+    font-weight: bolder;
+}
 
 md-radio-button.md-accent.md-checked .md-label span {
   color: rgb(0, 150, 136);
@@ -218,3 +221,44 @@ md-backdrop.md-sidenav-backdrop {
 .orange .md-container {
   background-color: rgb(255, 236, 201)
 }
+
+#playersTitle {
+   margin-left: 1%;
+}
+#select {
+  margin: 10px;
+   /*margin-right: 10px;*/
+   width: 200px
+}
+
+#items {
+  color: #128CE3;
+  font-weight: 500;
+  font-size: 16px
+}
+
+ng-md-icon {
+  fill: #128CE3;
+}
+
+#emptyData {
+    display: table;
+    margin: 0 auto; 
+    color: #BDC3C7;
+}
+
+lf-ng-md-file-input {
+  font-size: 25px;
+}
+
+#crumbles {
+  margin: 15px;
+  font-size: 16px;
+  text-color: #2E3133;
+}
+
+#warning {
+  color: #FF0303;
+  font-size: 13px;
+}
+

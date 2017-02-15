@@ -2,24 +2,28 @@
     <!--adding a new sport -->
     <form ng-submit="team.addTeam(data)">
         <div>
-            <md-input-container>
+            <md-input-container id="select">
                 <input type="text" class="form-control input-sm" ng-model="data.name" placeholder="Name">
             </md-input-container>
-            <md-input-container>
-            <label>Sport</label>
-            <md-select ng-model="data.sport_id" ng-init="team.getSports()">
-                <md-option ng-repeat="sport in team.sports track by sport.id" ng-value="sport.id">
-                {{sport.name}}
-                </md-option>
-            </md-select>
+        </div>
+        <div>
+            <md-input-container id="select">
+                <label>Sport</label>
+                <md-select ng-model="data.sport_id" ng-init="team.getSports()">
+                    <md-option ng-repeat="sport in team.sports track by sport.id" ng-value="sport.id">
+                    {{sport.name}}
+                    </md-option>
+                </md-select>
             </md-input-container>
-            <md-input-container>
-            <label>Poc</label>
-            <md-select ng-model="data.user_id" ng-init="team.getPocs()">
-                <md-option ng-repeat="poc in team.poc track by poc.id" ng-value="poc.id">
-                {{poc.first_name}} {{poc.last_name}}
-                </md-option>
-            </md-select>
+        </div>
+        <div>
+            <md-input-container id="select">
+                <label>Poc</label>
+                <md-select ng-model="data.user_id" ng-init="team.getPocs()">
+                    <md-option ng-repeat="poc in team.poc track by poc.id" ng-value="poc.id">
+                    {{poc.first_name}} {{poc.last_name}}
+                    </md-option>
+                </md-select>
             </md-input-container>
         </div>
         <md-button class="md-raised md-primary" type="submit">Add Team</md-button>

@@ -3,7 +3,10 @@
 </div>
 
 <div ng-if="isAuthenticated()">
-  <md-content class="md-padding" layout-xs="column" layout="row">
+  <div ng-if="home.sports == ''" id="emptyData">
+       <h2>NO SPORTS ADDED</h2>
+  </div>
+  <md-content class="md-padding" layout-xs="column" layout="row" ng-if="home.sports != ''">
     <!-- first -->
     <div ng-repeat="remainder in [0,1,2]" flex-xs="" flex-gt-xs="50" layout="column">
       <md-card ng-repeat="sport in home.sports" ng-if="$index % 3 == remainder">

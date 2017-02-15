@@ -1,20 +1,23 @@
 <md-content>
-    <h1>   PLAYERS: </h1>
-    <md-button class="md-raised md-primary" ng-click="player.exportPlayers()">EXPORT</md-button>
-    <md-input-container ng-init="player.getSports()" class="md-block">
-        <label>Sports</label>
-        <md-select ng-model="player.selectedSport" placeholder="sport">
-            <md-option ng-repeat="sport in player.sports" value="{{sport.id}}">{{sport.name}}</md-option>
-            <md-option  value="all">ALL</md-option>
-        </md-select>
-    </md-input-container>
-    <md-input-container class="md-block" ng-if="player.selectedSport && player.selectedSport !='all'">
-        <label>Position</label>
-        <md-select ng-model="player.selectedPosition" placeholder="position">
-            <md-option ng-repeat="position in player.getSport(player.selectedSport)[0].positions" value="{{position.id}}">{{position.name}}</md-option>
-            <md-option  value="all">ALL</md-option>
-        </md-select>
-    </md-input-container>
+    <h1 id='playersTitle'>
+    PLAYERS
+    <md-button class="md-raised md-primary" ng-click="player.exportPlayers()">EXPORT</md-button></h1>
+    <div>
+        <md-input-container ng-init="player.getSports()" class="md-block" id="select">
+            <label>Sports</label>
+            <md-select ng-model="player.selectedSport" placeholder="sport" >
+                <md-option ng-repeat="sport in player.sports" value="{{sport.id}}">{{sport.name}}</md-option>
+                <md-option  value="all">ALL</md-option>
+            </md-select>
+        </md-input-container>
+        <md-input-container class="md-block" ng-if="player.selectedSport && player.selectedSport !='all'">
+            <label>Position</label>
+            <md-select ng-model="player.selectedPosition" placeholder="position">
+                <md-option ng-repeat="position in player.getSport(player.selectedSport)[0].positions" value="{{position.id}}">{{position.name}}</md-option>
+                <md-option  value="all">ALL</md-option>
+            </md-select>
+        </md-input-container>
+    </div>
     <md-list ng-init="player.getPlayers()">
         <md-list-item class="md-3-line" ng-repeat="playerItem in player.filteredPlayers track by $index" ng-click="showAll = !showAll">
             <div class="md-list-item-text" layout="column">
@@ -29,6 +32,7 @@
                         Position: {{player.getPosition(playerItem.positions, sportItem.id)[0].name}}
                     </p>
                 </div>
+                <md-divider></md-divider>
             </div>
         </md-list-item>
     </md-list>
