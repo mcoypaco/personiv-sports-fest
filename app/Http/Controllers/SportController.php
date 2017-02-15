@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Sport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use File;
 
 class SportController extends Controller
 {
@@ -37,12 +38,11 @@ class SportController extends Controller
      */
     public function store(Request $request)
     {
-        Sport::create(array(
+        $sport = Sport::create(array(
             'name' => Input::get('name'),
             'description' => Input::get('description')
         ));
-
-        return response()->json(array('success' => true));
+        return response()->json(array('success' => true, 'id' => $sport->id));
     }
 
     /**
@@ -93,6 +93,21 @@ class SportController extends Controller
     {
         Sport::destroy($id);
         return response()->json(array('success' => true));
+    }
+
+    public function upload(Request $request, $id)
+    {
+        $output->writeln('hello');
+        $file = $request->file('file');
+        if ($file != null) {
+            $file = $request->file;
+            $extension = $request->file->extension();
+            if (!file_exists(public_path().'/uploads/sports')) {
+                File::makeDirectory(public_path().'/uploads/sports', 0777, true);
+            }
+            $request->file->storeAs('/uploads/sports', ''.$id.'.'.$extension);
+            response()->json(array('success' => "lolol"));
+        }
     }
 
 }
