@@ -1,4 +1,4 @@
-<md-content class="whiteframe" layout="row" ng-init="draft.getSports()" >
+<md-content class="whiteframe" layout="row" ng-init="draft.getSports()" ng-cloak>
     <!--<div class="md-padding" layout="column" flex="30">
         <md-list ng-init="draft.getTeams()">
             <md-list-item class="md-3-line" ng-repeat="teamItem in draft.teams" ng-click="null">
@@ -9,15 +9,17 @@
             </md-list-item>
         </md-list>
     </div>-->
-    <div layout="column" flex=90>
-        <md-input-container layout="column" class="md-block">
-            <input type="text" class="form-control input-sm" ng-model="draft.search" placeholder="Search Name">
-        </md-input-container>
+    <div layout="column" flex=65>
+        <div>
+            <md-input-container layout="row" flex="30" class="md-block">
+                <input type="text" class="form-control input-sm" ng-model="draft.search" placeholder="Search Name">
+            </md-input-container>   
+        </div>
         <div class="md-padding" layout="column" flex ng-init="draft.getPlayers()">
             <div layout="column" flex>
                 <div layout="row" flex>
                     <div class="myCell" flex><b>Player</b></div>
-                    <div class="myCell" flex><b>Position</b></div>
+                    <div class="myCell" flex="20"><b>Position</b></div>
                     <div class="myCell" flex="15"><b>Height</b></div>
                     <div class="myCell" flex="15"><b>Weight</b></div>
                     <div class="myCell" flex="25"><b>Teams</b></div>
@@ -26,7 +28,7 @@
                     <div class="myCell" flex>
                         <p>{{playerItem.last_name}}, {{playerItem.first_name}}</p>
                     </div>
-                    <div class="myCell" flex>{{draft.getBasketballPosition(playerItem.positions)}}</div>
+                    <div class="myCell" flex="20">{{draft.getBasketballPosition(playerItem.positions)}}</div>
                     <div class="myCell" flex=15>{{playerItem.height}} cm</div>
                     <div class="myCell" flex=15>{{playerItem.weight}} kg</div>
                     <div flex="25" class="myCell" layout="row" layout-align="center center">
@@ -44,4 +46,29 @@
             </div>
         </div>
     </div>
+    <!-- <div > -->
+        <!-- <h1>TEAMS</h1> -->
+        <div ng-repeat="remainder in [0,1]" flex="18" layout="column" class="md-padding">
+            <md-card ng-repeat="team in draft.teams" ng-if="$index % 2 == remainder" flex="flex">
+                <md-toolbar layout="row" >
+                  <div class="md-toolbar-tools" style="overflow: hidden;">
+                    <h2><span>{{team.name}} - <small><i>{{ team.user_id }} name_of_POC </i></small></span></h2>
+                  </div>
+                  <!-- <md-button ui-sref="home.home">
+                    Home
+                  </md-button> -->
+                </md-toolbar>
+                <md-card-content>
+                    <p>player 1</p>
+                    <p>player 2</p>
+                    <p>player 3</p>
+                    <p>player 4</p>
+                    <p>player 5</p>
+                </md-card-content>
+            </md-card>
+            <!-- <div ng-repeat="team in draft.teams" ng-if="$index % 2 == remainder">
+                {{team.name}}
+            </div> -->
+        </div>
+    <!-- </div> -->
 </md-content>
