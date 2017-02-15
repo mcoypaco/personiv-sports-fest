@@ -1,6 +1,5 @@
 <md-content>
     <h1>   PLAYERS: </h1>
-    <md-button class="md-raised md-primary" ng-click="player.exportPlayers()">EXPORT</md-button>
     <md-input-container ng-init="player.getSports()" class="md-block">
         <label>Sports</label>
         <md-select ng-model="player.selectedSport" placeholder="sport">
@@ -32,4 +31,5 @@
             </div>
         </md-list-item>
     </md-list>
+    <md-button class="md-raised md-primary" ng-click="player.exportPlayers()">EXPORT</md-button>
 </md-content>   

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Player;
 use App\Team;
 use App\Sport;
-// use Maatwebsite\Excel\Facades\Excel;
 use Excel;
 use Illuminate\Http\Request;
 
@@ -101,19 +100,20 @@ class PlayerController extends Controller
     public function noTeam()
     {
       $player = Player::where('team_id', null);
-
       return response()->json($player->get());
     }
 
     public function exportPlayers() {
         $filename = 'players';
-        $players = Player::select('id', 'employee_id', 'first_name', 'last_name')->get();
+        $players = Player::all()->toArray();
+        // $players = Player::select('id', 'employee_id', 'first_name', 'last_name')->get();
         Excel::create($filename, function($excel) use($players) {
              $excel->setTitle('All Players');
             $excel->sheet('players', function($sheet) use($players) {
                 $sheet->fromArray($users);
             });
         })->store('xls');
+        // Excel::create($filename)->store('xls');
         // return response()->download('exports/'.$filename.'.xls');
     }
 }
