@@ -41,6 +41,7 @@ Route::group(['prefix' => 'api'], function()
   Route::post('teams/{id}', 'TeamController@update');
   Route::get('teams/{id}', 'TeamController@show');
   Route::get('players/noteam' , 'PlayerController@noTeam');
+  Route::get('players/export/{type}','PlayerController@exportExcel');
 
   Route::post('players','PlayerController@store');
   Route::get('players','PlayerController@index');
@@ -59,14 +60,11 @@ Route::group(['prefix' => 'api'], function()
   Route::get('users/{id}','UserController@show');
 
   Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
-
-
   Route::post('authenticate', 'AuthenticateController@authenticate');
-
   Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
 
-  Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
-
+  Route::post('upload/image/{id}', 'SportController@upload');
+  
   Route::resource('positions', 'PositionController',
               ['only' => ['index', 'store', 'destroy']]);
 

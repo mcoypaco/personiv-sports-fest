@@ -25,7 +25,7 @@ sportsFest.controller('DraftController',
         });
     }
 
-    vm.getBasketballSport = function(){
+    vm.getBasketballSport = function() {
         return vm.sports.filter(function(item) {
             return item.name.toString().ignoreCase === "Basketball".ignoreCase;
         })[0];  

@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="css/app.css">
         <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="node_modules/lf-ng-md-file-input/dist/lf-ng-md-file-input.css">
     </head>
     <body ng-app="Sportsfest" ng-cloak>
         
@@ -21,12 +22,15 @@
     <script src="node_modules/satellizer/dist/satellizer.js"></script>
     <script src="node_modules/angular-material-icons/angular-material-icons.min.js"></script>
     <script src="node_modules/angular-ui-router-title/angular-ui-router-title.js"></script>
+    <script src="/node_modules/lf-ng-md-file-input/dist/lf-ng-md-file-input.js"></script>
 
     <!-- Application Scripts -->
     <script src="js/app.js"></script>
     <script src="js/app.routes.js"></script>
-<!--     <script src="js/controllers/authController.js"></script>
-    <script src="js/controllers/userController.js"></script> -->
+
+    <!-- Directives -->
+    <script src="js/directives/MenuLink.js"></script>
+    <script src="js/directives/MenuToggle.js"></script>
 
     <!-- draft -->
     <!-- <script src="app/draft/DraftController.js"></script> -->

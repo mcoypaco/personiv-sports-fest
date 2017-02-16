@@ -8,65 +8,68 @@
         <md-divider></md-divider>
         <!-- <md-button class="md-primary md-raised" ng-click="showConfirm($event)">
           Confirm Dialog
-        </md-button> -->
-        <md-list ng-init="sport.getSports()">
-            <md-list-item class="md-3-line" ng-repeat="sportItem in sport.sports" ng-click="editable=!editable">
-                <div class="md-list-item-text" layout="column" ng-if="!editable">
-                    <h3>{{sportItem.name}}</h3>
-                    <p>{{sportItem.description}}</p>
-                </div>
-                <div class="md-list-item-text" ng-if="editable" ng-init="new.name=sportItem.name;new.description=sportItem.description">
-                    <section layout="row" layout-align="end start" layout-wrap>
-                        <md-button class="md-icon-button" aria-label="Exit" ng-click="$parent.editable = false">
-                            <md-icon md-svg-src="img/icons/close.svg"></md-icon>
-                        </md-button>
-                    </section>
-                    <md-input-container>
-                        <input type="text" class="form-control input-sm" ng-model="new.name" placeholder="Name">
-                    </md-input-container>
-                     <md-input-container class="md-block">
-                        <input type="text" class="form-control input-lg" ng-model="new.description" placeholder="Description">
-                     </md-input-container>
+      </md-button> -->
+      <md-list ng-init="sport.getSports()">
+        <md-list-item class="md-3-line" ng-repeat="sportItem in sport.sports" ng-click="editable=!editable">
+            <div class="md-list-item-text" layout="column" ng-if="!editable">
+                <h3>{{sportItem.name}}</h3>
+                <p>{{sportItem.description}}</p>
+            </div>
+            <div class="md-list-item-text" ng-if="editable" ng-init="new.name=sportItem.name;new.description=sportItem.description">
+                <section layout="row" layout-align="end start" layout-wrap>
+                    <md-button class="md-icon-button" aria-label="Exit" ng-click="$parent.editable = false">
+                        <md-icon md-svg-src="img/icons/close.svg"></md-icon>
+                    </md-button>
+                </section>
+                <md-input-container>
+                    <input type="text" class="form-control input-sm" ng-model="new.name" placeholder="Name">
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <input type="text" class="form-control input-lg" ng-model="new.description" placeholder="Description">
+                </md-input-container>
                 <!--foreach of the positions in sport-->
-                     <md-list ng-if="sportItem.positions.length != 0">
-                        <b>Positions:</b>
-                         <md-list-item ng-repeat="position in sportItem.positions">
-                             <p>{{position.name}}</p>
-                             <md-button class="md-raised" ng-click="sport.deletePosition(position.id)">Delete position</md-button>
-                        </md-list-item>  
-                    </md-list>
-                    <section layout="row" layout-align="end end" layout-wrap>
-                        <md-button class="md-primary md-raised" ng-click="sport.addModalPosition($event, sportItem.id)">
-                            Add a position
-                        </md-button>
-                        <md-button class="md-raised" ng-click="sport.update(sportItem.id, new)">update</md-button>
-                        <md-button class="md-raised" ng-click="sport.delete(sportItem.id)">Delete</md-button>
-                    </section>
-                </div>
-            </md-list-item>
-        </md-list>
-    </div>
-    <div flex="10"></div>
-    <!--adding a new sport -->
-    <div class="md-padding" layout="row">
-        <div layout="column">
-            <h2>
-                <ng-md-icon icon="add_circle"></ng-md-icon> Add New Sport
-            </h2>
-            <form ng-submit="sport.submit(data)">
-                <div>
-                    <md-input-container>
-                        <input type="text" class="form-control input-sm" ng-model="data.name" placeholder="Name">
-                    </md-input-container>
-                </div>
-                <div>
-                    <md-input-container class="md-block">
-                        <input type="text" class="form-control input-lg" ng-model="data.description" placeholder="Description">
-                    </md-input-container>
-                </div>
-
-                <md-button class="md-raised md-primary" type="submit">Add Sport</md-button>
-            </form>
+                <md-list ng-if="sportItem.positions.length != 0">
+                    <b>Positions:</b>
+                    <md-list-item ng-repeat="position in sportItem.positions">
+                     <p>{{position.name}}</p>
+                     <md-button class="md-raised" ng-click="sport.deletePosition(position.id)">Delete position</md-button>
+                 </md-list-item>  
+             </md-list>
+             <section layout="row" layout-align="end end" layout-wrap>
+                <md-button class="md-primary md-raised" ng-click="sport.addModalPosition($event, sportItem.id)">
+                    Add a position
+                </md-button>
+                <md-button class="md-raised" ng-click="sport.update(sportItem.id, new)">update</md-button>
+                <md-button class="md-raised" ng-click="sport.delete(sportItem.id)">Delete</md-button>
+            </section>
         </div>
+    </md-list-item>
+</md-list>
+</div>
+<div flex="10"></div>
+<!--adding a new sport -->
+<div class="md-padding" layout="row">
+    <div layout="column">
+        <h2>
+            <ng-md-icon icon="add_circle"></ng-md-icon> Add New Sport
+        </h2>
+        <form ng-submit="sport.submit(data)">
+            <div>
+                <md-input-container>
+                    <input type="text" class="form-control input-sm" ng-model="data.name" placeholder="Name">
+                </md-input-container>
+            </div>
+            <div>
+                <md-input-container class="md-block">
+                    <input type="text" class="form-control input-lg" ng-model="data.description" placeholder="Description">
+                </md-input-container>
+            </div>
+            <div>
+                <lf-ng-md-file-input lf-files="files" lf-browse-label="Choose" lf-remove-label="Delete" lf-drag-and-drop-label="Drag and Drop here!" drag preview lf-required></lf-ng-md-file-input>
+            </div>
+
+            <md-button class="md-raised md-primary" type="submit">Add Sport</md-button>
+        </form>
     </div>
+</div>
 </md-content>
