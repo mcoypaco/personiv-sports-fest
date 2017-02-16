@@ -1,13 +1,21 @@
 sportsFest.controller('DraftController', 
-    ["$scope", "Player", "Team", "Sport",
-        function($scope, Player, Team, Sport) { 
+    ["$scope", "Player", "Team", "Sport", "User",
+        function($scope, Player, Team, Sport, User) { 
 
     var vm = this;
     vm.teams;
     vm.players;
     vm.sports;
     vm.basketball;
-    
+    vm.users;
+    vm.poc;
+    vm.query = {
+        order: 'last_name',
+        limit: 10,
+        page: 1
+    };
+    vm.limitOptions = [10, 25, 50, 100];
+
     vm.getTeams = function(){
        Team.get().then(function (success) {
             vm.teams = success.data;
@@ -34,10 +42,11 @@ sportsFest.controller('DraftController',
     vm.getSports = function(){
         Sport.get().then(function (success) {
            vm.sports = success.data;
+           vm.getTeams();
           },function (error) {
             console.log(error.data)
         });
-        vm.getTeams();
+        vm.getUsers();        
     }
 
     vm.getBasketballPlayers = function(arr){
@@ -64,5 +73,19 @@ sportsFest.controller('DraftController',
         },function (error) {
             console.log(error.data)
         });
+    }
+
+    vm.getUsers = function(){
+        User.get().then(function (success){
+            vm.users = success.data
+        }, function (error) {
+            console.log(error.data)
+        });
+    }
+
+    vm.getUser = function(id){
+        return vm.users.filter(function(item) {
+            return (item.id === id);
+        })[0];
     }
 }]);

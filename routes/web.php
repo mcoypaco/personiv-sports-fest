@@ -57,6 +57,7 @@ Route::group(['prefix' => 'api'], function()
   //Route::resource('users','UserController',['middleware' => 'role:admin']);
   Route::get('users/poc','UserController@poc');
   Route::post('users','UserController@store');
+  Route::get('users','UserController@index');
   Route::get('users/{id}','UserController@show');
 
   Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
