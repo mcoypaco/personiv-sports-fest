@@ -168,8 +168,8 @@ body {
 }
 
 
-// OVERRIDES
-// angular material overrides
+ /*OVERRIDES
+ angular material overrides*/
 md-radio-group {
   border: none;
 }
@@ -201,7 +201,7 @@ md-backdrop.md-sidenav-backdrop {
   position: fixed;
 }
 
-// libs overrides
+/*// libs overrides*/
 .material-icons {
   vertical-align: middle;
 }
@@ -217,4 +217,9 @@ md-backdrop.md-sidenav-backdrop {
 
 .orange .md-container {
   background-color: rgb(255, 236, 201)
+}
+
+.myCell {
+  border: solid black 1px;
+  padding: 10px;
 }

@@ -62,8 +62,8 @@ sportsFest.config(function($stateProvider, $urlRouterProvider, $authProvider, $h
         })
         .state('home.draft', {
             url: '/draft',
-            // templateUrl: '../views/sports.html',
-            // controller: 'SportController as sport'
+            templateUrl: '../app/draft/_draft.html',
+            controller: 'DraftController as draft',
             data: {
                 requireLogin: true
             },
