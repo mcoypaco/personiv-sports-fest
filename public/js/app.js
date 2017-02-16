@@ -1,49 +1,51 @@
 var sportsFest = angular.module('Sportsfest', [
-	'ui.router', 'satellizer', 'ngMaterial',
-	'homeCtrl','sportCtrl','teamCtrl','playerCtrl'
-	]);
+  'ui.router', 'satellizer', 'ngMaterial', 'ngMessages', 'ngMdIcons', 'ui.router.title', 'lfNgMdFileInput',
+  ]);
 
-sportsFest.config(function($stateProvider, $urlRouterProvider, $authProvider, $httpProvider, $provide) {
-	$authProvider.loginUrl = '/api/authenticate';
+sportsFest.run(["$rootScope", "$state", "$stateParams", "$auth","Role", function($rootScope, $state, $stateParams, $auth, Role) {
+  $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+    $rootScope.isAuthenticated = function() {
+      return $auth.isAuthenticated();
+    }
 
-    // Redirect to the auth state if any other states
-    // are requested other than users
-    $urlRouterProvider.otherwise('/home');
+    $rootScope.user = JSON.parse(localStorage.getItem('user'));
 
-    $stateProvider
-        // .state('auth', {
-        //     url: '/auth',
-        //     templateUrl: '../views/authView.html',
-        //     controller: 'AuthController as auth'
-        // })
-        // .state('users', {
-        //     url: '/users',
-        //     templateUrl: '../views/userView.html',
-        //     controller: 'UserController as user'
-        // })
-        .state('home', {
-            url: '/home',
-            templateUrl: '../views/home.html',
-            controller: 'HomeController as home'
+    $rootScope.isAdmin = function(){
+      Role.getAdminId().then(function(adminId){
+          $rootScope.access = ($rootScope.user.role_id === adminId)
+          console.log("root scope");
+          console.log($rootScope.access);
         })
-        .state('sports', {
-            url: '/sports',
-            templateUrl: '../views/sport.html',
-            controller: 'SportController as sport'
-        })
-				.state('teams', {
-					url: '/teams',
-					templateUrl: '../views/team/_team.html',
-					controller: 'TeamController as team'
-				})
-				.state('team_view' , {
-					url: '/teams/{id}',
-					templateUrl: '../views/team/_view-team.html',
-					controller: 'TeamController as team'
-				})
-        .state('register', {
-            url: '/register',
-            templateUrl: '../views/registration.html',
-            controller: 'PlayerController as player'
-        });
+    }
+    $rootScope.isAdmin();
+
+    $rootScope.routeName = toState.url.substring(1);
+    var requireLogin = toState.data.requireLogin;
+    if (requireLogin && !$auth.isAuthenticated()) {
+      $state.go('login');
+      event.preventDefault();
+    }
+    else if (!requireLogin && $auth.isAuthenticated() && toState.name === "login") {
+      event.preventDefault();
+      $state.go('home.home');
+    }
+  })
+}]);
+
+sportsFest.filter('nospace', function () {
+  return function (value) {
+    return (!value) ? '' : value.replace(/ /g, '');
+  };
+});
+
+sportsFest.filter('humanizeDoc', function () {
+  return function (doc) {
+    if (!doc) return;
+    if (doc.type === 'directive') {
+      return doc.name.replace(/([A-Z])/g, function ($1) {
+        return '-' + $1.toLowerCase();
+      });
+    }
+    return doc.label || doc.name;
+  };
 });

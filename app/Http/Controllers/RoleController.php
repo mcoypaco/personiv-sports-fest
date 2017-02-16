@@ -53,7 +53,7 @@ class RoleController extends Controller
     {
         $role = Role::find($id);
 
-        return $role->users;
+        return $role;
     }
 
     /**
@@ -88,5 +88,11 @@ class RoleController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getAdminId()
+    {
+      $admin = Role::where('name','admin')->first();
+      return  $admin->id;
     }
 }

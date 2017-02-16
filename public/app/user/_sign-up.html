@@ -1,0 +1,57 @@
+<md-content class="whiteframe" layout="row">
+<!--adding a new player -->
+    <div class="md-padding" layout="column" flex="50">
+        <h2>Register User</h2>
+        <form ng-submit="user.register(data)" name="registrationForm">
+            <div>
+                <md-input-container>
+                    <input type="email" class="form-control input-sm" ng-model="data.email" required placeholder="Email">
+                </md-input-container>
+             </div>
+            <div>
+                <md-input-container>
+                    <input type="password" class="form-control input-sm" ng-model="data.password"  required placeholder="Password">
+               </md-input-container>
+               <md-input-container>
+                    <input type="password" class="form-control input-sm" ng-model="dataConfirm.password"  required placeholder="Confim Password">
+                </md-input-container>
+                <span ng-show="data.password !== dataConfirm.password">Password doesn't match</span>
+            </div>
+             <div>
+                <md-input-container>
+                    <input type="text" class="form-control input-sm" ng-model="data.last_name"  required placeholder="Last Name">
+               </md-input-container>
+               <md-input-container>
+                    <input type="text" class="form-control input-sm" ng-model="data.first_name"  required placeholder="First Name">
+                </md-input-container>
+            </div>
+            <div>
+                <md-input-container>
+                    <input class="form-control input-lg" ng-model="data.cellphone_number"  name="cellphone_number" required placeholder="Cellphone Number">
+                    <!--<div ng-messages="registrationForm.cellphone_number.$error" role="alert" multiple>
+                        <div ng-message="pattern" class="my-message">That doesn't look like a valid Cellphone Number.
+                        </div>
+                    </div>-->
+                </md-input-container>
+            </div>
+            <!--selection of sports-->
+            <div flex="20">
+                <md-input-container class="md-block" ng-init="user.getRoles()" >
+                    <label>Role</label>
+                    <md-select ng-model="data.role_id">
+                      <md-option ng-repeat="role in user.roles" value="{{role.id}}">{{role.name}}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <md-button class="md-raised md-primary" type="submit">REGISTER</md-button>
+        </form>
+    </div>
+    <!--end of adding a new player-->
+    <!-- <div flex="30"></div> -->
+    <div layout="row" class="md-padding">
+        <div layout="column">
+            <img ng-src="img/2Color-Logo_247px-1024x195.png" class="img-logo">
+            <h1>wow</h1>
+        </div>
+    </div>
+</md-content>

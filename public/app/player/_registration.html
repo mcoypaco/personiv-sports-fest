@@ -1,0 +1,81 @@
+<md-content class="whiteframe" layout="row">
+<!--adding a new player -->
+    <div class="md-padding" layout="column" flex="50">
+        <h2>Register</h2>
+        <form ng-submit="player.submit(data)" name="registrationForm">
+            <div>
+                <md-input-container>
+                    <input type="text" class="form-control input-sm" ng-model="data.employee_id" required placeholder="Employee Id">
+                </md-input-container>
+             </div>
+             <div>
+                <md-input-container>
+                    <input type="text" class="form-control input-sm" ng-model="data.last_name"  required placeholder="Last Name">
+               </md-input-container>
+               <md-input-container>
+                    <input type="text" class="form-control input-sm" ng-model="data.first_name"  required placeholder="First Name">
+                </md-input-container>
+            </div>
+            <div>
+                <md-input-container>
+                    <input class="form-control input-sm" ng-model="data.height"  required placeholder="Height">
+               </md-input-container>
+               <md-input-container>
+                    <input class="form-control input-sm" ng-model="data.weight"  required placeholder="Weight">
+                </md-input-container>
+            </div>
+            <div>
+                <md-input-container>
+                    <input class="form-control input-lg" ng-model="data.cellphone_number"  name="cellphone_number" required placeholder="Cellphone Number">
+                    <!--<div ng-messages="registrationForm.cellphone_number.$error" role="alert" multiple>
+                        <div ng-message="pattern" class="my-message">That doesn't look like a valid Cellphone Number.
+                        </div>
+                    </div>-->
+                </md-input-container>
+            </div>
+            <div>
+                <md-input-container>
+                    <input class="form-control input-lg" ng-model="data.tower_lead" required placeholder="Tower Lead">
+                </md-input-container>
+            </div>
+            <div>
+                <md-input-container>
+                    <input class="form-control input-lg" ng-model="data.team_lead" required placeholder="Team Leader">
+                </md-input-container>
+            </div>
+            <!--selection of sports-->
+            <div flex="80">
+                <md-input-container ng-init="player.getSports()" class="md-block">
+                    <label>Sports</label>
+                    <md-select multiple ng-model="data.sports" placeholder="please select your sport">
+                    <md-option ng-repeat="sport in player.sports" value="{{sport.id}}">{{sport.name}}</md-option>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <!--selection of position in sports-->
+            <div flex="80">
+               <md-list ng-if="data.sports.length > 0">
+                   Select Positions:
+                    <md-list-item class="md-3-line" ng-repeat="sportItem in data.sports" ng-if="player.getSport(sportItem)[0].positions.length != 0">
+                    <div class="md-list-item-text" layout="column">
+                        <md-input-container class="md-block" >
+                            <label>{{player.getSport(sportItem)[0].name}}</label>
+                            <md-select ng-model="data.positions[sportItem]" placeholder="{{player.getSport(sportItem)[0].name}}">
+                            <md-option ng-repeat="position in player.getSport(sportItem)[0].positions" value="{{position.id}}">{{position.name}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                </md-list>
+            </div>
+            <md-button class="md-raised md-primary" type="submit">REGISTER</md-button>
+        </form>
+    </div>
+    <!--end of adding a new player-->
+    <!-- <div flex="30"></div> -->
+    <div layout="row" class="md-padding">
+        <div layout="column">
+            <img ng-src="img/2Color-Logo_247px-1024x195.png" class="img-logo">
+            <h1>wow</h1>
+        </div>
+    </div>
+</md-content>

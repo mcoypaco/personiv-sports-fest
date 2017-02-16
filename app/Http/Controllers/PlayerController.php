@@ -6,6 +6,8 @@ use App\Player;
 use App\Team;
 use App\Sport;
 use App\Events\UpdatePlayers;
+use Excel;
+
 use Illuminate\Http\Request;
 
 class PlayerController extends Controller
@@ -99,8 +101,33 @@ class PlayerController extends Controller
 
     public function noTeam()
     {
-      $player = Player::where('team_id', null);
-
+      $player = Player::with('positions', 'team', 'sports')->where('team_id', null);
       return response()->json($player->get());
+    }
+
+    public function exportExcel($type) {
+        // $filename = 'players';
+        // $players = Player::with('positions', 'team', 'sports')->get();
+
+        // $players = Player::select('id', 'employee_id', 'first_name', 'last_name')->get();
+
+        // Excel::create($filename, function($excel) use ($players) {
+        //     $excel->setTitle('All Players');
+        //     $excel->sheet('players', function($sheet) use ($players) {
+        //         $sheet->fromArray($users);
+        //     });
+        // })->store('xls', storage_path('excel/exports'));
+
+        // return response()->json(array('success' => true));
+        // Excel::create($filename)->store('xls');
+        // return response()->download('exports/'.$filename.'.xls');
+
+        $data = Player::get()->toArray();
+        return Excel::create('WATATA', function($excel) use ($data) {
+            $excel->sheet('mySheet', function($sheet) use ($data)
+            {
+                $sheet->fromArray($data);
+            });
+        })->download($type);
     }
 }

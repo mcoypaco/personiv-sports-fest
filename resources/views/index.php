@@ -2,21 +2,20 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Index Page</title>
+
+        <title></title>
+        <link rel="stylesheet" href="css/app.css">
         <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="node_modules/lf-ng-md-file-input/dist/lf-ng-md-file-input.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.2/socket.io.js"></script>
         <script type="text/javascript">
-
           var socket = io('http://localhost:3000');
         </script>
-
     </head>
     <body ng-app="Sportsfest" ng-cloak>
-        <div class="container">
-            <div ui-view></div>
-        </div>
 
-    </body>
+        <div ui-view layout="row" layout-fill></div>
 
     <!-- Application Dependencies -->
 
@@ -27,21 +26,53 @@
     <script src="node_modules/angular-material/angular-material.min.js"></script>
     <script src="node_modules/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="node_modules/satellizer/dist/satellizer.js"></script>
-    <script src="node_modules/jquery/jquery-2.1.1.min.js"></script>
+    <script src="node_modules/angular-material-icons/angular-material-icons.min.js"></script>
+    <script src="node_modules/angular-ui-router-title/angular-ui-router-title.js"></script>
+    <script src="/node_modules/lf-ng-md-file-input/dist/lf-ng-md-file-input.js"></script>
 
     <!-- Application Scripts -->
     <script src="js/app.js"></script>
-<!--     <script src="js/controllers/authController.js"></script>
-    <script src="js/controllers/userController.js"></script> -->
+    <script src="js/app.routes.js"></script>
 
-    <!-- Controllers -->
-    <!-- <script src="js/controllers/mainCtrl.js"></script> -->
-    <script src="js/controllers/HomeController.js"></script>
-    <script src="js/controllers/SportController.js"></script>
-    <script src="js/controllers/team/TeamController.js"></script>
-    <script src="js/controllers/PlayerController.js"></script>
-    <!-- Services -->
-    <script src="js/controllers/User/UserFactory.js"></script>
-    <script src="js/controllers/team/TeamFactory.js"></script>
-    <!-- <script src="js/services/commentService.js"></script> -->
+    <!-- Directives -->
+    <script src="js/directives/MenuLink.js"></script>
+    <script src="js/directives/MenuToggle.js"></script>
+
+    <!-- draft -->
+    <!-- <script src="app/draft/DraftController.js"></script> -->
+
+    <!-- Home -->
+    <script src="app/home/HomeController.js"></script>
+
+    <!-- Index -->
+    <script src="app/index/IndexController.js"></script>
+    <script src="app/index/MenuItems.js"></script>
+
+    <!-- Player -->
+    <script src="app/player/PlayerController.js"></script>
+    <script src="app/player/PlayerFactory.js"></script>
+
+    <!-- Sport -->
+    <script src="app/sport/SportController.js"></script>
+    <script src="app/sport/SportFactory.js"></script>
+
+    <!-- Team -->
+    <script src="app/team/TeamController.js"></script>
+    <script src="app/team/TeamFactory.js"></script>
+
+    <!-- Position -->
+    <script src="app/position/PositionFactory.js"></script>
+
+    <!-- Auth -->
+    <script src="app/auth/AuthController.js"></script>
+    <script src="app/auth/AuthFactory.js"></script>
+
+    <!-- User -->
+    <script src="app/user/UserController.js"></script>
+    <script src="app/user/UserFactory.js"></script>
+    <script src="app/user/RoleFactory.js"></script>
+
+    <!--draft-->
+    <script src="app/draft/DraftController.js"></script>
+
 </html>
