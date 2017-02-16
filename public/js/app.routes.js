@@ -3,7 +3,7 @@ sportsFest.config(function($stateProvider, $urlRouterProvider, $authProvider, $h
 
     // Redirect to the auth state if any other states
     // are requested other than users
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/register');
 
     $stateProvider
     	.state('home', {

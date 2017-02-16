@@ -50,14 +50,20 @@ md-nav-bar .md-nav-bar {
 }
 
 .img-logo {
-  width: 70%;
+  width: 500px;
+}
+
+.page-login {
+  /*background-image: url('/img/Header2.png')*/
+  margin: 0 auto;
+  /*background-color: darkblue;*/
 }
 
 .page-login md-card {
   padding: 0!important;
 }
 .page-login md-card md-card-title {
-  background-color: dodgerblue;
+  color: dodgerblue;
 }
 
 /*$main-bg-color: #ECECEC;*/
@@ -189,14 +195,17 @@ a.md-button.md-warn.md-raised, a.md-button.md-warn.md-fab, .md-button.md-warn.md
 }
 md-button {
     font-weight: bolder;
-}
+    text-align: center;
+} 
 
 md-radio-button.md-accent.md-checked .md-label span {
   color: rgb(0, 150, 136);
 }
 
-.md-toolbar-tools h1 {
+.md-toolbar-tools {
   font-size: 22px;
+  background-color: #ffc814;
+  height: 20px;
 }
 
 
@@ -254,7 +263,7 @@ lf-ng-md-file-input {
 #crumbles {
   margin: 15px;
   font-size: 16px;
-  text-color: #2E3133;
+  color: #2E3133;
 }
 
 #warning {
@@ -262,3 +271,38 @@ lf-ng-md-file-input {
   font-size: 13px;
 }
 
+#personiv {
+  display: table;
+  margin: 20% 20% ;
+  width: 80%;
+  height: 40%;
+  /*margin-right: auto ;*/
+}
+#ui-view {
+  background-color: #FFFFFF;
+  /*background-image: url(Header2.png);*/
+}
+
+#toolbar {
+  background-color: #2889ff;
+  height: 20px;
+}
+
+.login {
+  /*background-image: url(Header2.png);*/
+  background-color: #2889ff;
+}
+
+.register {
+  width: 550px;
+    /*border: 25px solid green;*/
+  padding: 15px;
+  margin: 15px;
+  background-color: #e8ecff;
+  border-radius: 5px;
+ 
+}
+
+.login-logo {
+  margin-top: 20%;
+}
