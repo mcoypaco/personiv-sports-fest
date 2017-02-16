@@ -3,6 +3,7 @@
 </div>
 
 <div ng-if="isAuthenticated()">
+  <md-progress-linear md-mode="indeterminate" ng-if="!home.loaded"></md-progress-linear>
   <md-content class="md-padding" layout-xs="column" layout="row">
     <div ng-repeat="remainder in [0,1,2]" flex-xs="" flex-gt-xs="50" layout="column">
       <md-card ng-repeat="sport in home.sports" ng-if="$index % 3 == remainder">

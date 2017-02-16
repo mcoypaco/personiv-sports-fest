@@ -53,7 +53,7 @@ class SportController extends Controller
      */
     public function show($id)
     {
-        return response()->json(Sport::with('positions')->find($id));
+        return response()->json(Sport::with(['positions', 'players'])->find($id));
     }
 
     /**

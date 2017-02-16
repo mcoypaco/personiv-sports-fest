@@ -11,6 +11,9 @@
     </md-toolbar>
     <md-card-content>
       <form name="Form">
+          <div class="alert-danger md-padding" ng-if="auth.loginError">
+            <p class="alert-text">The email and password you've entered doesn't match any account.</p>
+          </div>
         <md-input-container class="md-block">
           <label>Email</label>
           <input type="email" name="email" ng-model="auth.email" placeholder="Email" required="" autofocus />
