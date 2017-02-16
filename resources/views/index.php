@@ -3,14 +3,13 @@
     <head>
         <meta charset="utf-8">
         <title>Index Page</title>
-        <!-- <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css"> -->
         <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
-        <script>
-            window.Laravel = <?php echo json_encode([
-              'csrfToken' => csrf_token(),
-            ]); ?>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.2/socket.io.js"></script>
+        <script type="text/javascript">
+
+          var socket = io('http://localhost:3000');
         </script>
-        <script src="//localhost:6001/socket.io/socket.io.js"></script>
+
     </head>
     <body ng-app="Sportsfest" ng-cloak>
         <div class="container">
@@ -32,7 +31,6 @@
 
     <!-- Application Scripts -->
     <script src="js/app.js"></script>
-    <script src="js/app-socket.js"></script>
 <!--     <script src="js/controllers/authController.js"></script>
     <script src="js/controllers/userController.js"></script> -->
 

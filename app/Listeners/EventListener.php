@@ -6,7 +6,7 @@ use App\Events\ChangedTeam;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class EventListener implements ShouldQueue
+class EventListener
 {
     use InteractsWithQueue;
     /**
@@ -27,8 +27,6 @@ class EventListener implements ShouldQueue
      */
     public function handle(ChangedTeam $event)
     {
-          if(true){
-            $this->release(30);
-          }
+
     }
 }

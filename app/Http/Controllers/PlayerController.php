@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Player;
 use App\Team;
 use App\Sport;
-
+use App\Events\UpdatePlayers;
 use Illuminate\Http\Request;
 
 class PlayerController extends Controller

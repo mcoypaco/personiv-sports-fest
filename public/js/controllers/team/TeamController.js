@@ -1,6 +1,6 @@
 angular.module('teamCtrl' , [])
 
-  .controller('TeamController', function($http ,$mdDialog ,$state ,$stateParams, Team, User) {
+  .controller('TeamController', function($scope, $http ,$mdDialog ,$state ,$stateParams, Team, User) {
 
     var vm = this;
     vm.editable = false;
@@ -8,10 +8,6 @@ angular.module('teamCtrl' , [])
     //add team to database
     vm.addTeam = function(data){
       Team.store(data).then(function(response) {
-      window.Echo.channel('changed-team-channel')
-       .listen('ChangedTeam', (e) => {
-           console.log(e);
-       });
       }).catch(function(err){
         console.log(err);
       })
@@ -25,6 +21,15 @@ angular.module('teamCtrl' , [])
         console.log(error)
       })
     }
+
+    socket.on('changed.team:App\\Events\\ChangedTeam', function(callback){
+
+      vm.teams = callback.data
+      $scope.$apply();
+      console.log(vm.teams);
+    })
+
+
 
     //get team from api/teams/{id}
     vm.getTeam = function() {
@@ -56,7 +61,6 @@ angular.module('teamCtrl' , [])
         url: 'api/sports'
       }).then(function(sports) {
         vm.sports = sports.data
-        console.log(sports.data);
       })
     }
 

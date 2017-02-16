@@ -16,7 +16,9 @@ class TeamController extends Controller
 
     public function index()
     {
+
         $team = Team::all();
+
         return response()->json($team);
     }
 
@@ -39,7 +41,7 @@ class TeamController extends Controller
     public function store(Request $request)
     {
         $team = Team::firstOrCreate($request->all());
-        event(new ChangedTeam($request));
+        event(new ChangedTeam(Team::all()));
         return response()->json($team);
     }
 

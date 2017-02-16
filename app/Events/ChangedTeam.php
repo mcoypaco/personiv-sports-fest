@@ -9,8 +9,9 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Support\Facades\Log;
 
-class ChangedTeam 
+class ChangedTeam implements ShouldBroadcast
 {
     use  InteractsWithSockets, SerializesModels;
 
@@ -21,7 +22,7 @@ class ChangedTeam
      *
      * @return void
      */
-    public function __construct(  $request)
+    public function __construct($request)
     {
         $this->data = $request;
     }
@@ -33,6 +34,10 @@ class ChangedTeam
      */
     public function broadcastOn()
     {
-        return ['changed-team-channel'];
+        Log::info('yes na siya dito');
+        return ['changed.team'];
     }
+
+
+
 }
