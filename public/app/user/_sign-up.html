@@ -1,8 +1,11 @@
 <md-progress-linear md-mode="indeterminate" ng-if="!user.loaded"></md-progress-linear>
 <md-content class="whiteframe" layout="row">
 <!--adding a new player -->
-    <div class="md-padding" layout="column" flex="40">
-        <h2>Register User</h2>
+    <div class="md-padding" layout="column" flex="50">
+        <h2>
+            <md-icon md-svg-src="img/icons/user.svg" class="svg"></md-icon>
+            REGISTER NEW USER
+        </h2>
         <form ng-submit="user.register(data)" name="registrationForm">
             <div>
                 <md-input-container>
@@ -66,28 +69,5 @@
             </div>
             <md-button class="md-raised md-primary" ng-disabled="!registrationForm.$valid" type="submit">REGISTER</md-button>
         </form>
-    </div>
-    <!--end of adding a new player-->
-    <!-- <div flex="30"></div> -->
-    <div layout="row" class="md-padding">
-        <div layout="column">
-            <img ng-src="img/2Color-Logo_247px-1024x195.png" class="img-logo">
-            <h1>Users</h1>
-            <md-list ng-init="player.getPlayers()">
-            <md-list-item class="md-3-line" ng-repeat="user in user.users" ng-click="showAll = !showAll">
-                <div class="md-list-item-text" layout="column">
-                    <h2>{{user.first_name}} {{user.last_name}}</h2>
-                    <p>Email: {{user.email}}</p>
-                    <p>Cellphone Number: {{user.cellphone_number}}</p>
-                    <p>Role: {{user.role.name}}</p>
-                    <div ng-if="showAll">
-                        <md-button class="md-raised md-primary">Edit</md-button>
-                        <md-button class="md-raised md-primary">Change Role</md-button>
-                    </div>
-                </div>
-                <md-divider></md-divider>
-            </md-list-item>
-        </md-list>
-        </div>
     </div>
 </md-content>

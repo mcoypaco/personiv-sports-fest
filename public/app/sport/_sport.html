@@ -1,16 +1,15 @@
-<md-progress-linear md-mode="indeterminate" ng-if="!draft.loaded"></md-progress-linear>
+<md-progress-linear md-mode="indeterminate" ng-if="!sport.loaded"></md-progress-linear>
 <md-content class="whiteframe" layout="row">
     <!--end of adding a new sport-->
     <!--foreach of the sports items and their CRUD-->
 <div class="md-padding" layout="column" flex="60">
         <h2>
-            <ng-md-icon icon="settings"></ng-md-icon> Sports
+            <md-icon md-svg-src="img/icons/sports.svg" class="svg"></md-icon> SPORTS
         </h2>
-        <md-divider></md-divider>
-        <!-- <md-button class="md-primary md-raised" ng-click="showConfirm($event)">
-          Confirm Dialog
-      </md-button> -->
       <md-list ng-init="sport.getSports()">
+        <div ng-if="sport.sports == ''" id="emptyData">
+                <h2>NO SPORTS ADDED</h2>
+        </div>
         <md-list-item class="md-3-line" ng-repeat="sportItem in sport.sports" ng-click="clicked=!clicked" layout="row">
             <div class="md-list-item-text" layout="column" >
                 <section layout="row" layout-align="end start" layout-wrap ng-if="clicked">
@@ -46,8 +45,9 @@
         </md-list-item>
     </md-list>
 </div>
-<div flex="10"></div>
+
 <!--adding a new sport -->
+<md-divider class="vertical-divider"></md-divider>
 <div class="md-padding" layout="row">
     <div layout="column">
         <h2>

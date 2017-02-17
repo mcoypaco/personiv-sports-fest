@@ -61,6 +61,20 @@ sportsFest.factory("Player", ["$q", "$http",
           url: '/api/players/export/' + type,
           headers: {'Content-Type' : 'application/csv; charset=UTF-8'},
         });
+      },
+
+      exportFile : function(success, type) {
+          var anchor = angular.element('<a/>');
+          anchor.css({display: 'none'}); // Make sure it's not visible
+          angular.element(document.body).append(anchor); // Attach to document
+
+          anchor.attr({
+              href: 'data:attachment/'+ type +';charset=utf-8,' + encodeURI(success.data),
+              target: '_blank',
+              download: 'document.' + type
+          })[0].click();
+
+          anchor.remove(); // Clean it up afterwards
       }
   	}
 }])
