@@ -56,8 +56,18 @@ md-nav-bar .md-nav-bar {
 .page-login md-card {
   padding: 0!important;
 }
+
 .page-login md-card md-card-title {
   background-color: dodgerblue;
+}
+
+.alert-danger {
+  background-color: #cc4f4f;
+  border-radius: 10px;
+}
+
+.alert-danger .alert-text {
+  color: white;
 }
 
 /*$main-bg-color: #ECECEC;*/

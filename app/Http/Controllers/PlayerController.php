@@ -56,9 +56,10 @@ class PlayerController extends Controller
      */
     public function show($id)
     {
-        $player = Player::find($id);
+        // $player = Player::find($id);
 
-        return response()->json($player);
+        // return response()->json($player);
+        return response()->json(Player::with('positions', 'team', 'sports')->find($id));
     }
 
     /**
@@ -81,11 +82,14 @@ class PlayerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $team = new Team();
-        $draft= new Draft();
-        $team->addRemovePlayer($request , $id);
-        $draft->addRemovePlayer($request->team_id , $id);
-        return response()->json($request);
+      $team = new Team();
+      $team->addRemovePlayer($request , $id);
+      $draft= new Draft();
+      $draft->addRemovePlayer($request->team_id , $id);
+      $player = Player::find($id);
+      $player->team_id = $request->team_id;
+      $player->push();
+      return response()->json(array('success' => true));
     }
 
     /**
@@ -103,8 +107,8 @@ class PlayerController extends Controller
 
     public function noTeam()
     {
-      $player = Player::with('positions', 'team', 'sports')->where('team_id', null);
-      return response()->json($player->get());
+        $player = Player::with('positions', 'team', 'sports')->where('team_id', null);
+        return response()->json($player->get());
     }
 
     public function exportExcel($type) {

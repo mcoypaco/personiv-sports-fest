@@ -1,16 +1,9 @@
-
-<md-content class="whiteframe" layout="row" ng-init="draft.getSports()" ng-cloak>
-    <!--<div class="md-padding" layout="column" flex="30">
-        <md-list ng-init="draft.getTeams()">
-            <md-list-item class="md-3-line" ng-repeat="teamItem in draft.teams" ng-click="null">
-                <div class="md-list-item-text" layout="column">
-                    <h3>{{draft.teams.indexOf(teamItem) + 1}}. {{teamItem.name}}</h3>
-                </div>
-                <md-divider ng-if="!$last"></md-divider>               
-            </md-list-item>
-        </md-list>
-    </div>-->
+<md-progress-linear md-mode="indeterminate" ng-if="!draft.loaded"></md-progress-linear>
+<md-content class="whiteframe md-padding" layout="row" ng-cloak>
     <div layout="column" flex=65>
+        <div layout="row">
+            <md-button class="md-raised md-warn" ng-repeat="sport in draft.sports" ng-click="draft.getSportPlayers(sport.id)" ng-if="sport.positions.length > 0">Start {{sport.name}} Draft!</md-button>
+        </div>
         <div>
             <md-input-container layout="row" flex="30" class="md-block">
                 <input type="text" class="form-control input-sm" ng-model="draft.search" placeholder="Search Name">
@@ -18,7 +11,7 @@
         </div>
         <md-toolbar class="md-whiteframe-1dp" ng-init="draft.getPlayers()">
             <div class="md-toolbar-tools">
-                <div class="md-title">Material Design Data Table</div>
+                <div class="md-title">Draft</div>
             </div>
         </md-toolbar>
 
@@ -35,47 +28,49 @@
                 </tr>
                 </thead>
                 <tbody md-body>
-                <tr md-row ng-repeat="playerItem in draft.players | filter: {first_name: draft.search}|| filter: {last_name:draft.search}| 
-                orderBy: draft.query.order| limitTo: draft.query.limit : (draft.query.page -1) * draft.query.limit">
+                <tr md-row ng-repeat="playerItem in draft.players | filter: {first_name: draft.search}|| filter: {last_name: draft.search} | 
+                orderBy: draft.query.order| limitTo: draft.query.limit : (draft.query.page - 1) * draft.query.limit" ng-init="position = draft.getPosition(playerItem.positions)">
                     <td md-cell>{{playerItem.first_name}} {{playerItem.last_name}}</td>
-                    <td md-cell flex="20">{{draft.getBasketballPosition(playerItem.positions)}}</td>
+                    <td md-cell flex="20">{{position.name}}</td>
                     <td md-cell flex="15">{{playerItem.height}}</td>
                     <td md-cell flex="15">{{playerItem.weight}}</td>
                     <td md-cell>
-                        <md-input-container >
+                        <md-input-container>
                             <label>Team</label>
                             <md-select ng-model="playerItem.team_id" placeholder="Select Team">
                                 <md-option ng-repeat="team in draft.teams" value="{{team.id}}">{{team.name}}</md-option>
                             </md-select>
-                        </md-input-container> 
+                        </md-input-container>
                     </td>               
                     <td md-cell>
                         <md-input-container ng-if="playerItem.team_id != null">
-                            <ng-md-icon icon="save" ng-click="draft.updatePlayer(playerItem.id, playerItem)"></ng-md-icon>
+                            <md-button class="md-raised md-primary" ng-click="draft.updatePlayer(playerItem.id, playerItem)">Save</md-button>
                         </md-input-container>
                     </td>
                 </tr>
                 </tbody>
             </table>
         </md-table-container>
-        <!--{{draft.players.length}}-->
         <md-table-pagination md-limit="draft.query.limit" md-limit-options="draft.limitOptions" 
         md-page="draft.query.page" md-total="{{draft.players.length}}"> 
         </md-table-pagination>
     </div>
-    <!-- <div > -->
-        <!-- <h1>TEAMS</h1> -->
-        <div ng-repeat="remainder in [0,1]" flex="18" layout="column" class="md-padding">
+        <div ng-repeat="remainder in [0,1]" flex="15" layout="column" class="md-padding">
             <md-card ng-repeat="team in draft.teams" ng-if="$index % 2 == remainder" flex="flex">
                 <md-toolbar layout="row" >
-                  <div class="md-toolbar-tools" style="overflow: hidden;" ng-init="poc = draft.getUser(team.user_id)">
-                    <h2><span>{{team.name}} - <small><i>{{poc.first_name}} {{poc.last_name}} </i></small></span></h2>
+                  <div class="md-toolbar-tools" style="overflow: hidden;">
+                    <h2><span>{{team.name}} - <small><i>{{team.poc.first_name}} {{team.poc.last_name}} (POC)</i></small></span></h2>
                   </div>
                 </md-toolbar>
                 <md-card-content>
                     <p ng-repeat="player in team.players">
-                        {{player.first_name}}, {{player.last_name}}
-                        <ng-md-icon icon="delete" ng-click="draft.removePlayer(player.id, player)"></ng-md-icon>
+                        {{player.last_name}}, {{player.first_name}}
+                        <!-- <a href="">
+                            <ng-md-icon icon="delete" ng-click="draft.removePlayer(player.id, player)"></ng-md-icon>
+                        </a> -->
+                        <a href="">
+                            <ng-md-icon icon="delete" ng-click="draft.showConfirm($event, player)"></ng-md-icon>
+                        </a>
                     </p>
                 </md-card-content>
             </md-card>

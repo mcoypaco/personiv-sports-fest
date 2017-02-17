@@ -1,95 +1,87 @@
 sportsFest.controller('DraftController', 
-    ["$scope", "Player", "Team", "Sport", "User",
-        function($scope, Player, Team, Sport, User) { 
+    ["$scope", "Player", "Team", "Sport", "$mdDialog",
+        function($scope, Player, Team, Sport, $mdDialog) { 
 
     var vm = this;
     vm.teams;
     vm.players;
     vm.sports;
-    vm.basketball;
-    vm.users;
-    vm.poc;
+    vm.loaded = false;
+    vm.limitOptions = [10, 25, 50, 100];
+
     vm.query = {
         order: 'last_name',
         limit: 10,
         page: 1
     };
-    vm.limitOptions = [10, 25, 50, 100];
 
-    vm.getTeams = function(){
-       Team.get().then(function (success) {
+    vm.getTeams = function() {
+        Team.get().then(function (success) {
             vm.teams = success.data;
+            vm.loaded = true;
         },function (error) {
             console.log(error.data)
         });
     }
 
-    //getting the players without any teams
-    vm.getPlayers = function(){
-       Player.noTeamGet().then(function (success) {
-            vm.players = vm.getBasketballPlayers(success.data);
-        },function (error) {
-            console.log(error.data)
-        });
-    }
-
-    vm.getBasketballSport = function() {
-        return vm.sports.filter(function(item) {
-            return item.name.toString().ignoreCase === "Basketball".ignoreCase;
-        })[0];  
-    }
-
-    vm.getSports = function(){
+    vm.getSports = function() {
         Sport.get().then(function (success) {
            vm.sports = success.data;
            vm.getTeams();
           },function (error) {
             console.log(error.data)
-        });
-        vm.getUsers();        
+        });     
+    }
+    vm.getSports();
+
+    vm.sportId;
+    vm.getSportPlayers = function(sportId) {
+        vm.loaded = false;
+        vm.sportId = sportId;
+        Sport.getPlayers(sportId)
+            .then(function(success) {
+                vm.loaded = true;
+                vm.players = success.data;
+            }, function(error) {
+                console.log(error)
+            })
     }
 
-    vm.getBasketballPlayers = function(arr){
-        var results = [];
-        for (i = 0; i < arr.length; i++) {
-            arr[i].sports.filter(function(item) {
-                if(item.name.toString().ignoreCase === "Basketball".ignoreCase) {
-                    results.push(arr[i]);
-                }
-            });
-        }
-        return results; 
+    vm.getPosition = function(positions) {
+        return positions.filter(function(item) {
+            return (item.sport_id === vm.sportId);
+        })[0];
     }
-    vm.getBasketballPosition = function(arr){
-        vm.basketball = vm.getBasketballSport();
-         return arr.filter(function(item) {
-            return item.sport_id === vm.basketball.id;
-        })[0].name;
-    }
-
-    vm.updatePlayer = function(id, player){
+    
+    vm.updatePlayer = function(id, player) {
+        console.log(player)
          Player.update(id, player).then(function (success) {
             console.log(success.data);
         },function (error) {
             console.log(error.data)
         });
     }
-    vm.removePlayer = function(id, player){
+
+    vm.removePlayer = function(player){
         player.team_id = null;
-        vm.updatePlayer(id, player);
+        vm.updatePlayer(player.id, player);
     }
 
-    vm.getUsers = function(){
-        User.get().then(function (success){
-            vm.users = success.data
-        }, function (error) {
-            console.log(error.data)
+    vm.showConfirm = function(ev, player) {
+        var confirm = $mdDialog.confirm()
+            .title('Would you like to Remove this player?')
+            .textContent(player.first_name + ' ' + player.last_name)
+            .ariaLabel('Position')
+            .targetEvent(ev)
+            .ok('REMOVE')
+            .cancel('Cancel');
+
+        $mdDialog.show(confirm).then(function() {
+          console.log("clicked delete")
+          vm.removePlayer(player);
+        }, function() {
+            console.log("clicked cancel")
         });
-    }
+    };
 
-    vm.getUser = function(id){
-        return vm.users.filter(function(item) {
-            return (item.id === id);
-        })[0];
-    }
 }]);
