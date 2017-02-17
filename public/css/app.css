@@ -246,13 +246,13 @@ md-backdrop.md-sidenav-backdrop {
 }
 
 #items {
-  color: #128CE3;
+  color: #3F51B5;
   font-weight: 500;
   font-size: 16px
 }
 
 ng-md-icon {
-  fill: #128CE3;
+  fill: #3F51B5;
 }
 
 #emptyData {
@@ -292,14 +292,14 @@ lf-ng-md-file-input {
 }
 
 #toolbar {
-  background-color: #2b00c6;
+  background-color: #283593;
   height: 20px;
 }
 
-.login {
+/*.login {
   /*background-image: url(Header2.png);*/
   background-color: #2889ff;
-}
+}*/
 
 .register {
   width: 550px;
@@ -324,16 +324,12 @@ lf-ng-md-file-input {
   width: 300px;
 }
 
-.teamadd {
-  background-color: #e8ecff;
-}
-
-.teamshow {
-  background-color: #e5eecf;
-}
-
 .svg {
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
+}
+
+user {
+  color: #ffffff;
 }
