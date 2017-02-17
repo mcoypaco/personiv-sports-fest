@@ -1,6 +1,6 @@
 sportsFest.controller('DraftController', 
-    ["$scope", "Player", "Team", "Sport",
-        function($scope, Player, Team, Sport) { 
+    ["$scope", "Player", "Team", "Sport", "$mdDialog",
+        function($scope, Player, Team, Sport, $mdDialog) { 
 
     var vm = this;
     vm.teams;
@@ -62,8 +62,26 @@ sportsFest.controller('DraftController',
         });
     }
 
-    vm.removePlayer = function(id, player){
+    vm.removePlayer = function(player){
         player.team_id = null;
-        vm.updatePlayer(id, player);
+        vm.updatePlayer(player.id, player);
     }
+
+    vm.showConfirm = function(ev, player) {
+        var confirm = $mdDialog.confirm()
+            .title('Would you like to Remove this player?')
+            .textContent(player.first_name + ' ' + player.last_name)
+            .ariaLabel('Position')
+            .targetEvent(ev)
+            .ok('REMOVE')
+            .cancel('Cancel');
+
+        $mdDialog.show(confirm).then(function() {
+          console.log("clicked delete")
+          vm.removePlayer(player);
+        }, function() {
+            console.log("clicked cancel")
+        });
+    };
+
 }]);

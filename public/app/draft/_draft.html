@@ -65,8 +65,11 @@
                 <md-card-content>
                     <p ng-repeat="player in team.players">
                         {{player.last_name}}, {{player.first_name}}
-                        <a href="">
+                        <!-- <a href="">
                             <ng-md-icon icon="delete" ng-click="draft.removePlayer(player.id, player)"></ng-md-icon>
+                        </a> -->
+                        <a href="">
+                            <ng-md-icon icon="delete" ng-click="draft.showConfirm($event, player)"></ng-md-icon>
                         </a>
                     </p>
                 </md-card-content>

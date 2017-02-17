@@ -5,6 +5,7 @@ sportsFest.controller('UserController',
     var vm = this;
     vm.users;
     vm.roles;
+    vm.loaded = false;
 
     vm.register = function(data) {
       // console.log(data)
@@ -22,7 +23,7 @@ sportsFest.controller('UserController',
         User.get()
             .then(function(success) {
                 vm.users = success.data;
-                console.log(success.data);
+                vm.loaded = true;                
             }, function(error) {
                 console.log(error.data)
             })
