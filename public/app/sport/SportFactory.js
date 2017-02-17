@@ -1,4 +1,4 @@
-sportsFest.factory("Sport", ["$q", "$http", 
+sportsFest.factory("Sport", ["$q", "$http",
   function($q, $http) {
   	return {
   		get : function() {
@@ -42,6 +42,12 @@ sportsFest.factory("Sport", ["$q", "$http",
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
         });
+      },
+      players : function(id) {
+        return $http.get('api/sports/' + id + '/players')
+      },
+      positions : function(id) {
+        return $http.get('api/sports/' + id + '/positions')
       }
   	}
 }])

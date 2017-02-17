@@ -12,6 +12,7 @@
         <script type="text/javascript">
           var socket = io('http://localhost:3000');
         </script>
+        <link rel="stylesheet" href="node_modules/angular-material-data-table/dist/md-data-table.min.css" type="text/css">
     </head>
     <body ng-app="Sportsfest" ng-cloak>
 
@@ -29,6 +30,7 @@
     <script src="node_modules/angular-material-icons/angular-material-icons.min.js"></script>
     <script src="node_modules/angular-ui-router-title/angular-ui-router-title.js"></script>
     <script src="/node_modules/lf-ng-md-file-input/dist/lf-ng-md-file-input.js"></script>
+    <script src="node_modules/angular-material-data-table/dist/md-data-table.min.js"></script>
 
     <!-- Application Scripts -->
     <script src="js/app.js"></script>

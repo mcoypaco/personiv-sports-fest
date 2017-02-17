@@ -1,5 +1,5 @@
 var sportsFest = angular.module('Sportsfest', [
-  'ui.router', 'satellizer', 'ngMaterial', 'ngMessages', 'ngMdIcons', 'ui.router.title', 'lfNgMdFileInput',
+  'ui.router', 'satellizer', 'ngMaterial', 'ngMessages', 'ngMdIcons', 'ui.router.title', 'lfNgMdFileInput', 'md.data.table'
   ]);
 
 sportsFest.run(["$rootScope", "$state", "$stateParams", "$auth","Role", function($rootScope, $state, $stateParams, $auth, Role) {
@@ -12,9 +12,8 @@ sportsFest.run(["$rootScope", "$state", "$stateParams", "$auth","Role", function
 
     $rootScope.isAdmin = function(){
       Role.getAdminId().then(function(adminId){
-          $rootScope.access = ($rootScope.user.role_id === adminId)
-          console.log("root scope");
-          console.log($rootScope.access);
+          id = parseInt(adminId.data)
+          $rootScope.access = ($rootScope.user.role_id === id)
         })
     }
     $rootScope.isAdmin();

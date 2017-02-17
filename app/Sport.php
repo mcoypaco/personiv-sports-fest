@@ -10,12 +10,12 @@ class Sport extends Model
 
     public function positions()
     {
-        return $this->hasMany(Position::class);
+        return $this->hasMany(Position::class)->select(['name','id']);
     }
 
     public function players()
     {
-        return $this->belongsToMany(Player::class);
+        return $this->belongsToMany(Player::class)->select('id');
     }
 
     public function teams()

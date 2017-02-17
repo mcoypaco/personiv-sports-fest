@@ -46,4 +46,11 @@ class PositionController extends Controller
 
         return response()->json(array('success' => true));
     }
+
+    public function players($positionId)
+    {
+      $position = Position::find($positionId);
+      return $position->players;
+
+    }
 }

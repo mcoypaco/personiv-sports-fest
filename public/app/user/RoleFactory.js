@@ -37,6 +37,7 @@ sportsFest.factory("Role", ["$q", "$http",
             url: 'api/roles/' + id
         });
   		},
+
       getAdminId : function() {
         return $http({
           method: 'GET',

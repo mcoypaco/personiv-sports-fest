@@ -109,4 +109,16 @@ class SportController extends Controller
         }
     }
 
+    public function players($sportsId)
+    {
+      $sport = Sport::find($sportsId);
+      return $sport->players;
+    }
+
+    public function positions($sportId)
+    {
+      $sports = Sport::find($sportId);
+      return $sports->positions;
+    }
+
 }

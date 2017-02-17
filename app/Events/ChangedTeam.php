@@ -34,7 +34,6 @@ class ChangedTeam implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        Log::info('yes na siya dito');
         return ['changed.team'];
     }
 

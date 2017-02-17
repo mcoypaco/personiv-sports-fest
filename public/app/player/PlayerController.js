@@ -1,25 +1,28 @@
-sportsFest.controller('PlayerController', 
-    ["$scope", "Player", "Sport",
-        function($scope, Player, Sport) { 
+sportsFest.controller('PlayerController',
+    ["$scope", "Player", "Sport","players",
+        function($scope, Player, Sport, players) {
 
     var vm = this;
     vm.sports;
-    vm.players;
+
     vm.filteredPlayers;
     vm.selectedSport;
     vm.i = 0;
-          
+    vm.filteredPlayersId = [];
+
+    vm.players = players
+
     vm.submit = function(data) {
         Player.store(data)
             .success(function(successData) {
-                //if success, 
+                //if success,
                 console.log(successData)
             })
             .error(function(err) {
                 console.error(err)
             })
     }
-   
+
     vm.getSports = function() {
         Sport.get()
             .then(function(success) {
@@ -36,16 +39,14 @@ sportsFest.controller('PlayerController',
         });
     }
 
-    vm.sortPlayers = function(id) {
-        var results = [];
-        for (i = 0; i < vm.players.length; i++) {
-            vm.players[i].sports.filter(function(item) {
-                if(item.id.toString() === id) {
-                    results.push(vm.players[i]);
-                }
-            });
-        } 
-        return results;      
+    vm.sportPlayers = function(id) {
+      let sportsPlayerId = [];
+      Sport.players(id).then(function(players){
+        for (var i = 0; i < players.data.length ; i++) {
+          sportsPlayerId.push( players.data[i].id)
+        }
+        vm.filteredPlayersId = sportsPlayerId;
+      })
     }
 
     vm.sortFilteredPlayers = function(id) {
@@ -56,18 +57,8 @@ sportsFest.controller('PlayerController',
                     results.push(vm.filteredPlayers[i]);
                 }
             });
-        } 
-        vm.filteredPlayers = results;      
-    }
-
-    vm.getPlayers = function() {
-        Player.get()
-            .then(function (success) {
-                vm.players = success.data;
-                vm.filteredPlayers = success.data;
-            },function (error) {
-                console.log(error.data)
-            });
+        }
+        vm.filteredPlayers = results;
     }
 
     vm.getPosition = function(arr, id) {
@@ -80,7 +71,7 @@ sportsFest.controller('PlayerController',
         Player.export(type)
             .then(function(success) {
                 console.log(success);
-                
+
                 var anchor = angular.element('<a/>');
                 anchor.css({display: 'none'}); // Make sure it's not visible
                 angular.element(document.body).append(anchor); // Attach to document
@@ -100,23 +91,48 @@ sportsFest.controller('PlayerController',
     $scope.$watch(function () {
         return vm.selectedSport;
     }, function(newValue, oldValue) {
-        if(newValue == "all") {
-            vm.filteredPlayers = vm.players;
-            vm.selectedPosition = 'all';
-        }else if(newValue != oldValue) {
-            vm.filteredPlayers = vm.sortPlayers(newValue);
-        }      
+        if(typeof vm.selectedSport == "undefined") {
+          vm.selectedSport = "all"
+        }
+        else if((newValue || oldValue) == "all")
+        {
+          vm.allPlayers();
+        }
+        else{
+          vm.sportPlayers(vm.selectedSport);
+        }
     });
+
+    $scope.playersFilter = function(value) {
+      return vm.filteredPlayersId.indexOf(value.id) > -1
+    }
+
 
     $scope.$watch(function () {
         return vm.selectedPosition;
     }, function(newValue, oldValue) {
         if(newValue == "all") {
-            vm.filteredPlayers = vm.sortPlayers(vm.selectedSport);
-        } else if(newValue != oldValue) {
-            vm.filteredPlayers = vm.sortPlayers(vm.selectedSport);
-            vm.sortFilteredPlayers(newValue);
-        }      
+            vm.sportPlayers(vm.selectedSport);
+        }else{
+            vm.sortFilteredPlayers(vm.selectedPosition);
+        }
     });
-    
+
+    vm.allPlayers = function(){
+      let playersId = [];
+      for (var i = 0; i < vm.players.length ; i++) {
+        playersId.push(vm.players[i].id)
+      }
+      vm.filteredPlayersId = playersId
+    }
+
+    socket.on('add.players:App\\Events\\AddPlayers', function(broadcast){
+      vm.players = broadcast.data
+      vm.getPlayers();
+      $scope.$apply();
+      console.log(broadcast.data);
+      console.log("firing");
+    })
+
+
 }]);

@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Player;
 use App\Team;
 use App\Sport;
-use App\Events\UpdatePlayers;
+use App\Events\DraftPlayers;
+use App\Events\AddPlayers;
 use Excel;
 
 use Illuminate\Http\Request;
@@ -42,6 +43,7 @@ class PlayerController extends Controller
      */
     public function store(Request $request)
     {
+        event(new AddPlayers(Player::all()));
         $player = Player::create($request->except(['sports','positions']));
         $player->sports()->attach($request->input('sports'));
         $player->positions()->attach($request->input('positions'));
@@ -82,6 +84,7 @@ class PlayerController extends Controller
     public function update(Request $request, $id)
     {
       $team = new Team();
+      event(new DraftPlayers(Team::all()));
       $team->addRemovePlayer($request , $id);
       return response()->json($request->all());
     }

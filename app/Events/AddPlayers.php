@@ -10,7 +10,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class UpdatePlayers implements ShouldBroadcast
+class AddPlayers implements ShouldBroadcast
 {
   use  InteractsWithSockets, SerializesModels;
 
@@ -33,8 +33,7 @@ class UpdatePlayers implements ShouldBroadcast
    */
   public function broadcastOn()
   {
-      Log::info('yes na siya dito');
-      return ['update.players'];
+      return ['add.players'];
   }
 
 

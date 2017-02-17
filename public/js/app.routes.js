@@ -52,7 +52,12 @@ sportsFest.config(function($stateProvider, $urlRouterProvider, $authProvider, $h
       requireLogin: true
     },
     resolve: {
-      $title: function() { return 'Players'; }
+      $title: function() { return 'Players'; },
+      players :["Player" , function(Player){
+        return Player.get().then(function (success) {
+          return success.data;
+        })
+      }]
     },
   })
   .state('home.draft', {
