@@ -23,9 +23,9 @@ sportsFest.factory("User", ["$q", "$http",
             headers: { 'Content-Type' : 'application/json'}
           })
       },
-      update : function(id) {
+      update : function(id, data) {
           return $http({
-            method: 'UPDATE',
+            method: 'PUT',
             url: url + '/' + id ,
             data: data,
             headers: { 'Content-Type' : 'application/json'}

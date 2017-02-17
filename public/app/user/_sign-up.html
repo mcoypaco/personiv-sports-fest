@@ -52,9 +52,9 @@
                     </div>
                 </md-input-container>
             </div>
-            <!--selection of sports-->
+            <!--selection of roles-->
             <div flex="20">
-                <md-input-container class="md-block" ng-init="user.getRoles()" >
+                <md-input-container class="md-block" >
                     <label>Role</label>
                     <md-select ng-model="data.role_id" name="role" required>
                       <md-option ng-repeat="role in user.roles" value="{{role.id}}">{{role.name}}</md-option>
@@ -73,17 +73,17 @@
     <div class="md-padding" layout="row">
         <div layout="column">
             <img ng-src="img/2Color-Logo_247px-1024x195.png" class="img-logo">
-            <h1>Users</h1>
+            <h1>Manage Users</h1>
             <md-list ng-init="player.getPlayers()">
-            <md-list-item class="md-3-line" ng-repeat="user in user.users" ng-click="showAll = !showAll">
+            <md-list-item class="md-3-line" ng-repeat="userItem in user.users" ng-click="showAll = !showAll">
                 <div class="md-list-item-text" layout="column">
-                    <h2>{{user.first_name}} {{user.last_name}}</h2>
-                    <p>Email: {{user.email}}</p>
-                    <p>Cellphone Number: {{user.cellphone_number}}</p>
-                    <p>Role: {{user.role.name}}</p>
+                    <h2>{{userItem.first_name}} {{userItem.last_name}}</h2>
+                    <p>Email: {{userItem.email}}</p>
+                    <p>Cellphone Number: {{userItem.cellphone_number}}</p>
+                    <p>Role: {{userItem.role.name}}</p>
                     <div ng-if="showAll">
-                        <md-button class="md-raised md-primary">Edit</md-button>
-                        <md-button class="md-raised md-primary">Change Role</md-button>
+                        <md-button class="md-raised md-primary" ng-click="user.editModal($event, userItem)">Edit</md-button>
+                        <!-- <md-button class="md-raised md-primary" ng-click="user.hello()">Change Role</md-button> -->
                     </div>
                 </div>
                 <md-divider></md-divider>
@@ -92,3 +92,50 @@
         </div>
     </div>
 </md-content>
+
+<script type="text/ng-template" id="edit.tmpl.html">
+    <md-dialog flex="30">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Update</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" aria-label="Close button" ng-click="cancel()">
+                    <md-icon md-svg-src="img/icons/close.svg"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <form ng-submit="update(data)" name="modalForm">
+                <div>
+                    <md-input-container>
+                        <input type="text" class="form-control input-sm" ng-model="data.email" placeholder="Email" required>
+                    </md-input-container>
+                </div>
+                <md-input-container>
+                    <input type="text" class="form-control input-sm" ng-model="data.first_name" placeholder="First Name" required>
+                </md-input-container>
+                <md-input-container>
+                    <input type="text" class="form-control input-sm" ng-model="data.last_name" placeholder="Last Name" required>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <input type="text" class="form-control input-lg" ng-model="data.cellphone_number" placeholder="Cellphone Number" required>
+                </md-input-container>
+                <div flex="20">
+                    <md-input-container class="md-block">
+                        <label>Role</label>
+                        <md-select ng-model="data.role_id" name="role">
+                          <md-option ng-repeat="role in data.roles" value="{{role.id}}">{{role.name}}</md-option>
+                        </md-select>
+                        <div ng-messages="registrationForm.role.$error" role="alert" multiple>
+                            <div ng-message="required" class="my-message">You must supply your own role</div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <md-dialog-actions layout="row">
+                    <md-button class="md-primary" aria-label="Cancel" ng-click="cancel()">Cancel</md-button>
+                    <md-button class="md-primary md-raised" ng-disabled="!modalForm.$valid" type="submit">Update</md-button>
+                </md-dialog-actions>
+            </form>
+        </md-dialog-content>
+    </md-dialog>
+</script>
