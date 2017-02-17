@@ -40,7 +40,9 @@ Route::group(['prefix' => 'api'], function()
   Route::get('teams', 'TeamController@index');
   Route::post('teams/{id}', 'TeamController@update');
   Route::get('teams/{id}', 'TeamController@show');
+
   Route::get('players/noteam' , 'PlayerController@noTeam');
+  Route::get('players/sport/{sport}' , 'PlayerController@getSportPlayers');
   Route::get('players/export/{type}','PlayerController@exportExcel');
 
   Route::post('players','PlayerController@store');
@@ -65,12 +67,12 @@ Route::group(['prefix' => 'api'], function()
   Route::post('authenticate', 'AuthenticateController@authenticate');
   Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
 
-  Route::post('upload/image/{id}', 'SportController@upload');
   
   Route::resource('positions', 'PositionController',
               ['only' => ['index', 'store', 'destroy']]);
 
   Route::resource('sports', 'SportController',
               ['only' => ['index', 'store', 'show', 'update', 'destroy']]);
-
+  Route::get('sports/players/noteam/{id}', 'SportController@getPlayers');
+  Route::post('sports/upload/{id}', 'SportController@upload');
 });

@@ -21,8 +21,10 @@ sportsFest.controller('AuthController',
                     $state.go('home.home');
                 });
             }, function(error) {
-                console.log(error)
+                // console.log(error)
+                vm.password = "";
                 vm.loginError = true;
+                console.log(error.data.error)
                 vm.loginErrorText = error.data.error;
             });
     }  

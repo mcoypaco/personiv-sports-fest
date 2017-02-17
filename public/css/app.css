@@ -64,8 +64,18 @@ md-nav-bar .md-nav-bar {
 .page-login md-card {
   padding: 0!important;
 }
+
 .page-login md-card md-card-title {
   color: dodgerblue;
+}
+
+.alert-danger {
+  background-color: #cc4f4f;
+  border-radius: 10px;
+}
+
+.alert-danger .alert-text {
+  color: white;
 }
 
 /*$main-bg-color: #ECECEC;*/
@@ -330,6 +340,11 @@ lf-ng-md-file-input {
   border-radius: 50%;
 }
 
-user {
+.user {
   color: #ffffff;
+}
+
+.arrow-down {
+  width: 0.5rem;
+  height: 0.5rem;
 }

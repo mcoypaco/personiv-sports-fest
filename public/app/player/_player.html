@@ -1,3 +1,4 @@
+<!--<<<<<<< HEAD
 <md-content class="padding">
     <h2 class="playersTitle">
         <md-icon md-svg-src="img/icons/players.svg" class="svg"></md-icon>
@@ -40,12 +41,12 @@
         </md-input-container>
         <md-list ng-init="player.getPlayers()">
         <!-- <md-icon md-svg-src="img/icons/list.svg"></md-icon> -->
-        <h3>
+        <!--<h3>
             <ng-md-icon icon="list"></ng-md-icon>
             List of Players
-        </h3>
+        </h3>-->
             <!-- <md-divider></md-divider> -->
-            <md-list-item class="md-3-line" ng-repeat="playerItem in player.filteredPlayers track by $index" ng-click="showAll = !showAll">
+            <!--<md-list-item class="md-3-line" ng-repeat="playerItem in player.filteredPlayers track by $index" ng-click="showAll = !showAll">
                 <div class="md-list-item-text">
                         <h3>{{playerItem.first_name}} {{playerItem.last_name}}</h3>
                         <p>Height: {{playerItem.height}} cm</p>
@@ -58,9 +59,65 @@
                             Position: {{player.getPosition(playerItem.positions, sportItem.id)[0].name}}
                         </p>
                     </div>
-                    <md-divider></md-divider>
+                    <md-divider></md-divider>-->
+<md-progress-linear md-mode="indeterminate" ng-if="!draft.loaded"></md-progress-linear>
+<md-content class="md-padding padding">
+     <h2 class="playersTitle">
+        <md-icon md-svg-src="img/icons/players.svg" class="svg"></md-icon>
+        PLAYERS
+    </h2>
+    <div ng-if="player.players == ''" id="emptyData">
+         <h2>NO PLAYERS REGISTERED</h2>
+    </div>
+    <md-input-container ng-init="player.getSports()" class="md-block select">
+        <label>Sports</label>
+        <md-select ng-model="player.selectedSport" placeholder="sport" >
+            <md-option ng-repeat="sport in player.sports" value="{{sport.id}}">{{sport.name}}</md-option>
+            <md-option  value="all">ALL</md-option>
+        </md-select>
+    </md-input-container>
+    <md-menu md-offset="0 -7">
+      <md-button class="md-raised md-primary" aria-label="Open menu" ng-click="$mdMenu.open($event)">
+        Export
+      </md-button>
+      <md-menu-content width="2">
+        <md-menu-item>
+          <md-button ng-click="player.export('xls')">XLS</md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ng-click="player.export('xlsx')">XLSX</md-button>
+        </md-menu-item>
+        <md-menu-item>
+          <md-button ng-click="player.export('csv')">CSV</md-button>
+        </md-menu-item>
+      </md-menu-content>
+    </md-menu>
+    
+    <md-input-container class="md-block" ng-if="player.selectedSport && player.selectedSport !='all'">
+        <label>Position</label>
+        <md-select ng-model="player.selectedPosition" placeholder="position">
+            <md-option ng-repeat="position in player.getSport(player.selectedSport)[0].positions" value="{{position.id}}">{{position.name}}</md-option>
+            <md-option  value="all">ALL</md-option>
+        </md-select>
+    </md-input-container>
+    <md-list ng-init="player.getPlayers()">
+        <h3>
+            <ng-md-icon icon="list"></ng-md-icon>
+            List of Players
+        </h3>
+        <md-list-item class="md-3-line" ng-repeat="playerItem in player.filteredPlayers" ng-click="showAll = !showAll">
+            <div class="md-list-item-text" layout="column">
+                <h3>{{playerItem.first_name}} {{playerItem.last_name}}</h3>
+                <p>Height: {{playerItem.height}} cm</p>
+                <p>Weight: {{playerItem.weight}} kg</p>
+                <div ng-if="showAll">
+                    Sports:
+                    <p ng-if= "playerItem.sports.length == 0"> No Sport</p>
+                    <p ng-repeat="sportItem in playerItem.sports"> 
+                        <b>{{sportItem.name}}</b>
+                        Position: {{player.getPosition(playerItem.positions, sportItem.id)[0].name}}
+                    </p>
                 </div>
             </md-list-item>
         </md-list>
-    </div>
 </md-content>   

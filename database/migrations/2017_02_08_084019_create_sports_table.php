@@ -17,6 +17,7 @@ class CreateSportsTable extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('description');
+            $table->string('img_extension')->nullable();
             $table->timestamps();
         });
     }

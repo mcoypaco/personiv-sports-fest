@@ -6,11 +6,12 @@
   <div ng-if="home.sports == ''" id="emptyData">
        <h2>SPORTS NOT AVAILABLE</h2>
   </div>
+  <md-progress-linear md-mode="indeterminate" ng-if="!home.loaded"></md-progress-linear>
   <md-content class="md-padding" layout-xs="column" layout="row" ng-if="home.sports != ''">
-    <!-- first -->
     <div ng-repeat="remainder in [0,1,2]" flex-xs="" flex-gt-xs="50" layout="column">
       <md-card ng-repeat="sport in home.sports" ng-if="$index % 3 == remainder">
-        <img ng-src="uploads/sports/{{sport.id}}.jpeg" class="md-card-image" alt="Washed Out">
+        <img ng-if="sport.img_extension" ng-src="uploads/sports/{{sport.id}}.{{sport.img_extension}}" class="md-card-image" alt="No image">
+        <img ng-if="!sport.img_extension" ng-src="img/2Color-Logo_247px-1024x195.png" class="md-card-image" alt="No image">
         <md-card-title>
           <md-card-title-text>
             <span class="md-headline">{{sport.name}}</span>
