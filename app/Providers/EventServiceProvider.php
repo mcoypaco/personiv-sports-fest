@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\Facades\Event;
-use App\Events\ChangedTeam;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -14,7 +13,7 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\ChangedTeam' => [
+        'App\Events\SomeEvent' => [
             'App\Listeners\EventListener',
         ],
     ];
@@ -28,8 +27,6 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        // Event::listen('changed.team', function($data){
-        //   return $data;
-        // });
+        //
     }
 }
