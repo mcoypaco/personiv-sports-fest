@@ -14,7 +14,3 @@
 Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
-
-// Broadcast::channel('changed.team', function($data){
-//   return true;
-// });
