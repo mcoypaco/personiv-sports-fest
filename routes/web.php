@@ -70,6 +70,9 @@ Route::group(['prefix' => 'api'], function()
   Route::resource('positions', 'PositionController',
               ['only' => ['index', 'store', 'destroy']]);
 
+Route::resource('drafts', 'DraftController',
+              ['only' => ['index', 'store', 'destroy']]);
+
   Route::resource('sports', 'SportController',
               ['only' => ['index', 'store', 'show', 'update', 'destroy']]);
   Route::get('sports/players/noteam/{id}', 'SportController@getPlayers');

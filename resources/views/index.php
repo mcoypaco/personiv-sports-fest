@@ -70,5 +70,6 @@
 
     <!--draft-->
     <script src="app/draft/DraftController.js"></script>
+    <script src="app/draft/DraftFactory.js"></script>
 
 </html>

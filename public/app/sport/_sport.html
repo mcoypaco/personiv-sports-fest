@@ -2,7 +2,7 @@
 <md-content class="whiteframe" layout="row">
     <!--end of adding a new sport-->
     <!--foreach of the sports items and their CRUD-->
-    <div class="md-padding" layout="column" flex="60">
+<div class="md-padding" layout="column" flex="60">
         <h2>
             <ng-md-icon icon="settings"></ng-md-icon> Sports
         </h2>
@@ -11,42 +11,40 @@
           Confirm Dialog
       </md-button> -->
       <md-list ng-init="sport.getSports()">
-        <md-list-item class="md-3-line" ng-repeat="sportItem in sport.sports" ng-click="editable=!editable">
-            <div class="md-list-item-text" layout="column" ng-if="!editable">
-                <h3>{{sportItem.name}}</h3>
-                <p>{{sportItem.description}}</p>
-            </div>
-            <div class="md-list-item-text" ng-if="editable" ng-init="new.name=sportItem.name;new.description=sportItem.description">
-                <section layout="row" layout-align="end start" layout-wrap>
-                    <md-button class="md-icon-button" aria-label="Exit" ng-click="$parent.editable = false">
+        <md-list-item class="md-3-line" ng-repeat="sportItem in sport.sports" ng-click="clicked=!clicked" layout="row">
+            <div class="md-list-item-text" layout="column" >
+                <section layout="row" layout-align="end start" layout-wrap ng-if="clicked">
+                    <md-button class="md-icon-button" aria-label="Exit" ng-click="$parent.clicked = false">
                         <md-icon md-svg-src="img/icons/close.svg"></md-icon>
                     </md-button>
                 </section>
-                <md-input-container>
-                    <input type="text" class="form-control input-sm" ng-model="new.name" placeholder="Name">
-                </md-input-container>
-                <md-input-container class="md-block">
-                    <input type="text" class="form-control input-lg" ng-model="new.description" placeholder="Description">
-                </md-input-container>
-                <!--foreach of the positions in sport-->
-                <md-list ng-if="sportItem.positions.length != 0">
-                    <b>Positions:</b>
-                    <md-list-item ng-repeat="position in sportItem.positions">
-                     <p>{{position.name}}</p>
-                     <md-button class="md-raised" ng-click="sport.deletePosition(position.id)">Delete position</md-button>
-                     <md-divider></md-divider>
-                 </md-list-item>  
-             </md-list>
-             <section layout="row" layout-align="end end" layout-wrap>
-                <md-button class="md-primary md-raised" ng-click="sport.addModalPosition($event, sportItem.id)">
-                    Add a position
-                </md-button>
-                <md-button class="md-raised" ng-click="sport.update(sportItem.id, new)">update</md-button>
-                <md-button class="md-raised" ng-click="sport.delete(sportItem.id)">Delete</md-button>
-            </section>
-        </div>
-    </md-list-item>
-</md-list>
+                <h3>{{sportItem.name}}</h3>
+                <p>{{sportItem.description}}</p>
+                 <section layout="row" layout-align="end end" layout-wrap ng-if="!clicked">
+                    <md-button class="md-raised" ng-click="sport.updateModal($event, sportItem)">Update</md-button>
+                    <md-button class="md-raised" ng-click="sport.showConfirm($event, sportItem, 'sport')">Delete</md-button>
+                </section>
+               
+               <!--foreach of the positions in sport-->
+                <md-list ng-if="sportItem.positions.length != 0" >
+                    <div class="md-list-item-text" ng-if="clicked" layout="column">
+                        <b>Positions:</b>
+                        <md-list-item ng-repeat="position in sportItem.positions" >
+                            <p>{{position.name}}</p>
+                            <md-button class="md-raised" ng-click="sport.showConfirm($event, position, 'position')">Delete</md-button>
+                            <md-divider></md-divider>
+                        </md-list-item>                  
+                    </div>
+                </md-list>
+                <!--addinf a position-->
+                <section layout="row" layout-align="end end" layout-wrap ng-if="clicked">
+                    <md-button class="md-primary md-raised" ng-click="sport.addModalPosition($event, sportItem.id)">
+                        Add a position
+                    </md-button>                            
+                </section>
+            </div>
+        </md-list-item>
+    </md-list>
 </div>
 <div flex="10"></div>
 <!--adding a new sport -->
@@ -81,3 +79,29 @@
     </div>
 </div>
 </md-content>
+<script type="text/ng-template" id="update.tmpl.html">
+    <md-dialog flex="50">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Update</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="img/icons/close.svg"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <form>
+                <md-input-container>
+                    <input type="text" class="form-control input-sm" ng-model="data.name" placeholder="Name">
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <input type="text" class="form-control input-lg" ng-model="data.description" placeholder="Description">
+                </md-input-container>
+                <md-dialog-actions layout="row">
+                    <md-button class="md-primary md-raised" ng-click="update(data)">Update</md-button>
+                </md-dialog-actions>
+            </form>
+        </md-dialog-content>
+    </md-dialog>
+</script>
