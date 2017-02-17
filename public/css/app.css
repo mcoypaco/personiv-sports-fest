@@ -51,6 +51,7 @@ md-nav-bar .md-nav-bar {
 
 .img-logo {
   width: 500px;
+  height: 600px;
 }
 
 .page-login {
@@ -204,10 +205,13 @@ md-radio-button.md-accent.md-checked .md-label span {
 
 .md-toolbar-tools {
   font-size: 22px;
-  background-color: #ffc814;
-  height: 20px;
+  /*background-color: #ffc814;*/
+  height: 15px;
 }
 
+.login-head {
+  background-color: #ffc814;
+}
 
 md-backdrop.md-sidenav-backdrop {
   position: fixed;
@@ -296,8 +300,8 @@ lf-ng-md-file-input {
 .register {
   width: 550px;
     /*border: 25px solid green;*/
-  padding: 15px;
-  margin: 15px;
+  padding: 10px;
+  margin: 10px;
   background-color: #e8ecff;
   border-radius: 5px;
  
