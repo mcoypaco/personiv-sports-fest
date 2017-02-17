@@ -55,22 +55,28 @@
         <h2>
             <ng-md-icon icon="add_circle"></ng-md-icon> Add New Sport
         </h2>
-        <form ng-submit="sport.submit(data)">
+        <form ng-submit="sport.submit(data)" name="sportForm">
             <div>
                 <md-input-container>
-                    <input type="text" class="form-control input-sm" ng-model="data.name" placeholder="Name">
+                    <input type="text" class="form-control input-sm" name="name" ng-model="data.name" placeholder="Name" required>
+                    <div ng-messages="sportForm.name.$error" role="alert" multiple="">
+                        <div class="my-message" ng-message="required">You must supply a name for the sport.</div>
+                    </div>
                 </md-input-container>
             </div>
             <div>
                 <md-input-container class="md-block">
-                    <input type="text" class="form-control input-lg" ng-model="data.description" placeholder="Description">
+                    <input type="text" class="form-control input-lg" name="description" ng-model="data.description" placeholder="Description"required>
+                    <div ng-messages="sportForm.description.$error" role="alert" multiple="">
+                        <div class="my-message" ng-message="required">You must supply a description for the sport.</div>
+                    </div>
                 </md-input-container>
             </div>
             <div>
                 <lf-ng-md-file-input lf-files="files" lf-browse-label="Choose" lf-remove-label="Delete" lf-drag-and-drop-label="Drag and Drop here!" drag preview lf-required></lf-ng-md-file-input>
             </div>
 
-            <md-button class="md-raised md-primary" type="submit">Add Sport</md-button>
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="!sportForm.$valid">Add Sport</md-button>
         </form>
     </div>
 </div>

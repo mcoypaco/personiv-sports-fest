@@ -41,30 +41,41 @@
             </div>
             <div>
                 <md-input-container>
-                    <input class="form-control input-lg" ng-model="data.cellphone_number"  type="number" name="cellphone_number" required placeholder="Cellphone Number">
+                    <input class="form-control input-lg" ng-model="data.cellphone_number" ng-pattern="/^[0-9]{10,12}$/" type="number" name="cellphone_number" required placeholder="Cellphone Number">
                     <div ng-messages="registrationForm.cellphone_number.$error" role="alert" multiple="">
                         <div ng-message="required" class="my-message">You must supply a Cellphone Number.
+                        </div>
+                        <div ng-message="pattern" class="my-message">That doesn't look like a valid cellphone number.
                         </div>
                     </div>
                 </md-input-container>
             </div>
             <div>
                 <md-input-container>
-                    <input class="form-control input-lg" ng-model="data.tower_lead" required placeholder="Tower Lead">
+                    <input class="form-control input-lg" name="tower_lead" ng-model="data.tower_lead" required placeholder="Tower Lead">
+                    <div ng-messages="registrationForm.tower_lead.$error" role="alert" multiple="">
+                        <div class="my-message" ng-message="required">You must supply a name for Tower Lead.</div>
+                    </div>
                 </md-input-container>
             </div>
             <div>
                 <md-input-container>
-                    <input class="form-control input-lg" ng-model="data.team_lead" required placeholder="Team Leader">
+                    <input class="form-control input-lg" name="team_lead" ng-model="data.team_lead" required placeholder="Team Leader">
+                    <div ng-messages="registrationForm.team_lead.$error" role="alert" multiple="">
+                        <div class="my-message" ng-message="required">You must supply a name for Team Lead.</div>
+                    </div>
                 </md-input-container>
             </div>
             <!--selection of sports-->
             <div flex="80">
                 <md-input-container ng-init="player.getSports()" class="md-block">
                     <label>Sports</label>
-                    <md-select multiple ng-model="data.sports" placeholder="please select your sport">
-                    <md-option ng-repeat="sport in player.sports" value="{{sport.id}}">{{sport.name}}</md-option>
+                    <md-select multiple name="sport" ng-model="data.sports" placeholder="please select your sport" required="">
+                        <md-option ng-repeat="sport in player.sports" value="{{sport.id}}">{{sport.name}}</md-option>
                     </md-select>
+                    <div ng-messages="registrationForm.sport.$error" role="alert" multiple="">
+                        <div class="my-message" ng-message="required">You must choose atleast 1 sport.</div>
+                    </div>
                 </md-input-container>
             </div>
             <!--selection of position in sports-->
@@ -82,7 +93,7 @@
                     </div>
                 </md-list>
             </div>
-            <md-button class="md-raised md-primary" type="submit">REGISTER</md-button>
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="!registrationForm.$valid">REGISTER</md-button>
         </form>
     </div>
     <!--end of adding a new player-->

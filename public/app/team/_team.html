@@ -1,29 +1,38 @@
 <md-progress-linear md-mode="indeterminate" ng-if="!team.loaded"></md-progress-linear>
 <md-content class="md-padding">
     <!--adding a new sport -->
-    <form ng-submit="team.addTeam(data)">
+    <form ng-submit="team.addTeam(data)"  name="teamForm">
         <div>
             <md-input-container>
-                <input type="text" class="form-control input-sm" ng-model="data.name" placeholder="Name">
+                <input type="text" class="form-control input-sm" name="name" ng-model="data.name" placeholder="Name" required>
+                <div ng-messages="teamForm.name.$error" role="alert" multiple="">
+                    <div class="my-message" ng-message="required">You must supply a name for the team.</div>
+                </div>
             </md-input-container>
             <md-input-container>
             <label>Sport</label>
-            <md-select ng-model="data.sport_id">
+            <md-select ng-model="data.sport_id" name="sport" required>
                 <md-option ng-repeat="sport in team.sports track by sport.id" ng-value="sport.id">
                 {{sport.name}}
                 </md-option>
             </md-select>
+            <div ng-messages="teamForm.sport.$error" role="alert" multiple="">
+                <div class="my-message" ng-message="required">You must supply a sport for the team.</div>
+            </div>
             </md-input-container>
             <md-input-container>
             <label>Poc</label>
-            <md-select ng-model="data.user_id">
+            <md-select ng-model="data.user_id" name="poc" required>
                 <md-option ng-repeat="poc in team.poc track by poc.id" ng-value="poc.id">
                 {{poc.first_name}} {{poc.last_name}}
                 </md-option>
             </md-select>
+            <div ng-messages="teamForm.poc.$error" role="alert" multiple="">
+                <div class="my-message" ng-message="required">You must have a POC for the team.</div>
+            </div>
             </md-input-container>
         </div>
-        <md-button class="md-raised md-primary" type="submit">Add Team</md-button>
+        <md-button class="md-raised md-primary" type="submit" ng-disabled="!teamForm.$valid">Add Team</md-button>
     </form>
 
     <!--end of adding a new team-->
