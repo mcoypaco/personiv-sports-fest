@@ -4,7 +4,7 @@
 
 <div ng-if="isAuthenticated()">
   <div ng-if="home.sports == ''" id="emptyData">
-       <h2>NO SPORTS ADDED</h2>
+       <h2>SPORTS NOT AVAILABLE</h2>
   </div>
   <md-content class="md-padding" layout-xs="column" layout="row" ng-if="home.sports != ''">
     <!-- first -->
@@ -32,10 +32,3 @@
   <md-button>MANAGE USERS</md-button>
   <md-button>ETC</md-button>
 </div>
-
-
-<!--
-Copyright 2016 Google Inc. All Rights Reserved. 
-Use of this source code is governed by an MIT-style license that can be foundin the LICENSE file at http://material.angularjs.org/HEAD/license.
--->
-

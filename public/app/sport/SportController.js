@@ -94,10 +94,10 @@ sportsFest.controller('SportController',
 
     vm.addModalPosition = function(ev, id) {
          var confirm = $mdDialog.prompt()
-        .title('Please write the name of the position')
+        .title('New Position')
         .placeholder('Position name')
         .ariaLabel('Position name')
-        .initialValue('name')
+        // .initialValue('name')
         .targetEvent(ev)
         .ok('Save')
         .cancel('Cancel');

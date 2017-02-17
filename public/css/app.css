@@ -1,3 +1,4 @@
+
 /*.navBardemoBasicUsage md-content .ext-content {
   padding: 10px;
   margin: 10px;
@@ -175,8 +176,8 @@ body {
 }
 
 
-// OVERRIDES
-// angular material overrides
+ /*OVERRIDES
+ angular material overrides*/
 md-radio-group {
   border: none;
 }
@@ -217,7 +218,7 @@ md-backdrop.md-sidenav-backdrop {
   position: fixed;
 }
 
-// libs overrides
+/*// libs overrides*/
 .material-icons {
   vertical-align: middle;
 }
@@ -235,10 +236,10 @@ md-backdrop.md-sidenav-backdrop {
   background-color: rgb(255, 236, 201)
 }
 
-#playersTitle {
+.playersTitle {
    margin-left: 1%;
 }
-#select {
+.select {
   margin: 10px;
    /*margin-right: 10px;*/
    width: 200px
@@ -282,8 +283,11 @@ lf-ng-md-file-input {
   height: 40%;
   /*margin-right: auto ;*/
 }
-#ui-view {
-  background-color: #FFFFFF;
+
+.padding {
+  /*background-color: red;*/
+  padding: 5px;
+  margin: 5px;
   /*background-image: url(Header2.png);*/
 }
 
@@ -309,4 +313,21 @@ lf-ng-md-file-input {
 
 .login-logo {
   margin-top: 20%;
+}
+
+.myCell {
+  border: solid black 1px;
+  padding: 10px;
+}
+
+.input {
+  width: 300px;
+}
+
+.teamadd {
+  background-color: #e8ecff;
+}
+
+.teamshow {
+  background-color: #e5eecf;
 }

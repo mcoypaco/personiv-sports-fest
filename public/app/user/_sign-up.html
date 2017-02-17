@@ -1,7 +1,10 @@
 <md-content class="whiteframe" layout="row">
 <!--adding a new player -->
     <div class="md-padding" layout="column" flex="50">
-        <h2>Register User</h2>
+        <h2 class='playersTitle'>
+        <ng-md-icon icon="settings"></ng-md-icon>
+        REGISTER NEW USER
+    </h2>
         <form ng-submit="user.register(data)" name="registrationForm">
             <div>
                 <md-input-container>
@@ -48,10 +51,10 @@
     </div>
     <!--end of adding a new player-->
     <!-- <div flex="30"></div> -->
-    <div layout="row" class="md-padding">
+    <!-- <div layout="row" class="md-padding">
         <div layout="column">
             <img ng-src="img/2Color-Logo_247px-1024x195.png" class="img-logo">
             <h1>wow</h1>
         </div>
-    </div>
+    </div> -->
 </md-content>

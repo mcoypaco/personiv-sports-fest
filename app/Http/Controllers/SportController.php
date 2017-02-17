@@ -41,7 +41,7 @@ class SportController extends Controller
         $sport = Sport::create(array(
             'name' => Input::get('name'),
             'description' => Input::get('description')
-        ));
+            ));
         return response()->json(array('success' => true, 'id' => $sport->id));
     }
 
@@ -81,7 +81,7 @@ class SportController extends Controller
         $sport->description = Input::get('description');
         $sport->push();
         return response()->json(array('success' => true));
-     }
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -97,15 +97,14 @@ class SportController extends Controller
 
     public function upload(Request $request, $id)
     {
-        $output->writeln('hello');
         $file = $request->file('file');
         if ($file != null) {
             $file = $request->file;
-            $extension = $request->file->extension();
+            // $extension = $request->file->extension();
             if (!file_exists(public_path().'/uploads/sports')) {
                 File::makeDirectory(public_path().'/uploads/sports', 0777, true);
             }
-            $request->file->storeAs('/uploads/sports', ''.$id.'.'.$extension);
+            $request->file->storeAs('/uploads/sports', ''.$id.'.'.'jpeg');
             response()->json(array('success' => "lolol"));
         }
     }

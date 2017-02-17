@@ -71,20 +71,28 @@ sportsFest.controller('PlayerController',
     }
 
     vm.getPosition = function(arr, id) {
-        // console.log(arr);
-        // console.log(id);
         return arr.filter(function(item) {
             return (item.sport_id === id);
         });
     }
 
-    vm.exportPlayers = function(){
-        Player.export()
-            .then(function (success) {
-                console.log('controller')
-                vm.players = success.data;
-                vm.filteredPlayers = success.data;
-            },function (error) {
+    vm.export = function(type) {
+        Player.export(type)
+            .then(function(success) {
+                console.log(success);
+                
+                var anchor = angular.element('<a/>');
+                anchor.css({display: 'none'}); // Make sure it's not visible
+                angular.element(document.body).append(anchor); // Attach to document
+
+                anchor.attr({
+                    href: 'data:attachment/'+ type +';charset=utf-8,' + encodeURI(success.data),
+                    target: '_blank',
+                    download: 'document.' + type
+                })[0].click();
+
+                anchor.remove(); // Clean it up afterwards
+            },function(error) {
                 console.log(error.data)
             });
     }

@@ -1,13 +1,18 @@
-<md-content>
+<md-content class="padding">
     <!--adding a new sport -->
-    <form ng-submit="team.addTeam(data)">
+    <!-- <div layout="row" flex=50 class="md-padding" class="teamadd"> -->
+        <h2>
+            <ng-md-icon icon="settings"></ng-md-icon>
+            ADD TEAM
+        </h2>
+       <form ng-submit="team.addTeam(data)">
         <div>
-            <md-input-container id="select">
+            <md-input-container id="select" class="input">
                 <input type="text" class="form-control input-sm" ng-model="data.name" placeholder="Name">
             </md-input-container>
         </div>
         <div>
-            <md-input-container id="select">
+            <md-input-container id="select" class="input">
                 <label>Sport</label>
                 <md-select ng-model="data.sport_id" ng-init="team.getSports()">
                     <md-option ng-repeat="sport in team.sports track by sport.id" ng-value="sport.id">
@@ -17,7 +22,7 @@
             </md-input-container>
         </div>
         <div>
-            <md-input-container id="select">
+            <md-input-container id="select" class="input">
                 <label>Poc</label>
                 <md-select ng-model="data.user_id" ng-init="team.getPocs()">
                     <md-option ng-repeat="poc in team.poc track by poc.id" ng-value="poc.id">
@@ -27,12 +32,17 @@
             </md-input-container>
         </div>
         <md-button class="md-raised md-primary" type="submit">Add Team</md-button>
-    </form>
-
+    </form> 
+    <!-- </div> -->
     <!--end of adding a new team-->
-    <md-list ng-init="team.getTeams()">
-        <md-list-item class="md-3-line" ng-repeat="teamItem in team.teams" ng-click="team.showTeam(teamItem.id)">
-                <h3>{{teamItem.name}}</h3>
-        </md-list-item>
-    </md-list>
+    <!-- <div layout="row" flex=30 class="md-padding" class="teamshow"> -->
+        <h2>
+            <ng-md-icon icon="settings"></ng-md-icon> Teams
+        </h2>
+         <md-list ng-init="team.getTeams()">
+            <md-list-item class="md-3-line" ng-repeat="teamItem in team.teams" ng-click="team.showTeam(teamItem.id)">
+                    <h3>{{teamItem.name}}</h3>
+            </md-list-item>
+        </md-list>
+    <!-- </div> -->
 </md-content>

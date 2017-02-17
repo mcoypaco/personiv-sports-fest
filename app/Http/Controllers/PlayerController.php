@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Player;
 use App\Team;
 use App\Sport;
-// use Maatwebsite\Excel\Facades\Excel;
 use Excel;
 use Illuminate\Http\Request;
 
@@ -100,20 +99,34 @@ class PlayerController extends Controller
 
     public function noTeam()
     {
-      $player = Player::where('team_id', null);
-
+      $player = Player::with('positions', 'team', 'sports')->where('team_id', null);
       return response()->json($player->get());
     }
 
-    public function exportPlayers() {
-        $filename = 'players';
-        $players = Player::select('id', 'employee_id', 'first_name', 'last_name')->get();
-        Excel::create($filename, function($excel) use($players) {
-             $excel->setTitle('All Players');
-            $excel->sheet('players', function($sheet) use($players) {
-                $sheet->fromArray($users);
-            });
-        })->store('xls');
+
+    public function exportExcel($type) {
+        // $filename = 'players';
+        // $players = Player::with('positions', 'team', 'sports')->get();
+
+        $data = Player::select('id', 'employee_id', 'first_name', 'last_name')->get();
+        
+        // Excel::create($filename, function($excel) use ($players) {
+        //     $excel->setTitle('All Players');
+        //     $excel->sheet('players', function($sheet) use ($players) {
+        //         $sheet->fromArray($users);
+        //     });
+        // })->store('xls', storage_path('excel/exports'));
+
+        // return response()->json(array('success' => true));
+        // Excel::create($filename)->store('xls');
         // return response()->download('exports/'.$filename.'.xls');
+
+        // $data = Player::get()->toArray();
+        return Excel::create('Players', function($excel) use ($data) {
+            $excel->sheet('sheet1', function($sheet) use ($data)
+            {
+                $sheet->fromArray($data);
+            });
+        })->download($type);
     }
 }

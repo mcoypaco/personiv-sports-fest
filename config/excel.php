@@ -282,7 +282,7 @@ return array(
             | Whether we want to return information about the stored file or not
             |
             */
-            'returnInfo' => true
+            'returnInfo' => false
 
         ],
 

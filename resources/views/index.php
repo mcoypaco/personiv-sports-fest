@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="node_modules/lf-ng-md-file-input/dist/lf-ng-md-file-input.css">
+        <link rel="stylesheet" href="node_modules/angular-material-data-table/dist/md-data-table.min.css" type="text/css">
     </head>
     <body ng-app="Sportsfest" ng-cloak>
         
@@ -23,12 +24,15 @@
     <script src="node_modules/angular-material-icons/angular-material-icons.min.js"></script>
     <script src="node_modules/angular-ui-router-title/angular-ui-router-title.js"></script>
     <script src="/node_modules/lf-ng-md-file-input/dist/lf-ng-md-file-input.js"></script>
+    <script src="node_modules/angular-material-data-table/dist/md-data-table.min.js"></script>
 
     <!-- Application Scripts -->
     <script src="js/app.js"></script>
     <script src="js/app.routes.js"></script>
-<!--     <script src="js/controllers/authController.js"></script>
-    <script src="js/controllers/userController.js"></script> -->
+
+    <!-- Directives -->
+    <script src="js/directives/MenuLink.js"></script>
+    <script src="js/directives/MenuToggle.js"></script>
 
     <!-- draft -->
     <!-- <script src="app/draft/DraftController.js"></script> -->
@@ -63,5 +67,8 @@
     <script src="app/user/UserController.js"></script>
     <script src="app/user/UserFactory.js"></script>
     <script src="app/user/RoleFactory.js"></script>
+
+    <!--draft-->
+    <script src="app/draft/DraftController.js"></script>
 
 </html>

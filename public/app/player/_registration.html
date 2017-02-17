@@ -12,7 +12,7 @@
                 <h2>Register</h2>
                 <md-input-container>
                     <label>Employee ID</label>
-                    <md-icon md-svg-src="img/icons/account-card-details.svg" class="password"></md-icon>
+                    <md-icon md-svg-src="img/icons/account-card-details.svg"></md-icon>
                     <input type="text" class="form-control input-sm" ng-model="data.employee_id" required>
                     <!--<div ng-messages="data.employee_id.$error" role="alert" multiple>
                         <div ng-message="pattern" class="my-message">Invalid Cellphone Number.
@@ -21,7 +21,7 @@
                 </md-input-container>
                 <md-input-container>
                     <label>Cellphone Number</label>
-                    <md-icon md-svg-src="img/icons/ic_contact_phone_black_24px.svg" class="password"></md-icon>
+                    <md-icon md-svg-src="img/icons/ic_contact_phone_black_24px.svg"></md-icon>
                     <input class="form-control input-lg" ng-model="data.cellphone_number"  name="cellphone_number" required placeholder="+63*********" ng-pattern="/^(0|\+[0-9]{1,4})?\d{9,10}/" md-maxlength="13">
                     <!--<div ng-messages="data.cellphone_number.$error" role="alert" multiple>
                         <div ng-message="pattern" class="my-message">Invalid Cellphone Number.
@@ -30,7 +30,7 @@
                 </md-input-container>
                 <md-input-container>
                     <label>Last Name</label>
-                    <md-icon md-svg-src="img/icons/ic_face_black_24px.svg" class="password"></md-icon>
+                    <md-icon md-svg-src="img/icons/ic_face_black_24px.svg"></md-icon>
                     <input type="text" class="form-control input-sm" ng-model="data.last_name"  required>
                </md-input-container>
                <md-input-container>
@@ -40,23 +40,23 @@
 
                 <md-input-container>
                     <label>Height</label>
-                    <md-icon md-svg-src="img/icons/human-male.svg" class="password"></md-icon>
+                    <md-icon md-svg-src="img/icons/human-male.svg"></md-icon>
                     <input class="form-control input-sm" ng-model="data.height"  required>
                </md-input-container>
                <md-input-container>
                    <label>Weight</label>
-                   <md-icon md-svg-src="img/icons/weight-kilogram.svg" class="password"></md-icon>
+                   <md-icon md-svg-src="img/icons/weight-kilogram.svg"></md-icon>
                     <input class="form-control input-sm" ng-model="data.weight"  required>
                 </md-input-container>
                 
                 <md-input-container>
                     <label>Tower Lead</label>
-                    <md-icon md-svg-src="img/icons/account-star1.svg" class="password"></md-icon>
+                    <md-icon md-svg-src="img/icons/account-star1.svg"></md-icon>
                     <input class="form-control input-lg" ng-model="data.tower_lead" required>
                 </md-input-container>
                 <md-input-container>
                     <label>Team Leader</label>
-                    <md-icon md-svg-src="img/icons/account-star2.svg" class="password"></md-icon>
+                    <md-icon md-svg-src="img/icons/account-star2.svg"></md-icon>
                     <input class="form-control input-lg" ng-model="data.team_lead" required>
                 </md-input-container>
             <!--</div>-->
@@ -64,7 +64,7 @@
             <!--<div flex="80">-->
                 <md-input-container ng-init="player.getSports()" class="md-block">
                     <label>Sports</label>
-                     <md-icon md-svg-src="img/icons/basketball.svg" class="password"></md-icon>
+                     <md-icon md-svg-src="img/icons/basketball.svg"></md-icon>
                     <md-select multiple ng-model="data.sports">
                     <md-option ng-repeat="sport in player.sports" value="{{sport.id}}">{{sport.name}}</md-option>
                     </md-select>
@@ -78,7 +78,7 @@
                         <label>Select Position</label>
                         <md-input-container class="md-block" >
                             <label>{{player.getSport(sportItem)[0].name}}</label>
-                            <md-icon md-svg-src="img/icons/trail-running-shoe.svg" class="password"></md-icon>
+                            <md-icon md-svg-src="img/icons/trail-running-shoe.svg"></md-icon>
                             <md-select ng-model="data.positions[sportItem]" placeholder="{{player.getSport(sportItem)[0].name}}">
                             <md-option ng-repeat="position in player.getSport(sportItem)[0].positions" value="{{position.id}}">{{position.name}}</md-option>
                             </md-select>

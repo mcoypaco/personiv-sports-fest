@@ -41,6 +41,7 @@ Route::group(['prefix' => 'api'], function()
   Route::post('teams/{id}', 'TeamController@update');
   Route::get('teams/{id}', 'TeamController@show');
   Route::get('players/noteam' , 'PlayerController@noTeam');
+  Route::get('players/export/{type}','PlayerController@exportExcel');
 
   Route::post('players','PlayerController@store');
   Route::get('players','PlayerController@index');
@@ -57,6 +58,7 @@ Route::group(['prefix' => 'api'], function()
   //Route::resource('users','UserController',['middleware' => 'role:admin']);
   Route::get('users/poc','UserController@poc');
   Route::post('users','UserController@store');
+  Route::get('users','UserController@index');
   Route::get('users/{id}','UserController@show');
 
   Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
