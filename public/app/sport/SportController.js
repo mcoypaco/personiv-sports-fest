@@ -47,6 +47,7 @@ sportsFest.controller('SportController',
                 console.log(error)
             })
     }
+    vm.getSports();
 
     vm.delete = function(id) {
         Sport.destroy(id)

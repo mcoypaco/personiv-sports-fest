@@ -1,21 +1,19 @@
 <md-content class="whiteframe" layout="row">
-    <div layout="row" class="img-logo">
-            <img ng-src="img/2Color-Favicon_512x512-1.png" ui-sref="home.home">
-    </div>
-    <div class="md-padding" layout="column">
-        <form class="register" ng-submit="player.submit(data)" name="registrationForm">
+<!--adding a new player -->
+    <div class="md-padding" layout="column" flex="50">
+        <h2>Register</h2>
+        <form ng-submit="player.submit(data)" name="registrationForm">
             <div>
-                <h2>Register</h2>
                 <md-input-container>
-                    <!--<label>Employee ID</label>-->
                     <md-icon md-svg-src="img/icons/account-card-details.svg"></md-icon>
                     <input type="text" name="employee_id" class="form-control input-sm" ng-model="data.employee_id" required placeholder="Employee Id">
                     <div ng-messages="registrationForm.employee_id.$error" role="alert" multiple="">
                         <div class="my-message" ng-message="required">You must supply an ID.</div>
                     </div>
                 </md-input-container>
+             </div>
+             <div>
                 <md-input-container>
-                    <!--<label>Cellphone Number</label>-->
                     <md-icon md-svg-src="img/icons/ic_contact_phone_black_24px.svg"></md-icon>
                     <input class="form-control input-lg" ng-model="data.cellphone_number" ng-pattern="/^[0-9]{10,12}$/" type="number" name="cellphone_number" required placeholder="Cellphone Number">
                     <div ng-messages="registrationForm.cellphone_number.$error" role="alert" multiple="">
@@ -25,8 +23,9 @@
                         </div>
                     </div>
                 </md-input-container>
+            </div>
+             <div>
                 <md-input-container>
-                    <!--<label>Last Name</label>-->
                     <md-icon md-svg-src="img/icons/ic_contact_phone_black_24px.svg"></md-icon>
                     <input type="text" name="last_name" class="form-control input-sm" ng-model="data.last_name"  required placeholder="Last Name">
                     <div ng-messages="registrationForm.last_name.$error" role="alert" multiple="">
@@ -34,14 +33,15 @@
                     </div>
                </md-input-container>
                <md-input-container>
-                   <!--<label>First Name</label>-->
+                    <md-icon md-svg-src="img/icons/ic_contact_phone_black_24px.svg"></md-icon>
                     <input type="text" name="first_name" class="form-control input-sm" ng-model="data.first_name"  required placeholder="Given Name">
                     <div ng-messages="registrationForm.first_name.$error" role="alert" multiple="">
                         <div class="my-message" ng-message="required">You must supply a Given Name.</div>
                     </div>
                 </md-input-container>
+            </div>
+            <div>
                 <md-input-container>
-                    <!--<label>Height</label>-->
                     <md-icon md-svg-src="img/icons/human-male.svg"></md-icon>
                     <input class="form-control input-sm" type="number" name="height" ng-model="data.height"  required placeholder="Height(cm)">
                     <div ng-messages="registrationForm.height.$error" role="alert" multiple="">
@@ -49,34 +49,38 @@
                     </div>
                </md-input-container>
                <md-input-container>
-                   <!--<label>Weight</label>-->
-                   <md-icon md-svg-src="img/icons/weight-kilogram.svg"></md-icon>
+                    <md-icon md-svg-src="img/icons/weight-kilogram.svg"></md-icon>
                     <input class="form-control input-sm" type="number" name="weight" ng-model="data.weight"  required placeholder="Weight(kg)">
                     <div ng-messages="registrationForm.weight.$error" role="alert" multiple="">
                         <div class="my-message" ng-message="required">You must supply a Weight.</div>
                     </div>
                 </md-input-container>
+            </div>
+            
+            <div>
                 <md-input-container>
-                    <!--<label>Tower Lead</label>-->
                     <md-icon md-svg-src="img/icons/account-star1.svg"></md-icon>
                     <input class="form-control input-lg" name="tower_lead" ng-model="data.tower_lead" required placeholder="Tower Lead">
                     <div ng-messages="registrationForm.tower_lead.$error" role="alert" multiple="">
                         <div class="my-message" ng-message="required">You must supply a name for Tower Lead.</div>
                     </div>
                 </md-input-container>
+            </div>
+            <div>
                 <md-input-container>
-                    <!--<label>Team Leader</label>-->
                     <md-icon md-svg-src="img/icons/account-star2.svg"></md-icon>
-                   
                     <input class="form-control input-lg" name="team_lead" ng-model="data.team_lead" required placeholder="Team Leader">
                     <div ng-messages="registrationForm.team_lead.$error" role="alert" multiple="">
                         <div class="my-message" ng-message="required">You must supply a name for Team Lead.</div>
                     </div>
                 </md-input-container>
+            </div>
+            <!--selection of sports-->
+            <div flex="80">
                 <md-input-container ng-init="player.getSports()" class="md-block">
                     <label>Sports</label>
-                     <md-icon md-svg-src="img/icons/basketball.svg"></md-icon>
-                     <md-select multiple name="sport" ng-model="data.sports" placeholder="select your sport" required="">
+                    <md-icon md-svg-src="img/icons/basketball.svg"></md-icon>
+                    <md-select multiple name="sport" ng-model="data.sports" placeholder="please select your sport" required="">
                         <md-option ng-repeat="sport in player.sports" value="{{sport.id}}">{{sport.name}}</md-option>
                     </md-select>
                     <div ng-messages="registrationForm.sport.$error" role="alert" multiple="">
@@ -87,12 +91,11 @@
             <!--selection of position in sports-->
             <div flex="80">
                <md-list ng-if="data.sports.length > 0">
+                   Select Positions:
                     <md-list-item class="md-3-line" ng-repeat="sportItem in data.sports" ng-if="player.getSport(sportItem)[0].positions.length != 0">
                     <div class="md-list-item-text" layout="column">
-                        <label>Select Position</label>
                         <md-input-container class="md-block" >
                             <label>{{player.getSport(sportItem)[0].name}}</label>
-                            <md-icon md-svg-src="img/icons/trail-running-shoe.svg"></md-icon>
                             <md-select ng-model="data.positions[sportItem]" placeholder="{{player.getSport(sportItem)[0].name}}">
                             <md-option ng-repeat="position in player.getSport(sportItem)[0].positions" value="{{position.id}}">{{position.name}}</md-option>
                             </md-select>
@@ -100,11 +103,16 @@
                     </div>
                 </md-list>
             </div>
-            <div layout="row" layout-align="end center">
-                <md-button class="md-raised md-primary" type="submit" ng-disabled="!registrationForm.$valid">REGISTER</md-button>
-            </div>
+            <md-button class="md-raised md-primary" type="submit" ng-disabled="!registrationForm.$valid">REGISTER</md-button>
         </form>
     </div>
     <!--end of adding a new player-->
-     <!--<div flex="30"></div> -->
+    <!-- <div flex="30"></div> -->
+    <div layout="row" class="md-padding">
+        <div layout="column">
+            <!-- <img ng-src="img/2Color-Logo_247px-1024x195.png" class="img-logo">
+            <h1>wow</h1> -->
+            <img class="img-logo" ng-src="img/2Color-Favicon_512x512-1.png" ui-sref="home.home">
+        </div>
+    </div>
 </md-content>

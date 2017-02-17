@@ -51,9 +51,9 @@
             <md-button flex class="md-primary md-hue-1 capitalize"
                 ui-sref-active="md-warn" ui-sref="home.register" 
                 ng-if="!vm.isAuthenticated()">
-          <div hide-sm hide-md class="md-tile-content">
+          <!-- <div hide-sm hide-md class="md-tile-content">
               <i class="material-icons md-36">assignment_returned</i>
-          </div>
+          </div> -->
           <div class="md-tile-content">
             <md-icon md-svg-src="img/icons/register.svg"></md-icon>
               Register
@@ -62,9 +62,9 @@
       <md-button flex class="md-primary md-hue-1 capitalize"
                 ui-sref-active="md-warn" ui-sref="login" 
                 ng-if="!vm.isAuthenticated()">
-          <div hide-sm hide-md class="md-tile-content">
+          <!-- <div hide-sm hide-md class="md-tile-content">
               <i class="material-icons md-36">assignment_returned</i>
-          </div>
+          </div> -->
           <div class="md-tile-content">
             <md-icon md-svg-src="img/icons/login.svg"></md-icon>
               LOGIN
@@ -91,8 +91,8 @@
       </section>
     </md-toolbar>
 
-    <md-content flex class="md-padding page-content" >
-        <div ui-view class="iu-view"></div>
+    <md-content flex class="page-content" >
+        <div ui-view></div>
     </md-content>
 </div>
 <!--<md-sidenav md-component-id="right"
