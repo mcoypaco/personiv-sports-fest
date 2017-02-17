@@ -1,34 +1,19 @@
 <md-content class="padding">
-<!--<<<<<<< HEAD-->
-    <!--<h1 id='playersTitle'>
-    PLAYERS
-    <md-button class="md-raised md-primary" ng-click="player.exportPlayers()">EXPORT</md-button></h1>
-    <div>
-        <md-input-container ng-init="player.getSports()" class="md-block" id="select">
-            <label>Sports</label>
-            <md-select ng-model="player.selectedSport" placeholder="sport" >
-                <md-option ng-repeat="sport in player.sports" value="{{sport.id}}">{{sport.name}}</md-option>
-                <md-option  value="all">ALL</md-option>
-            </md-select>
-        </md-input-container>
-        <md-input-container class="md-block" ng-if="player.selectedSport && player.selectedSport !='all'">
-            <label>Position</label>
-            <md-select ng-model="player.selectedPosition" placeholder="position">
-                <md-option ng-repeat="position in player.getSport(player.selectedSport)[0].positions" value="{{position.id}}">{{position.name}}</md-option>
-                <md-option  value="all">ALL</md-option>
-            </md-select>
-        </md-input-container>
-    </div>-->
-<!--=======-->
     <h2 class="playersTitle">
-        <md-icon md-svg-src="img/icons/players.svg" class="svg"></md-icon> DRAFT PLAYERS
+        <md-icon md-svg-src="img/icons/players.svg" class="svg"></md-icon>
+        PLAYERS
     </h2>
     <div ng-if="player.players == ''" id="emptyData">
          <h2>NO PLAYERS REGISTERED</h2>
     </div>
     <div class="padding" ng-if="player.players != ''">
-
-        <!-- <h1 class='playersTitle'>   PLAYERS: </h1> -->
+        <md-input-container ng-init="player.getSports()" class="select">
+            <label>Select Sports</label>
+            <md-select ng-model="player.selectedSport">
+                <md-option ng-repeat="sport in player.sports" value="{{sport.id}}">{{sport.name}}</md-option>
+                <md-option  value="all">ALL</md-option>
+            </md-select>
+        </md-input-container>
         <md-menu md-offset="0 -7">
           <md-button class="md-raised md-primary" aria-label="Open menu" ng-click="$mdMenu.open($event)">
             Export
@@ -46,13 +31,6 @@
           </md-menu-content>
         </md-menu>
         
-        <md-input-container ng-init="player.getSports()" class="md-block" class="select">
-            <label>Sports</label>
-            <md-select ng-model="player.selectedSport" placeholder="Select Sport">
-                <md-option ng-repeat="sport in player.sports" value="{{sport.id}}">{{sport.name}}</md-option>
-                <md-option  value="all">ALL</md-option>
-            </md-select>
-        </md-input-container>
         <md-input-container class="md-block" ng-if="player.selectedSport && player.selectedSport !='all'">
             <label>Position</label>
             <md-select ng-model="player.selectedPosition" placeholder="position">
