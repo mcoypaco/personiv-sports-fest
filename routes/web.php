@@ -62,6 +62,9 @@ Route::group(['prefix' => 'api'], function()
   Route::post('users','UserController@store');
   Route::get('users','UserController@index');
   Route::get('users/{id}','UserController@show');
+  Route::put('users/{id}','UserController@update');
+  Route::put('users/{id}/changePassword', 'UserController@changePassword');
+  // Route::resource('users', 'UserController', ['only' => ['index', 'store', 'destroy', 'update']]);
 
   Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
   Route::post('authenticate', 'AuthenticateController@authenticate');
