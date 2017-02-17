@@ -54,6 +54,7 @@ Route::group(['prefix' => 'api'], function()
   Route::post('roles','RoleController@store');
   Route::get('roles/{id}','RoleController@show');
   Route::get('roles','RoleController@index');
+  Route::get('roles/poc','RoleController@getPocId');
   //end of test
 
   // Roles routes
@@ -70,17 +71,17 @@ Route::group(['prefix' => 'api'], function()
   Route::post('authenticate', 'AuthenticateController@authenticate');
   Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
 
-  Route::post('upload/image/{id}', 'SportControlle  r@upload');
+  Route::post('upload/image/{id}', 'SportController@upload');
 
 
   // Route::resource('positions', 'PositionController',
   //             ['only' => ['index', 'store', 'destroy']]);
 
   //position
-  Route::get('position','PositionController@index');
-  Route::post('position','PositionController@store');
-  Route::get('position/{id}','PositionController@show');
-  Route::get('position/{id}/players' , 'PositionController@players');
+  Route::get('positions','PositionController@index');
+  Route::post('positions','PositionController@store');
+  Route::get('positions/{id}','PositionController@show');
+  Route::get('positions/{id}/players' , 'PositionController@players');
 
   //sports
   Route::get('sports','SportController@index');

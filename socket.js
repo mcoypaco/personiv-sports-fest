@@ -6,18 +6,19 @@ var redis = new Redis();
 
 redis.subscribe('changed.team', function(err, count){
   console.log(count);
-  console.log(err);
 });
 
-redis.subscribe('draft.players', function(err, count){
+redis.subscribe('draft.player', function(err, count){
   console.log(count);
-  console.log(err);
 });
 
 redis.subscribe('add.players', function(err, count){
   console.log(count);
-  console.log(err);
 });
+
+redis.subscribe('add.sport',function(err, count){
+console.log(count);
+})
 
 redis.on('message', function(channel , message) {
   console.log("message received");

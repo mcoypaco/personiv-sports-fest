@@ -53,11 +53,6 @@ sportsFest.config(function($stateProvider, $urlRouterProvider, $authProvider, $h
     },
     resolve: {
       $title: function() { return 'Players'; },
-      players :["Player" , function(Player){
-        return Player.get().then(function (success) {
-          return success.data;
-        })
-      }]
     },
   })
   .state('home.draft', {

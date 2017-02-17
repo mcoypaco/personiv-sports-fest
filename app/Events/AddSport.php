@@ -10,11 +10,11 @@ use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class DraftPlayers implements ShouldBroadcast
+class AddSport implements ShouldBroadcast
 {
   use  InteractsWithSockets, SerializesModels;
 
-  public $data;
+  public $sport;
 
   /**
    * Create a new event instance.
@@ -23,7 +23,7 @@ class DraftPlayers implements ShouldBroadcast
    */
   public function __construct($request)
   {
-      $this->data = $request;
+      $this->sport = $request;
   }
 
   /**
@@ -33,7 +33,7 @@ class DraftPlayers implements ShouldBroadcast
    */
   public function broadcastOn()
   {
-      return ['update.players'];
+      return ['add.sport'];
   }
 
 

@@ -1,4 +1,4 @@
-sportsFest.factory("Position", ["$q", "$http", 
+sportsFest.factory("Position", ["$q", "$http",
   function($q, $http) {
   	return {
   		get : function() {
@@ -35,6 +35,10 @@ sportsFest.factory("Position", ["$q", "$http",
             method: 'DELETE',
             url: 'api/positions/' + id
         });
-  		}
+  		},
+
+      players : function(id) {
+        return $http.get('api/positions/' + id + '/players');
+      }
   	}
 }])

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Player;
 use App\Team;
 use App\Sport;
-use App\Events\DraftPlayers;
+use App\Events\DraftPlayer;
 use App\Events\AddPlayers;
 use App\Draft;
 use Excel;
@@ -44,10 +44,11 @@ class PlayerController extends Controller
      */
     public function store(Request $request)
     {
-        event(new AddPlayers(Player::all()));
+
         $player = Player::create($request->except(['sports','positions']));
         $player->sports()->attach($request->input('sports'));
         $player->positions()->attach($request->input('positions'));
+        event(new AddPlayers($player));
         return response()->json(array('success' => true));
     }
 
@@ -85,15 +86,17 @@ class PlayerController extends Controller
      */
     public function update(Request $request, $id)
     {
+
       $team = new Team();
-      event(new DraftPlayers(Team::all()));
       $team->addRemovePlayer($request , $id);
       $draft= new Draft();
       $draft->addRemovePlayer($request->team_id , $id);
       $player = Player::find($id);
       $player->team_id = $request->team_id;
       $player->push();
-      return response()->json(array('success' => true));
+
+      event(new DraftPlayer($player));
+      return response()->json(["message"=>"success"]);
     }
 
     /**

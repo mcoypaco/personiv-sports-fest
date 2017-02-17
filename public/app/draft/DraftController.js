@@ -1,6 +1,6 @@
-sportsFest.controller('DraftController', 
+sportsFest.controller('DraftController',
     ["$scope", "Player", "Team", "Sport", "$mdDialog",
-        function($scope, Player, Team, Sport, $mdDialog) { 
+        function($scope, Player, Team, Sport, $mdDialog) {
 
     var vm = this;
     vm.teams;
@@ -8,7 +8,7 @@ sportsFest.controller('DraftController',
     vm.sports;
     vm.loaded = false;
     vm.limitOptions = [10, 25, 50, 100];
-
+    vm.sportsId;
     vm.query = {
         order: 'last_name',
         limit: 10,
@@ -30,12 +30,13 @@ sportsFest.controller('DraftController',
            vm.getTeams();
           },function (error) {
             console.log(error.data)
-        });     
+        });
     }
     vm.getSports();
 
     vm.sportId;
     vm.getSportPlayers = function(sportId) {
+        vm.sportsId = sportId;
         vm.loaded = false;
         vm.sportId = sportId;
         Sport.getPlayers(sportId)
@@ -52,7 +53,7 @@ sportsFest.controller('DraftController',
             return (item.sport_id === vm.sportId);
         })[0];
     }
-    
+
     vm.updatePlayer = function(id, player) {
         console.log(player)
          Player.update(id, player).then(function (success) {
@@ -60,6 +61,7 @@ sportsFest.controller('DraftController',
         },function (error) {
             console.log(error.data)
         });
+
     }
 
     vm.removePlayer = function(player){
@@ -83,5 +85,27 @@ sportsFest.controller('DraftController',
             console.log("clicked cancel")
         });
     };
+
+    socket.on('draft.player:App\\Events\\DraftPlayer', function(data){
+      vm.getTeams();
+      draftUpdate(data.player);
+      console.log(data.player);
+      $scope.$apply();
+    })
+
+    function getIndex(playerId){
+      return vm.players.map(function(playerData){
+        return playerData.id
+      }).indexOf(playerId)
+    }
+
+    function draftUpdate(player){
+      if(player.team_id == null)
+      {
+        vm.getSportPlayers(vm.sportsId);
+      }else{
+        vm.players.splice(getIndex(player.id) , 1);
+      }
+    }
 
 }]);

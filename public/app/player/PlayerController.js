@@ -1,6 +1,6 @@
 sportsFest.controller('PlayerController',
-    ["$scope", "Player", "Sport","players",
-        function($scope, Player, Sport, players) {
+    ["$scope", "Player", "Sport","Position",
+        function($scope, Player, Sport, Position) {
 
     var vm = this;
     vm.sports;
@@ -9,8 +9,17 @@ sportsFest.controller('PlayerController',
     vm.selectedSport;
     vm.i = 0;
     vm.filteredPlayersId = [];
+    vm.loaded = false
+    vm.players;
 
-    vm.players = players
+    vm.getAllPlayers =function(){
+      Player.get().then(function (success) {
+        vm.players = success.data;
+        vm.loaded = true
+      })
+    }
+
+    vm.getAllPlayers();
 
     vm.submit = function(data) {
         Player.store(data)
@@ -40,13 +49,32 @@ sportsFest.controller('PlayerController',
     }
 
     vm.sportPlayers = function(id) {
-      let sportsPlayerId = [];
-      Sport.players(id).then(function(players){
-        for (var i = 0; i < players.data.length ; i++) {
-          sportsPlayerId.push( players.data[i].id)
-        }
-        vm.filteredPlayersId = sportsPlayerId;
-      })
+        vm.loaded = false
+      if(id == "all"){
+        vm.loaded = true
+        vm.getAllPlayers();
+      }
+      else{
+        Sport.players(id).then(function(players){
+          vm.players = players.data
+          vm.sportPlayerList = players.data
+          vm.loaded = true
+        })
+      }
+    }
+
+    vm.positionPlayers = function(id){
+        vm.loaded = false
+      if(id == "all"){
+        vm.loaded = true
+        vm.players = vm.sportPlayerList;
+      }
+      else{
+        Position.players(id).then(function(players){
+          vm.players = players.data
+          vm.loaded = true
+        })
+      }
     }
 
     vm.sortFilteredPlayers = function(id) {
@@ -82,57 +110,19 @@ sportsFest.controller('PlayerController',
                     download: 'document.' + type
                 })[0].click();
 
-                anchor.remove(); // Clean it up afterwards
+                anchor.remove(); // Clean it ups afterwards
             },function(error) {
                 console.log(error.data)
             });
     }
 
-    $scope.$watch(function () {
-        return vm.selectedSport;
-    }, function(newValue, oldValue) {
-        if(typeof vm.selectedSport == "undefined") {
-          vm.selectedSport = "all"
-        }
-        else if((newValue || oldValue) == "all")
-        {
-          vm.allPlayers();
-        }
-        else{
-          vm.sportPlayers(vm.selectedSport);
-        }
-    });
-
-    $scope.playersFilter = function(value) {
-      return vm.filteredPlayersId.indexOf(value.id) > -1
-    }
-
-
-    $scope.$watch(function () {
-        return vm.selectedPosition;
-    }, function(newValue, oldValue) {
-        if(newValue == "all") {
-            vm.sportPlayers(vm.selectedSport);
-        }else{
-            vm.sortFilteredPlayers(vm.selectedPosition);
-        }
-    });
-
-    vm.allPlayers = function(){
-      let playersId = [];
-      for (var i = 0; i < vm.players.length ; i++) {
-        playersId.push(vm.players[i].id)
-      }
-      vm.filteredPlayersId = playersId
-    }
 
     socket.on('add.players:App\\Events\\AddPlayers', function(broadcast){
-      vm.players = broadcast.data
-      vm.getPlayers();
-      $scope.$apply();
-      console.log(broadcast.data);
-      console.log("firing");
+      $scope.$apply(function(){
+        vm.players.unshift(broadcast.data);
+      });
     })
+
 
 
 }]);

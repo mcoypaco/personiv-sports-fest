@@ -95,4 +95,10 @@ class RoleController extends Controller
       $admin = Role::where('name','admin')->first();
       return  $admin->id;
     }
+
+    public function getPocId()
+    {
+      $poc = Role::where('name','poc')->first();
+      return  $poc->id;
+    }
 }

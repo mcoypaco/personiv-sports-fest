@@ -11,5 +11,27 @@ const { mix } = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app-socket.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
+mix.js(
+  ['public/app/auth/AuthController.js',
+  'public/app/auth/AuthFactory.js',
+  'public/app/authorization/authorizeFactory.js',
+  'public/app/draft/DraftController.js',
+  'public/app/home/HomeController.js',
+  'public/app/index/IndexController.js',
+  'public/app/index/MenuItems.js',
+  'public/app/player/PlayerController.js',
+  'public/app/player/PlayerFactory.js',
+  'public/app/position/PositionFactory.js',
+  'public/app/sport/SportController.js',
+  'public/app/sport/SportFactory.js',
+  'public/app/team/TeamFactory.js',
+  'public/app/team/TeamController.js',
+  'public/app/user/RoleFactory.js',
+  'public/app/user/UserController.js',
+  'public/app/user/UserFactory.js',
+  'public/js/app.routes.js',
+  'public/js/app.js',
+  'public/js/directives/MenuLink.js',
+  'public/js/directives/MenuToggle.js'
+
+], 'public/js/components.js')
