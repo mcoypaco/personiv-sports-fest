@@ -1,12 +1,12 @@
 <md-progress-linear md-mode="indeterminate" ng-if="!user.loaded"></md-progress-linear>
 <md-content class="whiteframe" layout="row">
 <!--adding a new player -->
-    <div class="md-padding" layout="column" flex="40">
+    <div class="md-padding" layout="column" flex=50>
         <h2>Register User</h2>
         <form ng-submit="user.register(data)" name="registrationForm">
             <div>
                 <md-input-container>
-                    <input type="email" class="form-control input-sm" ng-model="data.email" name="email" required placeholder="Email">
+                    <input type="email" class="form-control input-sm input-width" ng-model="data.email" name="email" required placeholder="Email">
                     <div ng-messages="registrationForm.email.$error" role="alert" multiple="">
                         <div class="my-message" ng-message="required">You must supply an email.</div>
                     </div>
@@ -14,13 +14,13 @@
              </div>
             <div>
                 <md-input-container>
-                    <input type="password" class="form-control input-sm" ng-model="data.password" name="password" required placeholder="Password">
+                    <input type="password" class="form-control input-sm input-width" ng-model="data.password" name="password" required placeholder="Password">
                     <div ng-messages="registrationForm.password.$error" role="alert" multiple="">
                         <div class="my-message" ng-message="required">You must supply a password.</div>
                     </div>
                </md-input-container>
                <md-input-container>
-                    <input type="password" class="form-control input-sm" ng-model="dataConfirm.password"  name="confirm_password" required placeholder="Confim Password">
+                    <input type="password" class="form-control input-sm input-width" ng-model="dataConfirm.password"  name="confirm_password" required placeholder="Confim Password">
                     <div ng-messages="registrationForm.confirm_password.$error" role="alert" multiple="">
                         <div class="my-message" ng-message="required">You must confirm your password.</div>
                     </div>
@@ -29,13 +29,13 @@
             </div>
              <div>
                 <md-input-container>
-                    <input type="text" class="form-control input-sm" ng-model="data.last_name" name="last_name" required placeholder="Last Name">
+                    <input type="text" class="form-control input-sm input-width" ng-model="data.last_name" name="last_name" required placeholder="Last Name">
                     <div ng-messages="registrationForm.last_name.$error" role="alert" multiple="">
                         <div class="my-message" ng-message="required">You must supply a last name.</div>
                     </div>
                </md-input-container>
                <md-input-container>
-                    <input type="text" class="form-control input-sm" ng-model="data.first_name" name="first_name" required placeholder="First Name">
+                    <input type="text" class="form-control input-sm input-width" ng-model="data.first_name" name="first_name" required placeholder="First Name">
                     <div ng-messages="registrationForm.first_name.$error" role="alert" multiple="">
                         <div class="my-message" ng-message="required">You must supply a Given name.</div>
                     </div>
@@ -43,7 +43,7 @@
             </div>
             <div>
                 <md-input-container>
-                    <input class="form-control input-lg" ng-model="data.cellphone_number"  name="cellphone_number" ng-pattern="/^[0-9]{10,12}$/" required placeholder="Cellphone Number">
+                    <input class="form-control input-lg input-width" ng-model="data.cellphone_number"  name="cellphone_number" ng-pattern="/^[0-9]{10,12}$/" required placeholder="Cellphone Number">
                     <div ng-messages="registrationForm.cellphone_number.$error" role="alert" multiple>
                         <div ng-message="required" class="my-message">You must supply a Cellphone Number.
                         </div>
@@ -56,7 +56,7 @@
             <div flex="20">
                 <md-input-container class="md-block" ng-init="user.getRoles()" >
                     <label>Role</label>
-                    <md-select ng-model="data.role_id" name="role" required>
+                    <md-select class="input-width" ng-model="data.role_id" name="role" required>
                       <md-option ng-repeat="role in user.roles" value="{{role.id}}">{{role.name}}</md-option>
                     </md-select>
                     <div ng-messages="registrationForm.role.$error" role="alert" multiple>
@@ -70,7 +70,7 @@
     <!--end of adding a new player-->
     <!-- <div flex="30"></div> -->
     <md-divider class="vertical-divider"></md-divider>
-    <div class="md-padding" layout="row">
+    <div class="md-padding" layout="row" flex=40>
         <div layout="column">
             <img ng-src="img/2Color-Logo_247px-1024x195.png" class="img-logo">
             <h1>Users</h1>

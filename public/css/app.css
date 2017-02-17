@@ -354,6 +354,7 @@ lf-ng-md-file-input {
   padding: 5px;
   margin: 5px;
 }
-.md-container {
-  width: 20%;
+
+.input-width {
+  width: 200px;
 }

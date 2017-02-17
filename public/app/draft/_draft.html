@@ -1,5 +1,5 @@
 <md-progress-linear md-mode="indeterminate" ng-if="!draft.loaded"></md-progress-linear>
-<md-content class="whiteframe md-padding" layout="row" ng-cloak>
+<md-content class="whiteframe md-padding" layout="column" ng-cloak>
     <div layout="column" flex=65>
         <h2>
             <md-icon md-svg-src="img/icons/draft.svg" class="svg"></md-icon> DRAFT PLAYERS
@@ -19,8 +19,8 @@
                 <div class="md-title">Draft</div>
             </div>
         </md-toolbar>-->
-
-        <md-table-container>
+        <div class="md-block" flex=50>
+            <md-table-container>
             <table md-table>
                 <thead md-head md-order="draft.query.order">
                 <tr md-row>
@@ -57,24 +57,29 @@
             </table>
         </md-table-container>
         <md-table-pagination md-limit="draft.query.limit" md-limit-options="draft.limitOptions" 
-        md-page="draft.query.page" md-total="{{draft.players.length}}"> 
+            md-page="draft.query.page" md-total="{{draft.players.length}}"> 
         </md-table-pagination>
-    </div>
-        <div ng-repeat="remainder in [0,1]" flex="15" layout="column" class="md-padding">
-            <md-card ng-repeat="team in draft.teams" ng-if="$index % 2 == remainder" flex="flex">
-                <md-toolbar layout="row" >
-                  <div class="md-toolbar-tools" style="overflow: hidden;">
-                    <h2><span>{{team.name}} - <small><i>{{team.poc.first_name}} {{team.poc.last_name}} (POC)</i></small></span></h2>
-                  </div>
-                </md-toolbar>
-                <md-card-content>
-                    <p ng-repeat="player in team.players">
-                        {{player.last_name}}, {{player.first_name}}
-                        <a href="">
-                            <ng-md-icon icon="delete" ng-click="draft.showConfirm($event, player)"></ng-md-icon>
-                        </a>
-                    </p>
-                </md-card-content>
-            </md-card>
         </div>
+    </div>
+        <h2>
+            <md-icon md-svg-src="img/icons/team.svg" class="svg"></md-icon> 
+            Teams
+        </h2>
+        <div ng-repeat="remainder in [0,1]" flex=flex layout="row" class="md-padding">
+        <md-card ng-repeat="team in draft.teams" ng-if="$index % 1 == remainder" flex=25>
+            <md-toolbar layout="row" >
+                <div class="md-toolbar-tools" style="overflow: hidden;">
+                <h2><span>{{team.name}} - <small><i>{{team.poc.first_name}} {{team.poc.last_name}} (POC)</i></small></span></h2>
+                </div>
+            </md-toolbar>
+            <md-card-content>
+                <p ng-repeat="player in team.players">
+                    {{player.last_name}}, {{player.first_name}}
+                    <a href="">
+                        <ng-md-icon icon="delete" ng-click="draft.showConfirm($event, player)"></ng-md-icon>
+                    </a>
+                </p>
+            </md-card-content>
+        </md-card>
+    </div>
 </md-content>

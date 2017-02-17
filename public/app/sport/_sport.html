@@ -18,12 +18,30 @@
                         <md-icon md-svg-src="img/icons/close.svg"></md-icon>
                     </md-button>
                 </section>
-                <h3>{{sportItem.name}}</h3>
-                <p>{{sportItem.description}}</p>
-                 <section layout="row" layout-align="end end" layout-wrap ng-if="!clicked">
-                    <md-button class="md-raised" ng-click="sport.updateModal($event, sportItem)">Update</md-button>
-                    <md-button class="md-raised" ng-click="sport.showConfirm($event, sportItem, 'sport')">Delete</md-button>
-                </section>
+                <div layout="row" layout-align="space-between center">
+                    <section>
+                        <h3>
+                            <md-icon md-svg-src="img/icons/walker-or-runner-sportive-stick-man.svg"></md-icon>
+                            {{sportItem.name}}
+                        </h3>
+                        <p>{{sportItem.description}}</p>
+                    </section>
+                    <section layout="row" layout-align="end end" layout-wrap ng-if="!clicked">
+                        <md-button class="md-fab fab-icon md-mini md-primary" ng-click="sport.updateModal($event, sportItem)">
+                            <md-tooltip md-direction="{{demo.tipDirection}}">
+                                Update
+                            </md-tooltip>
+                            <md-icon md-svg-src="img/icons/edit.svg"></md-icon>
+                        </md-button>
+                        <md-button class="md-fab fab-icon md-mini md-primary" ng-click="sport.showConfirm($event, sportItem, 'sport')">
+                            <md-tooltip md-direction="{{demo.tipDirection}}">
+                                Delete
+                            </md-tooltip>
+                            <md-icon md-svg-src="img/icons/rubbish-bin.svg"></md-icon>
+                        </md-button>
+                    </section>
+                </div>
+               
                
                <!--foreach of the positions in sport-->
                 <md-list ng-if="sportItem.positions.length != 0" >
@@ -31,15 +49,23 @@
                         <b>Positions:</b>
                         <md-list-item ng-repeat="position in sportItem.positions" >
                             <p>{{position.name}}</p>
-                            <md-button class="md-raised" ng-click="sport.showConfirm($event, position, 'position')">Delete</md-button>
+                            <md-button class="md-fab md-mini md-primary" ng-click="sport.showConfirm($event, position, 'position')">
+                                <md-tooltip md-direction="{{demo.tipDirection}}">
+                                    Delete
+                                </md-tooltip>
+                                <md-icon md-svg-src="img/icons/rubbish-bin.svg"></md-icon>
+                            </md-button>
                             <md-divider></md-divider>
                         </md-list-item>                  
                     </div>
                 </md-list>
                 <!--addinf a position-->
                 <section layout="row" layout-align="end end" layout-wrap ng-if="clicked">
-                    <md-button class="md-primary md-raised" ng-click="sport.addModalPosition($event, sportItem.id)">
-                        Add a position
+                    <md-button class="md-fab md-mini md-primary" md-colors="background:#FFD740" ng-click="sport.addModalPosition($event, sportItem.id)">
+                    <md-tooltip md-direction="{{demo.tipDirection}}">
+                        Add Position
+                    </md-tooltip>
+                    <md-icon md-svg-src="img/icons/add.svg"></md-icon>
                     </md-button>                            
                 </section>
             </div>
@@ -56,7 +82,7 @@
             </h2>
             <form ng-submit="sport.submit(data)" name="sportForm">
                 <div>
-                    <md-input-container>
+                    <md-input-container class="md-block">
                         <input type="text" class="form-control input-sm" name="name" ng-model="data.name" placeholder="Name" required>
                         <div ng-messages="sportForm.name.$error" role="alert" multiple="">
                             <div class="my-message" ng-message="required">You must supply a name for the sport.</div>
