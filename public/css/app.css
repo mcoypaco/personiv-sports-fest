@@ -1,3 +1,4 @@
+
 /*.navBardemoBasicUsage md-content .ext-content {
   padding: 10px;
   margin: 10px;
@@ -50,7 +51,14 @@ md-nav-bar .md-nav-bar {
 }
 
 .img-logo {
-  width: 70%;
+  width: 500px;
+  height: 600px;
+}
+
+.page-login {
+  /*background-image: url('/img/Header2.png')*/
+  margin: 0 auto;
+  /*background-color: darkblue;*/
 }
 
 .page-login md-card {
@@ -58,7 +66,7 @@ md-nav-bar .md-nav-bar {
 }
 
 .page-login md-card md-card-title {
-  background-color: dodgerblue;
+  color: dodgerblue;
 }
 
 .alert-danger {
@@ -197,15 +205,24 @@ md-sidenav.md-locked-open.md-sidenav-left {
 a.md-button.md-warn.md-raised, a.md-button.md-warn.md-fab, .md-button.md-warn.md-raised, .md-button.md-warn.md-fab {
   color: white;
 }
+md-button {
+    font-weight: bolder;
+    text-align: center;
+} 
 
 md-radio-button.md-accent.md-checked .md-label span {
   color: rgb(0, 150, 136);
 }
 
-.md-toolbar-tools h1 {
+.md-toolbar-tools {
   font-size: 22px;
+  /*background-color: #ffc814;*/
+  height: 15px;
 }
 
+.login-head {
+  background-color: #ffc814;
+}
 
 md-backdrop.md-sidenav-backdrop {
   position: fixed;
@@ -229,7 +246,105 @@ md-backdrop.md-sidenav-backdrop {
   background-color: rgb(255, 236, 201)
 }
 
+.playersTitle {
+   margin-left: 1%;
+}
+.select {
+  margin: 10px;
+   /*margin-right: 10px;*/
+   width: 200px
+}
+
+#items {
+  color: #3F51B5;
+  font-weight: 500;
+  font-size: 16px
+}
+
+ng-md-icon {
+  fill: #3F51B5;
+}
+
+#emptyData {
+    display: table;
+    margin: 0 auto; 
+    color: #BDC3C7;
+}
+
+lf-ng-md-file-input {
+  font-size: 25px;
+}
+
+.crumbles {
+  margin: 25px;
+  font-size: 16px;
+  color: #ffffff;
+}
+
+#warning {
+  color: #FF0303;
+  font-size: 13px;
+}
+
+#personiv {
+  display: table;
+  margin: 20% 20% ;
+  width: 80%;
+  height: 40%;
+  /*margin-right: auto ;*/
+}
+
+.padding {
+  /*background-color: red;*/
+  padding: 5px;
+  margin: 5px;
+  /*background-image: url(Header2.png);*/
+}
+
+#toolbar {
+  background-color: #283593;
+  height: 20px;
+}
+
+/*.login {
+  /*background-image: url(Header2.png);*/
+  background-color: #2889ff;
+}*/
+
+.register {
+  width: 550px;
+    /*border: 25px solid green;*/
+  padding: 10px;
+  margin: 10px;
+  background-color: #e8ecff;
+  border-radius: 5px;
+ 
+}
+
+.login-logo {
+  margin-top: 20%;
+}
+
 .myCell {
   border: solid black 1px;
   padding: 10px;
+}
+
+.input {
+  width: 300px;
+}
+
+.svg {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+
+.user {
+  color: #ffffff;
+}
+
+.arrow-down {
+  width: 0.5rem;
+  height: 0.5rem;
 }

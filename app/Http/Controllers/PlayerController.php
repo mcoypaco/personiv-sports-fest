@@ -7,7 +7,6 @@ use App\Team;
 use App\Sport;
 use App\Draft;
 use Excel;
-
 use Illuminate\Http\Request;
 
 class PlayerController extends Controller
@@ -111,11 +110,12 @@ class PlayerController extends Controller
         return response()->json($player->get());
     }
 
+
     public function exportExcel($type) {
         // $filename = 'players';
         // $players = Player::with('positions', 'team', 'sports')->get();
 
-        // $players = Player::select('id', 'employee_id', 'first_name', 'last_name')->get();
+        $data = Player::select('id', 'employee_id', 'first_name', 'last_name')->get();
         
         // Excel::create($filename, function($excel) use ($players) {
         //     $excel->setTitle('All Players');
@@ -128,9 +128,9 @@ class PlayerController extends Controller
         // Excel::create($filename)->store('xls');
         // return response()->download('exports/'.$filename.'.xls');
 
-        $data = Player::get()->toArray();
-        return Excel::create('WATATA', function($excel) use ($data) {
-            $excel->sheet('mySheet', function($sheet) use ($data)
+        // $data = Player::get()->toArray();
+        return Excel::create('Players', function($excel) use ($data) {
+            $excel->sheet('sheet1', function($sheet) use ($data)
             {
                 $sheet->fromArray($data);
             });
