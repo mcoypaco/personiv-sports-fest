@@ -71,4 +71,9 @@ class User extends Authenticatable
       }
       return $noTeam;
     }
+
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
 }

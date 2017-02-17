@@ -1,6 +1,12 @@
 <md-progress-linear md-mode="indeterminate" ng-if="!player.loaded"></md-progress-linear>
-<md-content class="md-padding">
-    <h1>   PLAYERS: </h1>
+<md-content class="whiteframe" layout="row">
+    <h2 class="playersTitle">
+        <md-icon md-svg-src="img/icons/players.svg" class="svg"></md-icon>
+        PLAYERS
+    </h2>
+    <!-- <div ng-if="player.players == ''" id="emptyData">
+         <h2>NO PLAYERS REGISTERED</h2>
+    </div> -->
     <md-menu md-offset="0 -7">
       <md-button class="md-raised md-primary" aria-label="Open menu" ng-click="$mdMenu.open($event)">
         Export
@@ -17,7 +23,6 @@
         </md-menu-item>
       </md-menu-content>
     </md-menu>
-
     <md-input-container ng-init="player.getSports()" class="md-block">
         <label>Sports</label>
         <md-select ng-model="player.selectedSport" ng-change="player.sportPlayers(player.selectedSport)" placeholder="sport">
@@ -25,6 +30,7 @@
             <md-option selected  value="all">ALL</md-option>
         </md-select>
     </md-input-container>
+
     <md-input-container class="md-block" ng-if="player.selectedSport && player.selectedSport !='all'">
         <label>Position</label>
         <md-select ng-model="player.selectedPosition" ng-change="player.positionPlayers(player.selectedPosition)" placeholder="position">

@@ -16,6 +16,7 @@ mix.js(
   'public/app/auth/AuthFactory.js',
   'public/app/authorization/authorizeFactory.js',
   'public/app/draft/DraftController.js',
+  'public/app/draft/DraftFactory.js',
   'public/app/home/HomeController.js',
   'public/app/index/IndexController.js',
   'public/app/index/MenuItems.js',
@@ -29,8 +30,6 @@ mix.js(
   'public/app/user/RoleFactory.js',
   'public/app/user/UserController.js',
   'public/app/user/UserFactory.js',
-  'public/js/app.routes.js',
-  'public/js/app.js',
   'public/js/directives/MenuLink.js',
   'public/js/directives/MenuToggle.js'
 

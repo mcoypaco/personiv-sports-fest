@@ -9,7 +9,6 @@ use App\Events\DraftPlayer;
 use App\Events\AddPlayers;
 use App\Draft;
 use Excel;
-
 use Illuminate\Http\Request;
 
 class PlayerController extends Controller
@@ -89,8 +88,6 @@ class PlayerController extends Controller
 
       $team = new Team();
       $team->addRemovePlayer($request , $id);
-      $draft= new Draft();
-      $draft->addRemovePlayer($request->team_id , $id);
       $player = Player::find($id);
       $player->team_id = $request->team_id;
       $player->push();
@@ -118,26 +115,10 @@ class PlayerController extends Controller
         return response()->json($player->get());
     }
 
+
     public function exportExcel($type) {
-        // $filename = 'players';
-        // $players = Player::with('positions', 'team', 'sports')->get();
-
-        // $players = Player::select('id', 'employee_id', 'first_name', 'last_name')->get();
-
-        // Excel::create($filename, function($excel) use ($players) {
-        //     $excel->setTitle('All Players');
-        //     $excel->sheet('players', function($sheet) use ($players) {
-        //         $sheet->fromArray($users);
-        //     });
-        // })->store('xls', storage_path('excel/exports'));
-
-        // return response()->json(array('success' => true));
-        // Excel::create($filename)->store('xls');
-        // return response()->download('exports/'.$filename.'.xls');
-
-        $data = Player::get()->toArray();
-        return Excel::create('WATATA', function($excel) use ($data) {
-            $excel->sheet('mySheet', function($sheet) use ($data)
+        return Excel::create('Players', function($excel) use ($data) {
+            $excel->sheet('sheet1', function($sheet) use ($data)
             {
                 $sheet->fromArray($data);
             });

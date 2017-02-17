@@ -1,6 +1,5 @@
-sportsFest.controller('DraftController',
-    ["$scope", "Player", "Team", "Sport", "$mdDialog",
-        function($scope, Player, Team, Sport, $mdDialog) {
+sportsFest.controller('DraftController',["$scope", "Player", "Team", "Sport", "Draft", "$mdDialog",
+  function($scope, Player, Team, Sport, Draft, $mdDialog) {
 
     var vm = this;
     vm.teams;
@@ -55,18 +54,20 @@ sportsFest.controller('DraftController',
     }
 
     vm.updatePlayer = function(id, player) {
-        console.log(player)
-         Player.update(id, player).then(function (success) {
+        Player.update(id, player).then(function (success) {
             console.log(success.data);
         },function (error) {
             console.log(error.data)
         });
-
+        if(player.team_id != null){
+            Draft.store(player);
+        }
     }
 
     vm.removePlayer = function(player){
         player.team_id = null;
         vm.updatePlayer(player.id, player);
+        Draft.destroy(player.id);
     }
 
     vm.showConfirm = function(ev, player) {

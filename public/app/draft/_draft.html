@@ -1,19 +1,24 @@
 <md-progress-linear md-mode="indeterminate" ng-if="!draft.loaded"></md-progress-linear>
 <md-content class="whiteframe md-padding" layout="row" ng-cloak>
     <div layout="column" flex=65>
+        <h2>
+            <md-icon md-svg-src="img/icons/draft.svg" class="svg"></md-icon> DRAFT PLAYERS
+        </h2>
         <div layout="row">
             <md-button class="md-raised md-warn" ng-repeat="sport in draft.sports" ng-click="draft.getSportPlayers(sport.id)" ng-if="sport.positions.length > 0">Start {{sport.name}} Draft!</md-button>
         </div>
         <div>
             <md-input-container layout="row" flex="30" class="md-block">
-                <input type="text" class="form-control input-sm" ng-model="draft.search" placeholder="Search Name">
+                <md-icon md-svg-src="img/icons/search.svg"></md-icon>
+                <input type="text" class="form-control input-sm" ng-model="draft.search" placeholder="Search Player">
             </md-input-container>
         </div>
-        <md-toolbar class="md-whiteframe-1dp" ng-init="draft.getPlayers()">
+
+        <!--<md-toolbar class="md-whiteframe-1dp" ng-init="draft.getPlayers()">
             <div class="md-toolbar-tools">
                 <div class="md-title">Draft</div>
             </div>
-        </md-toolbar>
+        </md-toolbar>-->
 
         <md-table-container>
             <table md-table>
@@ -65,9 +70,6 @@
                 <md-card-content>
                     <p ng-repeat="player in team.players">
                         {{player.last_name}}, {{player.first_name}}
-                        <!-- <a href="">
-                            <ng-md-icon icon="delete" ng-click="draft.removePlayer(player.id, player)"></ng-md-icon>
-                        </a> -->
                         <a href="">
                             <ng-md-icon icon="delete" ng-click="draft.showConfirm($event, player)"></ng-md-icon>
                         </a>

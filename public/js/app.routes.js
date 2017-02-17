@@ -1,7 +1,9 @@
 sportsFest.config(function($stateProvider, $urlRouterProvider, $authProvider, $httpProvider, $provide, $mdIconProvider, $mdThemingProvider) {
   $authProvider.loginUrl = '/api/authenticate';
 
-  $urlRouterProvider.otherwise('/home');
+    // Redirect to the auth state if any other states
+    // are requested other than users
+    $urlRouterProvider.otherwise('/register');
 
   $stateProvider
   .state('home', {

@@ -32,8 +32,52 @@
     <script src="/node_modules/lf-ng-md-file-input/dist/lf-ng-md-file-input.js"></script>
     <script src="node_modules/angular-material-data-table/dist/md-data-table.min.js"></script>
 
+      <script src="js/app.js"></script>
+      <script src="js/app.routes.js"></script>
+      <script src="js/components.js"></script>
     <!-- Application Scripts -->
 
-    <script src="js/components.js"></script>
+
+
+
+    <!--<script src="js/directives/MenuLink.js"></script>
+    <script src="js/directives/MenuToggle.js"></script>
+
+    <script src="app/draft/DraftFactory.js"></script>
+    <script src="app/draft/DraftController.js"></script>
+
+    <script src="app/home/HomeController.js"></script>
+
+
+    <script src="app/index/IndexController.js"></script>
+    <script src="app/index/MenuItems.js"></script>
+
+
+    <script src="app/player/PlayerController.js"></script>
+    <script src="app/player/PlayerFactory.js"></script>
+
+
+    <script src="app/sport/SportController.js"></script>
+    <script src="app/sport/SportFactory.js"></script>
+
+
+    <script src="app/team/TeamController.js"></script>
+    <script src="app/team/TeamFactory.js"></script>
+
+
+    <script src="app/position/PositionFactory.js"></script>
+
+
+    <script src="app/auth/AuthController.js"></script>
+    <script src="app/auth/AuthFactory.js"></script>
+
+
+    <script src="app/user/UserController.js"></script>
+    <script src="app/user/UserFactory.js"></script>
+    <script src="app/user/RoleFactory.js"></script>
+
+
+    <script src="app/draft/DraftController.js"></script>
+    <script src="app/authorization/authorizeFactory.js"/> -->
 
 </html>

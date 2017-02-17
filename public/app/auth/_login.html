@@ -1,11 +1,16 @@
-<div flex="35"></div>
+<div flex="20">
+  <!-- <div layout="row"> -->
+            <img ng-src="img/2Color-Favicon_512x512-1.png" ui-sref="home.home">
+    <!-- </div> -->
+</div>
 <md-content class="page-login" layout="row" layout-align="center center" layout-padding="layout-padding" ng-cloak="ng-cloak" flex="25">
   <md-card flex="flex">
     <md-toolbar layout="row">
-      <div class="md-toolbar-tools">
+      <div class="md-toolbar-tools login-head">
         <h2><span>Login</span></h2>
       </div>
-      <md-button ui-sref="home.home">
+      <md-button class="login-head" ui-sref="home.home">
+        <md-icon md-svg-src="img/icons/home.svg"></md-icon>
         Home
       </md-button>
     </md-toolbar>

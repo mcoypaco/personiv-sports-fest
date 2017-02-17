@@ -98,19 +98,7 @@ sportsFest.controller('PlayerController',
     vm.export = function(type) {
         Player.export(type)
             .then(function(success) {
-                console.log(success);
-
-                var anchor = angular.element('<a/>');
-                anchor.css({display: 'none'}); // Make sure it's not visible
-                angular.element(document.body).append(anchor); // Attach to document
-
-                anchor.attr({
-                    href: 'data:attachment/'+ type +';charset=utf-8,' + encodeURI(success.data),
-                    target: '_blank',
-                    download: 'document.' + type
-                })[0].click();
-
-                anchor.remove(); // Clean it ups afterwards
+                Player.exportFile(success, type);
             },function(error) {
                 console.log(error.data)
             });

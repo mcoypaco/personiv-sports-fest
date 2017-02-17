@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -81,7 +83,15 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // echo $id;
+        $user = User::find($id);
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->cellphone_number = $request->cellphone_number;
+        $user->role_id = $request->role_id;
+        $user->email = $request->email;
+        $user->save();
+        return response()->json($user);
     }
 
     /**
@@ -99,5 +109,20 @@ class UserController extends Controller
     {
       $user = new User();
       return response()->json($user->poc());
+    }
+
+    public function changePassword(Request $request, $id)
+    {
+        $user = User::find($id);
+        $userPassword = $user->getAuthPassword();
+        if (Hash::check($request->oldPassword, $userPassword)) {
+            // The passwords match...
+            $user->password = Hash::make($request->newPassword);
+            $user->save();
+            return response()->json(array('success' => true));
+        }
+        else {
+            return response()->json(array('success' => false));
+        }
     }
 }

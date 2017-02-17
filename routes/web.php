@@ -21,21 +21,7 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'api'], function()
 {
-  // Player routes
 
-
-  // Route::post('players','PlayerController@store');
-  // Route::get('players','PlayerController@index')->middleware('role:poc,admin');
-  // Route::post('players/{id}','PlayerController@update')->middleware('role:admin');
-  // Route::get('players/{id}','PlayerController@show')->middleware('role:poc,admin');
-
-  // Team routes
-  // Route::post('teams', 'TeamController@store')->middleware('role:admin');
-  // Route::get('teams', 'TeamController@index')->middleware('role:admin,poc');
-  // Route::post('teams/{id}', 'TeamController@update')->middleware('role:admin');
-  // Route::get('teams/{id}', 'TeamController@show')->middleware('role:admin,poc');
-
-  //test
   Route::post('teams', 'TeamController@store');
   Route::get('teams', 'TeamController@index');
   Route::post('teams/{id}', 'TeamController@update');
@@ -49,23 +35,22 @@ Route::group(['prefix' => 'api'], function()
   Route::get('players','PlayerController@index');
   Route::post('players/{id}','PlayerController@update');
   Route::get('players/{id}','PlayerController@show');
-  //Route::resource('roles','RoleController');
+
   Route::get('roles/admin','RoleController@getAdminId');
   Route::post('roles','RoleController@store');
   Route::get('roles/{id}','RoleController@show');
   Route::get('roles','RoleController@index');
   Route::get('roles/poc','RoleController@getPocId');
-  //end of test
 
-  // Roles routes
-  //Route::resource('roles','RoleController',['middleware' => 'role:admin']);
+  Route::get('players/exportPlayers','PlayerController@exportPlayers');
 
-  //Users routes
-  //Route::resource('users','UserController',['middleware' => 'role:admin']);
   Route::get('users/poc','UserController@poc');
   Route::post('users','UserController@store');
   Route::get('users','UserController@index');
   Route::get('users/{id}','UserController@show');
+  Route::put('users/{id}','UserController@update');
+  Route::put('users/{id}/changePassword', 'UserController@changePassword');
+
 
   Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
   Route::post('authenticate', 'AuthenticateController@authenticate');
@@ -73,17 +58,11 @@ Route::group(['prefix' => 'api'], function()
 
   Route::post('upload/image/{id}', 'SportController@upload');
 
-
-  // Route::resource('positions', 'PositionController',
-  //             ['only' => ['index', 'store', 'destroy']]);
-
-  //position
   Route::get('positions','PositionController@index');
   Route::post('positions','PositionController@store');
   Route::get('positions/{id}','PositionController@show');
   Route::get('positions/{id}/players' , 'PositionController@players');
 
-  //sports
   Route::get('sports','SportController@index');
   Route::post('sports','SportController@store');
   Route::get('sports/{id}','SportController@show');
@@ -91,6 +70,10 @@ Route::group(['prefix' => 'api'], function()
   Route::get('sports/{id}/players' , 'SportController@players');
 
   Route::get('sports/players/noteam/{id}', 'SportController@noTeamPlayers');
+
+  Route::resource('drafts', 'DraftController',
+              ['only' => ['index', 'store', 'destroy']]);
+
   Route::post('sports/upload/{id}', 'SportController@upload');
 
 });
