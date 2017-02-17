@@ -1,0 +1,126 @@
+<md-sidenav md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left"
+            class="md-whiteframe-z2 md-sidenav-left" ng-if="isAuthenticated()">
+    <md-toolbar md-theme="grey" class="md-hue-1">
+      <div>
+        <a ui-sref="home.home"><img ng-src="img/2Color-Favicon_512x512-1-raw.png" class="logo"></a>
+        <h1 class="md-toolbar-tools">SportsFest</h1>
+      </div>
+      
+    </md-toolbar>
+    <!-- <div ng-hide="true"> -->
+    <div>
+      <md-button ng-repeat-start="item in vm.menuItems" 
+                layout="column" layout-align="center center"
+                flex class="capitalize" ng-click="vm.selectItem(item)"
+                ui-sref-active="md-warn" ui-sref="{{item.sref}}" 
+                ng-if="vm.isAuthenticated()">
+          <div hide-sm hide-md class="md-tile-content">
+              <i class="material-icons md-36">{{item.icon}}</i>
+          </div>
+          <div class="md-tile-content" >
+              <p id="items">{{item.name}}</p>
+          </div>
+      </md-button>
+      <md-divider ng-repeat-end></md-divider>
+      <ul ng-if="vm.isAuthenticated()">
+        <li ng-repeat="section in vm.menu.sections" class="parent-list-item"
+            ng-class="{'parentActive' : vm.isSectionSelected(section)}" layout="column" layout-align="center center">
+          <h2 class="menu-heading" ng-if="section.type === 'heading'"
+              id="heading_{{ section.name | nospace }}">
+            {{section}}
+          </h2>
+          <menu-link section="section" ng-if="section.type === 'link'"></menu-link>
+          <menu-toggle section="section" ng-if="section.type === 'toggle'"></menu-toggle>
+        </li>
+      </ul>
+    </div>
+</md-sidenav>
+
+<div layout="column" flex>
+    <md-toolbar layout="row" layout-align="center center" class="md-small" id="toolbar">
+        <section layout-align="start center" layout-fill flex >
+            <md-button hide-gt-sm ng-click="vm.toggleItemsList()" aria-label="Menu" ng-if="isAuthenticated()">
+            <md-icon md-svg-src="img/icons/menu.svg" class="password"></md-icon>
+            </md-button>
+            <p flex class="capitalize crumbles"  ng-if="isAuthenticated()">
+            Personiv Sports Fest > {{routeName}}
+            </p>
+            <!--<img ng-src="img/2Color-Favicon_512x512-1.png" >-->
+        </section>
+        <section layout-align="end center">
+            <md-button flex class="md-primary md-hue-1 capitalize"
+                ui-sref-active="md-warn" ui-sref="home.register" 
+                ng-if="!vm.isAuthenticated()">
+          <!-- <div hide-sm hide-md class="md-tile-content">
+              <i class="material-icons md-36">assignment_returned</i>
+          </div> -->
+          <div class="md-tile-content">
+            <md-icon md-svg-src="img/icons/register.svg"></md-icon>
+              Register
+          </div>
+      </md-button>
+      <md-button flex class="md-primary md-hue-1 capitalize"
+                ui-sref-active="md-warn" ui-sref="login" 
+                ng-if="!vm.isAuthenticated()">
+          <!-- <div hide-sm hide-md class="md-tile-content">
+              <i class="material-icons md-36">assignment_returned</i>
+          </div> -->
+          <div class="md-tile-content">
+            <md-icon md-svg-src="img/icons/login.svg"></md-icon>
+              LOGIN
+          </div>
+      </md-button>
+        
+            <!--<md-button class="toolbar-button" aria-label="Settings" ng-click="vm.toggleRightSidebar()" ng-if="vm.isAuthenticated()">
+                <md-icon md-svg-src="img/icons/menu.svg"></md-icon> 
+            </md-button>-->
+        </section>
+        <section ng-if="isAuthenticated()">
+        <md-icon md-svg-src="img/icons/user2.svg" class="svg"></md-icon>
+        <md-menu md-offset="0 20">
+            <md-button class="capitalize" ng-click="$mdMenu.open()" aria-label="Open menu">
+                <span class="user">{{user.first_name}} {{user.last_name}}</span>
+                <!-- <i class="material-icons">keyboard_arrow_down</i> -->
+                <md-icon md-svg-src="img/icons/down.svg" class="arrow-down"></md-icon> 
+            </md-button>
+            <md-menu-content width="3">
+                    <md-button ng-click="vm.logout()" ui-sref="home.home"><ng-md-icon icon="logout" layout-align="center center"></ng-md-icon>Log out</md-button>
+            </md-menu-content>
+        </md-menu>
+      </section>
+    </md-toolbar>
+
+    <md-content flex class="page-content" >
+        <div ui-view></div>
+    </md-content>
+</div>
+<!--<md-sidenav md-component-id="right"
+            class="md-whiteframe-z2 md-sidenav-right">
+    <md-toolbar>
+        <md-toolbar md-theme="grey" layout="row" layout-align="center center">
+            <img class="img-circle" ng-src="img/picture.png">
+            <md-menu md-offset="0 20">
+                <md-button class="capitalize" ng-click="$mdMenu.open()" aria-label="Open menu">
+                    <span>{{user.first_name}} {{user.last_name}}</span>
+                    <!-- <i class="material-icons">keyboard_arrow_down</i> -->
+                    <!--<ng-md-icon icon="keyboard_arrow_down"></ng-md-icon> 
+                </md-button>
+                <md-menu-content width="3">
+                    <!-- <md-menu-item><md-button ng-click="$mdMenu.close()" ui-sref="home.profile">Profile</md-button></md-menu-item> -->
+                    <!--<md-menu-item>
+                      <md-button ng-click="vm.logout()" ui-sref="home.home"><ng-md-icon icon="logout"></ng-md-icon>Log out</md-button> 
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+        </md-toolbar>
+    </md-toolbar>
+
+    <section>
+        <md-toolbar md-theme="grey" class="md-hue-1">
+            <div class="md-toolbar-tools">-->
+                <!-- <h3>Messages</h3> -->
+            <!--</div>
+        </md-toolbar>-->
+        <!-- <div ng-include src="'app/views/partials/messages.html'"/> -->
+    <!--</section>-->
+</md-sidenav>
