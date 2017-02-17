@@ -11,7 +11,7 @@ sportsFest.run(["$rootScope", "$state", "$stateParams", "$auth", function($rootS
     $rootScope.routeName = toState.url.substring(1);
     var requireLogin = toState.data.requireLogin;
     if (requireLogin && !$auth.isAuthenticated()) {
-      $state.go('login');
+      $state.go('home.401');
       event.preventDefault();
     }
     else if (!requireLogin && $auth.isAuthenticated() && toState.name === "login") {

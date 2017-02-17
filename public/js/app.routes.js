@@ -3,7 +3,7 @@ sportsFest.config(function($stateProvider, $urlRouterProvider, $authProvider, $h
 
     // Redirect to the auth state if any other states
     // are requested other than users
-    $urlRouterProvider.otherwise('/register');
+    $urlRouterProvider.otherwise('/404');
 
   $stateProvider
   .state('home', {
@@ -107,6 +107,26 @@ sportsFest.config(function($stateProvider, $urlRouterProvider, $authProvider, $h
     },
     resolve: {
       $title: function() { return 'Register'; }
+    }
+  })
+  .state('home.404', {
+    url: '/404',
+    templateUrl: '../app/error/_404.html',
+    data: {
+      requireLogin: false
+    },
+    resolve: {
+      $title: function() { return 'Error 404'; }
+    }
+  })
+  .state('home.401', {
+    url: '/401',
+    templateUrl: '../app/error/_401.html',
+    data: {
+      requireLogin: false
+    },
+    resolve: {
+      $title: function() { return 'Error 401'; }
     }
   });
   
