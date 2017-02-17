@@ -13,9 +13,10 @@
       <form name="Form">
         <md-input-container class="md-block">
           <label>Email</label>
-          <input type="email" name="email" ng-model="auth.email" placeholder="Email" required="" autofocus />
+          <input type="email" name="email" ng-model="auth.email" placeholder="Email" required="" ng-pattern="/^.+@.+\..+$/" autofocus />
           <div ng-messages="Form.email.$error" role="alert" multiple="">
             <div class="my-message" ng-message="required">You must supply an email.</div>
+            <div class="my-message" ng-message="pattern">You must supply an email with a form of "johndoe@example.com".</div>
           </div>
         </md-input-container>
         <md-input-container class="md-block">

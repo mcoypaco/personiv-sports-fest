@@ -74,6 +74,10 @@ sportsFest.controller('DraftController',
             console.log(error.data)
         });
     }
+    vm.removePlayer = function(id, player){
+        player.team_id = null;
+        vm.updatePlayer(id, player);
+    }
 
     vm.getUsers = function(){
         User.get().then(function (success){

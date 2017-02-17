@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Player;
 use App\Team;
 use App\Sport;
+use App\Draft;
 use Excel;
 
 use Illuminate\Http\Request;
@@ -80,9 +81,11 @@ class PlayerController extends Controller
      */
     public function update(Request $request, $id)
     {
-      $team = new Team();
-      $team->addRemovePlayer($request , $id);
-      return response()->json($request->all());
+        $team = new Team();
+        $draft= new Draft();
+        $team->addRemovePlayer($request , $id);
+        $draft->addRemovePlayer($request->team_id , $id);
+        return response()->json($request);
     }
 
     /**

@@ -5,32 +5,47 @@
         <form ng-submit="player.submit(data)" name="registrationForm">
             <div>
                 <md-input-container>
-                    <input type="text" class="form-control input-sm" ng-model="data.employee_id" required placeholder="Employee Id">
+                    <input type="text" name="employee_id" class="form-control input-sm" ng-model="data.employee_id" required placeholder="Employee Id">
+                    <div ng-messages="registrationForm.employee_id.$error" role="alert" multiple="">
+                        <div class="my-message" ng-message="required">You must supply an ID.</div>
+                    </div>
                 </md-input-container>
              </div>
              <div>
                 <md-input-container>
-                    <input type="text" class="form-control input-sm" ng-model="data.last_name"  required placeholder="Last Name">
+                    <input type="text" name="last_name" class="form-control input-sm" ng-model="data.last_name"  required placeholder="Last Name">
+                    <div ng-messages="registrationForm.last_name.$error" role="alert" multiple="">
+                        <div class="my-message" ng-message="required">You must supply a Last Name.</div>
+                    </div>
                </md-input-container>
                <md-input-container>
-                    <input type="text" class="form-control input-sm" ng-model="data.first_name"  required placeholder="First Name">
+                    <input type="text" name="first_name" class="form-control input-sm" ng-model="data.first_name"  required placeholder="Given Name">
+                    <div ng-messages="registrationForm.first_name.$error" role="alert" multiple="">
+                        <div class="my-message" ng-message="required">You must supply a Given Name.</div>
+                    </div>
                 </md-input-container>
             </div>
             <div>
                 <md-input-container>
-                    <input class="form-control input-sm" ng-model="data.height"  required placeholder="Height">
+                    <input class="form-control input-sm" type="number" name="height" ng-model="data.height"  required placeholder="Height(cm)">
+                    <div ng-messages="registrationForm.height.$error" role="alert" multiple="">
+                        <div class="my-message" ng-message="required">You must supply a Height.</div>
+                    </div>
                </md-input-container>
                <md-input-container>
-                    <input class="form-control input-sm" ng-model="data.weight"  required placeholder="Weight">
+                    <input class="form-control input-sm" type="number" name="weight" ng-model="data.weight"  required placeholder="Weight(kg)">
+                    <div ng-messages="registrationForm.weight.$error" role="alert" multiple="">
+                        <div class="my-message" ng-message="required">You must supply a Weight.</div>
+                    </div>
                 </md-input-container>
             </div>
             <div>
                 <md-input-container>
-                    <input class="form-control input-lg" ng-model="data.cellphone_number"  name="cellphone_number" required placeholder="Cellphone Number">
-                    <!--<div ng-messages="registrationForm.cellphone_number.$error" role="alert" multiple>
-                        <div ng-message="pattern" class="my-message">That doesn't look like a valid Cellphone Number.
+                    <input class="form-control input-lg" ng-model="data.cellphone_number"  type="number" name="cellphone_number" required placeholder="Cellphone Number">
+                    <div ng-messages="registrationForm.cellphone_number.$error" role="alert" multiple="">
+                        <div ng-message="required" class="my-message">You must supply a Cellphone Number.
                         </div>
-                    </div>-->
+                    </div>
                 </md-input-container>
             </div>
             <div>
