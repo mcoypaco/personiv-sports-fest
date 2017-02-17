@@ -91,15 +91,15 @@
             </div>
         </md-toolbar>
         <md-dialog-content>
-            <form>
+            <form ng-submit="update(data)" name="modalForm">
                 <md-input-container>
-                    <input type="text" class="form-control input-sm" ng-model="data.name" placeholder="Name">
+                    <input type="text" class="form-control input-sm" ng-model="data.name" placeholder="Name" required>
                 </md-input-container>
                 <md-input-container class="md-block">
-                    <input type="text" class="form-control input-lg" ng-model="data.description" placeholder="Description">
+                    <input type="text" class="form-control input-lg" ng-model="data.description" placeholder="Description" required>
                 </md-input-container>
                 <md-dialog-actions layout="row">
-                    <md-button class="md-primary md-raised" ng-click="update(data)">Update</md-button>
+                    <md-button class="md-primary md-raised" ng-disabled="!modalForm.$valid" type="submit">Update</md-button>
                 </md-dialog-actions>
             </form>
         </md-dialog-content>

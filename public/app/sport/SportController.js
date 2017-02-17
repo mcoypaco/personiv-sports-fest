@@ -146,7 +146,7 @@ sportsFest.controller('SportController',
     }
 
     function UpdateModalController($scope, item, $mdDialog) {
-        $scope.data = item;
+        $scope.data={name:item.name, description:item.description};
         $scope.cancel = function() {
             $mdDialog.cancel();
         };
