@@ -27,6 +27,7 @@ sportsFest.controller('UserController',
                 console.log(error.data)
             })
     }
+    vm.getUsers();
 
     vm.getRoles = function() {
         Role.get()

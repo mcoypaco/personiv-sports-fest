@@ -1,3 +1,4 @@
+<md-progress-linear md-mode="indeterminate" ng-if="!draft.loaded"></md-progress-linear>
 <md-content class="whiteframe" layout="row">
     <!--end of adding a new sport-->
     <!--foreach of the sports items and their CRUD-->
@@ -8,7 +9,6 @@
         <md-divider></md-divider>
         <!-- <md-button class="md-primary md-raised" ng-click="showConfirm($event)">
           Confirm Dialog
-
       </md-button> -->
       <md-list ng-init="sport.getSports()">
         <md-list-item class="md-3-line" ng-repeat="sportItem in sport.sports" ng-click="editable=!editable">

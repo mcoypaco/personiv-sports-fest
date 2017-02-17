@@ -59,18 +59,19 @@ Route::group(['prefix' => 'api'], function()
   //Route::resource('users','UserController',['middleware' => 'role:admin']);
   Route::get('users/poc','UserController@poc');
   Route::post('users','UserController@store');
+  Route::get('users','UserController@index');
   Route::get('users/{id}','UserController@show');
 
   Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
   Route::post('authenticate', 'AuthenticateController@authenticate');
   Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
 
-  Route::post('upload/image/{id}', 'SportController@upload');
   
   Route::resource('positions', 'PositionController',
               ['only' => ['index', 'store', 'destroy']]);
 
   Route::resource('sports', 'SportController',
               ['only' => ['index', 'store', 'show', 'update', 'destroy']]);
-
+  Route::get('sports/players/noteam/{id}', 'SportController@getPlayers');
+  Route::post('sports/upload/{id}', 'SportController@upload');
 });

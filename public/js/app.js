@@ -1,5 +1,5 @@
 var sportsFest = angular.module('Sportsfest', [
-  'ui.router', 'satellizer', 'ngMaterial', 'ngMessages', 'ngMdIcons', 'ui.router.title', 'lfNgMdFileInput',
+  'ui.router', 'satellizer', 'ngMaterial', 'ngMessages', 'ngMdIcons', 'ui.router.title', 'lfNgMdFileInput', 'md.data.table'
   ]);
 
 sportsFest.run(["$rootScope", "$state", "$stateParams", "$auth", function($rootScope, $state, $stateParams, $auth) {
