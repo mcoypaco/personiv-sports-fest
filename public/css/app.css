@@ -265,10 +265,10 @@ lf-ng-md-file-input {
   font-size: 25px;
 }
 
-#crumbles {
-  margin: 15px;
+.crumbles {
+  margin: 25px;
   font-size: 16px;
-  color: #2E3133;
+  color: #ffffff;
 }
 
 #warning {
@@ -292,7 +292,7 @@ lf-ng-md-file-input {
 }
 
 #toolbar {
-  background-color: #2889ff;
+  background-color: #2b00c6;
   height: 20px;
 }
 
@@ -330,4 +330,10 @@ lf-ng-md-file-input {
 
 .teamshow {
   background-color: #e5eecf;
+}
+
+.svg {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
 }

@@ -7,11 +7,13 @@
   <md-content class="page-login" layout="row" layout-align="center center" layout-padding="layout-padding" ng-cloak="ng-cloak">
     <md-card>
       <md-toolbar layout="row">
-        <div class="md-toolbar-tools login-head">
+        <div class="md-toolbar-tools login-head" layout="row" layout-align="space-between center">
           <h2>Login</h2>
-             <md-button ui-sref="home.home">
-              Home
-            </md-button>
+          <md-button ui-sref="home.home">
+           <md-icon md-svg-src="img/icons/home.svg"></md-icon>
+           </md-icon>
+           HOME
+          </md-button>
         </div>
         <!--<div hide-sm hide-md class="md-tile-content">
             <i class="material-icons md-36">icon-home</i>

@@ -1,8 +1,11 @@
 <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" md-component-id="left"
             class="md-whiteframe-z2 md-sidenav-left" ng-if="isAuthenticated()">
     <md-toolbar md-theme="grey" class="md-hue-1">
-      <a ui-sref="home.home"><img ng-src="img/2Color-Favicon_512x512-1-raw.png" class="logo"></a>
-      <h1 class="md-toolbar-tools">SportsFest</h1>
+      <div>
+        <a ui-sref="home.home"><img ng-src="img/2Color-Favicon_512x512-1-raw.png" class="logo"></a>
+        <h1 class="md-toolbar-tools">SportsFest</h1>
+      </div>
+      
     </md-toolbar>
     <!-- <div ng-hide="true"> -->
     <div>
@@ -19,28 +22,6 @@
           </div>
       </md-button>
       <md-divider ng-repeat-end></md-divider>
-      <!--<md-button layout="column" layout-align="center center"
-                flex class="capitalize"
-                ui-sref-active="md-warn" ui-sref="home.register" 
-                ng-if="!vm.isAuthenticated()">
-          <div hide-sm hide-md class="md-tile-content">
-              <i class="material-icons md-36">assignment_returned</i>
-          </div>
-          <div class="md-tile-content">
-              Register
-          </div>
-      </md-button>
-      <md-button layout="column" layout-align="center center"
-                flex class="capitalize"
-                ui-sref-active="md-warn" ui-sref="login" 
-                ng-if="!vm.isAuthenticated()">
-          <div hide-sm hide-md class="md-tile-content">
-              <i class="material-icons md-36">assignment_returned</i>
-          </div>
-          <div class="md-tile-content">
-              LOGIN
-          </div>
-      </md-button>-->
       <ul ng-if="vm.isAuthenticated()">
         <li ng-repeat="section in vm.menu.sections" class="parent-list-item"
             ng-class="{'parentActive' : vm.isSectionSelected(section)}" layout="column" layout-align="center center">
@@ -59,44 +40,38 @@
     <md-toolbar layout="row" layout-align="center center" id="toolbar">
         <section layout-align="start center" layout-fill flex >
             <md-button hide-gt-sm ng-click="vm.toggleItemsList()" aria-label="Menu" ng-if="isAuthenticated()">
-                <md-icon md-svg-src="img/icons/menu.svg" class="password"></md-icon> 
+            <md-icon md-svg-src="img/icons/menu.svg" class="password"></md-icon>
             </md-button>
-            <p class="capitalize" id="crumbles" ng-if="isAuthenticated()">Personiv Sports Fest > <span class="capitalize">{{routeName}}</span></p>
+            <p flex class="capitalize crumbles"  ng-if="isAuthenticated()">
+            Personiv Sports Fest > {{routeName}}
+            </p>
             <!--<img ng-src="img/2Color-Favicon_512x512-1.png" >-->
         </section>
         <section layout-align="end center">
-            <!-- <md-button class="toolbar-button" aria-label="Search">
-                <i class="material-icons">search</i>
-            </md-button> -->
-            <!--<md-button class="toolbar-button" aria-label="Login" ui-sref="login" ng-if="!vm.isAuthenticated()">
-                LOGIN-->
-                <!-- <i class="material-icons">notifications</i> -->
-                <!-- <span class="notifications-label">7</span> -->
-            <!--</md-button>-->
-            <md-button layout-align="center center"
-                flex class="md-primary md-hue-1 capitalize"
+            <md-button flex class="md-primary md-hue-1 capitalize"
                 ui-sref-active="md-warn" ui-sref="home.register" 
                 ng-if="!vm.isAuthenticated()">
           <div hide-sm hide-md class="md-tile-content">
               <i class="material-icons md-36">assignment_returned</i>
           </div>
           <div class="md-tile-content">
+            <md-icon md-svg-src="img/icons/register.svg"></md-icon>
               Register
           </div>
       </md-button>
-      <md-button layout-align="center center"
-                flex class="md-primary md-hue-1 capitalize"
+      <md-button flex class="md-primary md-hue-1 capitalize"
                 ui-sref-active="md-warn" ui-sref="login" 
                 ng-if="!vm.isAuthenticated()">
           <div hide-sm hide-md class="md-tile-content">
               <i class="material-icons md-36">assignment_returned</i>
           </div>
           <div class="md-tile-content">
+            <md-icon md-svg-src="img/icons/login.svg"></md-icon>
               LOGIN
           </div>
       </md-button>
             <md-button class="toolbar-button" aria-label="Settings" ng-click="vm.toggleRightSidebar()" ng-if="vm.isAuthenticated()">
-                <md-icon md-svg-src="img/icons/menu.svg" class="password"></md-icon> 
+                <md-icon md-svg-src="img/icons/menu.svg"></md-icon> 
             </md-button>
         </section>
     </md-toolbar>
