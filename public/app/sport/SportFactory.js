@@ -1,4 +1,4 @@
-sportsFest.factory("Sport", ["$q", "$http", 
+sportsFest.factory("Sport", ["$q", "$http",
   function($q, $http) {
     const url = 'api/sports';
   	return {
@@ -47,7 +47,12 @@ sportsFest.factory("Sport", ["$q", "$http",
             headers: {'Content-Type': undefined}
         });
       },
-
+      players : function(id) {
+        return $http.get('api/sports/' + id + '/players')
+      },
+      positions : function(id) {
+        return $http.get('api/sports/' + id + '/positions')
+      },
       getPlayers : function(id) {
         return $http.get(url + '/players/noteam/' + id);
       }

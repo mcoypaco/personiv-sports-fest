@@ -1,9 +1,17 @@
-sportsFest.controller('IndexController', 
-    ["$scope", "$mdToast", "$mdDialog", "$log", "$mdSidenav", "$mdBottomSheet", "$q", "MenuItemsService", "$mdMenu", "$auth", "$state", "$window",
-        function($scope, $mdToast, $mdDialog, $log, $mdSidenav, $mdBottomSheet, $q, MenuItemsService, $mdMenu, $auth, $state, $window) { 
-	 
+sportsFest.controller('IndexController',
+    ["$scope", "$mdToast", "$mdDialog", "$log", "$mdSidenav", "$mdBottomSheet", "$q", "MenuItemsService", "$mdMenu", "$auth", "$state", "$window","Role",
+        function($scope, $mdToast, $mdDialog, $log, $mdSidenav, $mdBottomSheet, $q, MenuItemsService, $mdMenu, $auth, $state, $window , Role) {
+
     var vm = this;
 	  vm.user;
+
+
+    vm.getRole = function(id) {
+       Role.show(id).then(function(role){
+         vm.role = role.data
+         console.log(role.data);
+      })
+    }
 
     vm.logout = function() {
         $mdSidenav('right').toggle();

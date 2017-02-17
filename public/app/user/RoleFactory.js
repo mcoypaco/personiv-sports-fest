@@ -1,5 +1,6 @@
-sportsFest.factory("Role", ["$q", "$http", 
+sportsFest.factory("Role", ["$q", "$http",
   function($q, $http) {
+
   	return {
   		get : function() {
   			return $http({
@@ -35,6 +36,13 @@ sportsFest.factory("Role", ["$q", "$http",
             method: 'DELETE',
             url: 'api/roles/' + id
         });
-  		}
+  		},
+
+      getAdminId : function() {
+        return $http({
+          method: 'GET',
+          url: 'api/roles/admin'
+        });
+      }
   	}
 }])

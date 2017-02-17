@@ -13,8 +13,9 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
+ import Echo from "laravel-echo"
 
-const app = new Vue({
-    el: '#app'
-});
+ window.Echo = new Echo({
+     broadcaster: 'socket.io',
+     host: window.location.hostname + ':6001'
+ });

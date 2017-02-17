@@ -35,7 +35,7 @@ md-nav-bar .md-nav-bar {
 }
 
 .card-media {
-    background-color: #999999; 
+    background-color: #999999;
 }
 
 .md-card-image {
@@ -209,7 +209,7 @@ a.md-button.md-warn.md-raised, a.md-button.md-warn.md-fab, .md-button.md-warn.md
 md-button {
     font-weight: bolder;
     text-align: center;
-} 
+}
 
 md-radio-button.md-accent.md-checked .md-label span {
   color: rgb(0, 150, 136);
@@ -268,7 +268,7 @@ ng-md-icon {
 
 #emptyData {
     display: table;
-    margin: 0 auto; 
+    margin: 0 auto;
     color: #BDC3C7;
 }
 
@@ -319,7 +319,7 @@ lf-ng-md-file-input {
   margin: 10px;
   background-color: #e8ecff;
   border-radius: 5px;
- 
+
 }
 
 .login-logo {

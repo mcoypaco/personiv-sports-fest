@@ -1,25 +1,37 @@
-sportsFest.controller('PlayerController', 
-    ["$scope", "Player", "Sport",
-        function($scope, Player, Sport) { 
+sportsFest.controller('PlayerController',
+    ["$scope", "Player", "Sport","Position",
+        function($scope, Player, Sport, Position) {
 
     var vm = this;
     vm.sports;
-    vm.players;
+
     vm.filteredPlayers;
     vm.selectedSport;
     vm.i = 0;
-          
+    vm.filteredPlayersId = [];
+    vm.loaded = false
+    vm.players;
+
+    vm.getAllPlayers =function(){
+      Player.get().then(function (success) {
+        vm.players = success.data;
+        vm.loaded = true
+      })
+    }
+
+    vm.getAllPlayers();
+
     vm.submit = function(data) {
         Player.store(data)
             .success(function(successData) {
-                //if success, 
+                //if success,
                 console.log(successData)
             })
             .error(function(err) {
                 console.error(err)
             })
     }
-   
+
     vm.getSports = function() {
         Sport.get()
             .then(function(success) {
@@ -36,16 +48,33 @@ sportsFest.controller('PlayerController',
         });
     }
 
-    vm.sortPlayers = function(id) {
-        var results = [];
-        for (i = 0; i < vm.players.length; i++) {
-            vm.players[i].sports.filter(function(item) {
-                if(item.id.toString() === id) {
-                    results.push(vm.players[i]);
-                }
-            });
-        } 
-        return results;      
+    vm.sportPlayers = function(id) {
+        vm.loaded = false
+      if(id == "all"){
+        vm.loaded = true
+        vm.getAllPlayers();
+      }
+      else{
+        Sport.players(id).then(function(players){
+          vm.players = players.data
+          vm.sportPlayerList = players.data
+          vm.loaded = true
+        })
+      }
+    }
+
+    vm.positionPlayers = function(id){
+        vm.loaded = false
+      if(id == "all"){
+        vm.loaded = true
+        vm.players = vm.sportPlayerList;
+      }
+      else{
+        Position.players(id).then(function(players){
+          vm.players = players.data
+          vm.loaded = true
+        })
+      }
     }
 
     vm.sortFilteredPlayers = function(id) {
@@ -56,18 +85,8 @@ sportsFest.controller('PlayerController',
                     results.push(vm.filteredPlayers[i]);
                 }
             });
-        } 
-        vm.filteredPlayers = results;      
-    }
-
-    vm.getPlayers = function() {
-        Player.get()
-            .then(function (success) {
-                vm.players = success.data;
-                vm.filteredPlayers = success.data;
-            },function (error) {
-                console.log(error.data)
-            });
+        }
+        vm.filteredPlayers = results;
     }
 
     vm.getPosition = function(arr, id) {
@@ -85,26 +104,13 @@ sportsFest.controller('PlayerController',
             });
     }
 
-    $scope.$watch(function () {
-        return vm.selectedSport;
-    }, function(newValue, oldValue) {
-        if(newValue == "all") {
-            vm.filteredPlayers = vm.players;
-            vm.selectedPosition = 'all';
-        }else if(newValue != oldValue) {
-            vm.filteredPlayers = vm.sortPlayers(newValue);
-        }      
-    });
 
-    $scope.$watch(function () {
-        return vm.selectedPosition;
-    }, function(newValue, oldValue) {
-        if(newValue == "all") {
-            vm.filteredPlayers = vm.sortPlayers(vm.selectedSport);
-        } else if(newValue != oldValue) {
-            vm.filteredPlayers = vm.sortPlayers(vm.selectedSport);
-            vm.sortFilteredPlayers(newValue);
-        }      
-    });
-    
+    socket.on('add.players:App\\Events\\AddPlayers', function(broadcast){
+      $scope.$apply(function(){
+        vm.players.unshift(broadcast.data);
+      });
+    })
+
+
+
 }]);

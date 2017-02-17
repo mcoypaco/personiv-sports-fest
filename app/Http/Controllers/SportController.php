@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Sport;
+use App\Events\AddSport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use File;
@@ -38,10 +39,12 @@ class SportController extends Controller
      */
     public function store(Request $request)
     {
+
         $sport = Sport::create(array(
             'name' => Input::get('name'),
             'description' => Input::get('description')
             ));
+        event(new AddSport($sport));
         return response()->json(array('success' => true, 'id' => $sport->id));
     }
 
@@ -112,7 +115,19 @@ class SportController extends Controller
         }
     }
 
-    public function getPlayers($id)
+    public function players($sportsId)
+    {
+      $sport = Sport::find($sportsId);
+      return $sport->players;
+    }
+
+    public function positions($sportId)
+    {
+      $sports = Sport::find($sportId);
+      return $sports->positions;
+    }
+
+    public function noTeamPlayers($id)
     {
         return response()->json(Sport::find($id)->players()->with('positions')->where('team_id', null)->get());
     }

@@ -1,7 +1,7 @@
-sportsFest.factory("Draft", ["$q", "$http", 
+sportsFest.factory("Draft", ["$q", "$http",
   function($q, $http) {
   	return {
-  		
+
   		store : function(data) {
   			return $http({
 	            method: 'POST',
@@ -14,6 +14,6 @@ sportsFest.factory("Draft", ["$q", "$http",
   		destroy : function(id) {
   			return $http.delete('/api/drafts/' + id);
   		},
-      
+
   	}
 }])

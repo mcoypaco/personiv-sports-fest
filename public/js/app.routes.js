@@ -54,7 +54,7 @@ sportsFest.config(function($stateProvider, $urlRouterProvider, $authProvider, $h
       requireLogin: true
     },
     resolve: {
-      $title: function() { return 'Players'; }
+      $title: function() { return 'Players'; },
     },
   })
   .state('home.draft', {
@@ -90,8 +90,8 @@ sportsFest.config(function($stateProvider, $urlRouterProvider, $authProvider, $h
       $title: function() { return 'Teams'; }
     }
   })
-  .state('home.teams.view' , {
-    url: '/teams/{id}',
+  .state('home.teams_view' , {
+    url: '/teams/:id',
     templateUrl: '../app/team/_view-team.html',
     controller: 'TeamController as team',
     data: {
@@ -109,7 +109,7 @@ sportsFest.config(function($stateProvider, $urlRouterProvider, $authProvider, $h
       $title: function() { return 'Register'; }
     }
   });
-  
+
   $mdThemingProvider
   .theme('default')
   .primaryPalette('grey', {

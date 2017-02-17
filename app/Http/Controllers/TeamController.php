@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Team;
 use Illuminate\Http\Request;
+use App\Events\ChangedTeam;
 
 class TeamController extends Controller
 {
@@ -37,6 +38,7 @@ class TeamController extends Controller
     public function store(Request $request)
     {
         $team = Team::firstOrCreate($request->all());
+        event(new ChangedTeam(Team::all()));
         return response()->json($team);
     }
 
@@ -84,14 +86,5 @@ class TeamController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function addPlayers(Request $request, $id)
-    {
-        $team = Team::find($id);
-        foreach($request.data as $item){
-            $team->addRemovePlayer( $item );
-        }
-        return $request.data;
     }
 }

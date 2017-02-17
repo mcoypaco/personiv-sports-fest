@@ -1,5 +1,6 @@
-sportsFest.controller('HomeController', ["$scope", "$http", "Sport", function($scope, $http, Sport) { 
+sportsFest.controller('HomeController', ["$scope", "$http", "Sport", function($scope, $http, Sport) {
 	var vm = this;
+
 	vm.loaded = false;
 
 	Sport.get()

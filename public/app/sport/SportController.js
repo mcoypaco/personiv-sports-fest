@@ -1,4 +1,4 @@
-sportsFest.controller('SportController', 
+sportsFest.controller('SportController',
     ["$scope", "$mdDialog", "Sport", "Position",
         function($scope, $mdDialog, Sport, Position) {
 
@@ -68,7 +68,7 @@ sportsFest.controller('SportController',
             })
             .error(function(error) {
                 console.log(error)
-            });   
+            });
     }
 
     vm.addPosition = function(id) {
@@ -80,7 +80,7 @@ sportsFest.controller('SportController',
                 vm.getSports();
             })
             .error(function(error) {
-                console.log(error)                
+                console.log(error)
             })
     }
 
@@ -126,15 +126,21 @@ sportsFest.controller('SportController',
             }
             else{
                 vm.delete(item.id);
-            }            
+            }
         }, function() {
             console.log("clicked cancel")
         });
     };
 
+    socket.on('add.players:App\\Events\\AddPlayers', function(data){
+      $scope.$apply(function(){
+        vm.sports.unshift(data.sport);
+      });
+    })
+
     vm.updateModal = function(ev, item) {
         $mdDialog.show({
-            locals:{item: item},    
+            locals:{item: item},
             controller: UpdateModalController,
             templateUrl: 'update.tmpl.html',
             parent: angular.element(document.body),

@@ -1,5 +1,6 @@
-sportsFest.controller('TeamController', ["$http", "User", "Team", 
-  function($http, User, Team) {
+
+sportsFest.controller('TeamController', ["$http", "User", "Team", "$state", "$stateParams","$scope",
+  function($http, User, Team, $state, $stateParams, $scope) {
 
     var vm = this;
     vm.editable = false;
@@ -8,7 +9,6 @@ sportsFest.controller('TeamController', ["$http", "User", "Team",
     //add team to database
     vm.addTeam = function(data){
       Team.store(data).then(function(response) {
-        console.log(response);
       }).catch(function(err){
         console.log(err);
       })
@@ -25,6 +25,15 @@ sportsFest.controller('TeamController', ["$http", "User", "Team",
     }
     vm.getTeams();
 
+    socket.on('changed.team:App\\Events\\ChangedTeam', function(broadcast){
+      vm.teams = broadcast.data
+      vm.getPocs();
+      $scope.$apply();
+      console.log(vm.teams);
+    })
+
+
+
     //get team from api/teams/{id}
     vm.getTeam = function() {
       Team.show($stateParams.id).then(function(team) {
@@ -38,7 +47,7 @@ sportsFest.controller('TeamController', ["$http", "User", "Team",
 
     //go to team route
     vm.showTeam = function(id) {
-      $state.go("team_view" ,{id:id});
+      $state.go("home.teams_view" ,{id:id});
     }
 
     //get the POCs
@@ -56,7 +65,6 @@ sportsFest.controller('TeamController', ["$http", "User", "Team",
         url: 'api/sports'
       }).then(function(sports) {
         vm.sports = sports.data
-        console.log(sports.data);
       })
     }
     vm.getSports();

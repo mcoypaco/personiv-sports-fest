@@ -112,7 +112,8 @@
             <img class="img-circle" ng-src="img/picture.png">
             <md-menu md-offset="0 20">
                 <md-button class="capitalize" ng-click="$mdMenu.open()" aria-label="Open menu">
-                    <span>{{user.first_name}} {{user.last_name}}</span>
+                    <p>{{user.first_name}} {{user.last_name}}</p>
+                    <span ng-init="vm.getRole(user.role_id)">{{vm.role.name}}</span>
                     <!-- <i class="material-icons">keyboard_arrow_down</i> -->
                     <!--<ng-md-icon icon="keyboard_arrow_down"></ng-md-icon>
                 </md-button>
@@ -120,6 +121,7 @@
                     <!-- <md-menu-item><md-button ng-click="$mdMenu.close()" ui-sref="home.profile">Profile</md-button></md-menu-item> -->
                     <!--<md-menu-item>
                       <md-button ng-click="vm.logout()" ui-sref="home.home"><ng-md-icon icon="logout"></ng-md-icon>Log out</md-button>
+>>>>>>> 4436ff1740c5373ee731b2180ef0f1eff4fc1ece
                     </md-menu-item>
                 </md-menu-content>
             </md-menu>
@@ -133,5 +135,6 @@
             <!--</div>
         </md-toolbar>-->
         <!-- <div ng-include src="'app/views/partials/messages.html'"/> -->
+
     <!--</section>-->
 </md-sidenav>
