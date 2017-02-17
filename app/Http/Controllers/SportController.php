@@ -53,7 +53,7 @@ class SportController extends Controller
      */
     public function show($id)
     {
-        return response()->json(Sport::with('positions')->find($id));
+        return response()->json(Sport::with(['positions', 'players'])->find($id));
     }
 
     /**
@@ -100,11 +100,14 @@ class SportController extends Controller
         $file = $request->file('file');
         if ($file != null) {
             $file = $request->file;
-            // $extension = $request->file->extension();
+            $extension = $request->file->extension();
+            $sport = Sport::find($id);
+            $sport->img_extension = $extension;
+            $sport->push();
             if (!file_exists(public_path().'/uploads/sports')) {
                 File::makeDirectory(public_path().'/uploads/sports', 0777, true);
             }
-            $request->file->storeAs('/uploads/sports', ''.$id.'.'.'jpeg');
+            $request->file->storeAs('/uploads/sports', ''.$id.'.'.$extension);
             response()->json(array('success' => "lolol"));
         }
     }
@@ -119,6 +122,11 @@ class SportController extends Controller
     {
       $sports = Sport::find($sportId);
       return $sports->positions;
+    }
+
+    public function noTeamPlayers($id)
+    {
+        return response()->json(Sport::find($id)->players()->with('positions')->where('team_id', null)->get());
     }
 
 }

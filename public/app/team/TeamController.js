@@ -4,6 +4,7 @@ sportsFest.controller('TeamController', ["$http", "User", "Team", "$state", "$st
 
     var vm = this;
     vm.editable = false;
+    vm.loaded = false;
 
     //add team to database
     vm.addTeam = function(data){
@@ -17,10 +18,12 @@ sportsFest.controller('TeamController', ["$http", "User", "Team", "$state", "$st
     vm.getTeams = function() {
       Team.get().then(function (team) {
         vm.teams = team.data
+        vm.loaded = true;
       }, function(error){
         console.log(error)
       })
     }
+    vm.getTeams();
 
     socket.on('changed.team:App\\Events\\ChangedTeam', function(broadcast){
       vm.teams = broadcast.data
@@ -54,6 +57,7 @@ sportsFest.controller('TeamController', ["$http", "User", "Team", "$state", "$st
         vm.poc = poc.data
       })
     }
+    vm.getPocs();
 
     vm.getSports = function() {
       $http({
@@ -63,6 +67,7 @@ sportsFest.controller('TeamController', ["$http", "User", "Team", "$state", "$st
         vm.sports = sports.data
       })
     }
+    vm.getSports();
 
     //retrieve poc from apo/users/{id}
     vm.getTeamPoc = function(id)

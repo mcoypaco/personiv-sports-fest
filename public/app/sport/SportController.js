@@ -6,6 +6,7 @@ sportsFest.controller('SportController',
     vm.sports;
     vm.newPosition = {};
     vm.editable = false;
+    vm.loaded = false;
 
     vm.submit = function(data) {
         Sport.store(data)
@@ -41,6 +42,7 @@ sportsFest.controller('SportController',
             .then(function (success) {
                 vm.sports = success.data
                 console.log(success.data)
+                vm.loaded = true;
             }, function (error) {
                 console.log(error)
             })
@@ -119,9 +121,9 @@ sportsFest.controller('SportController',
             .cancel('Cancel');
 
         $mdDialog.show(confirm).then(function() {
-          $scope.status = 'You decided to get rid of your debt.';
+          console.log("clicked delete")
         }, function() {
-          $scope.status = 'You decided to keep your debt.';
+            console.log("clicked cancel")
         });
     };
 }]);

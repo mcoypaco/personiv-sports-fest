@@ -40,7 +40,9 @@ Route::group(['prefix' => 'api'], function()
   Route::get('teams', 'TeamController@index');
   Route::post('teams/{id}', 'TeamController@update');
   Route::get('teams/{id}', 'TeamController@show');
+
   Route::get('players/noteam' , 'PlayerController@noTeam');
+  Route::get('players/sport/{sport}' , 'PlayerController@getSportPlayers');
   Route::get('players/export/{type}','PlayerController@exportExcel');
 
   Route::post('players','PlayerController@store');
@@ -86,5 +88,8 @@ Route::group(['prefix' => 'api'], function()
   Route::get('sports/{id}','SportController@show');
   Route::get('sports/{id}/positions','SportController@positions');
   Route::get('sports/{id}/players' , 'SportController@players');
+
+  Route::get('sports/players/noteam/{id}', 'SportController@noTeamPlayers');
+  Route::post('sports/upload/{id}', 'SportController@upload');
 
 });

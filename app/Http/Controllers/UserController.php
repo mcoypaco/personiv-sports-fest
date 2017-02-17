@@ -15,9 +15,8 @@ class UserController extends Controller
 
     public function index()
     {
-        $user = User::all();
-
-        return response()->json($user);
+        // $user = User::all();
+        return response()->json(User::with('role')->get());
     }
 
     /**
@@ -58,9 +57,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-
-        return response()->json($user);
+        return response()->json(User::find($id));
+        // return response()->json(User::with('team')->find($id));
     }
 
     /**

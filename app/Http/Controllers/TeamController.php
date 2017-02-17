@@ -16,10 +16,7 @@ class TeamController extends Controller
 
     public function index()
     {
-
-        $team = Team::all();
-
-        return response()->json($team);
+        return response()->json(Team::with('players', 'poc')->get());
     }
 
     /**
@@ -53,7 +50,7 @@ class TeamController extends Controller
      */
     public function show($id)
     {
-        $team = Team::whereId($id)->with('players')->get();
+        $team = Team::whereId($id)->with('players', 'poc')->get();
         return response()->json($team);
     }
 

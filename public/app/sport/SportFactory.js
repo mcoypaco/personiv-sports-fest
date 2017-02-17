@@ -1,30 +1,34 @@
 sportsFest.factory("Sport", ["$q", "$http",
   function($q, $http) {
+    const url = 'api/sports';
   	return {
   		get : function() {
   			return $http({
             method: 'GET',
-            url: 'api/sports'
+            url: url
         });
   		},
 
   		store : function(data) {
   			return $http({
             method: 'POST',
-            url: 'api/sports',
+            url: url,
             data: data,
             headers: { 'Content-Type' : 'application/json' }
 	        });
   		},
 
   		show : function(id) {
-  			return $http.get('/api/sports/' + id);
+  			return $http({
+            mehod: 'GET',
+            url: url + '/' +  id
+          })
   		},
 
   		update : function(id, newData) {
         return $http({
             method: 'PUT',
-            url: 'api/sports/' + id,
+            url: url + '/' + id,
             data: newData,
             headers: { 'Content-Type' : 'application/json' }
         })
@@ -33,12 +37,12 @@ sportsFest.factory("Sport", ["$q", "$http",
   		destroy : function(id) {
   			return $http({
             method: 'DELETE',
-            url: 'api/sports/' + id
+            url: url + '/' + id
         });
   		},
 
       upload : function(formData, id) {
-        return $http.post('/api/upload/image/' + id, formData, {
+        return $http.post(url + '/upload/' + id, formData, {
             transformRequest: angular.identity,
             headers: {'Content-Type': undefined}
         });
@@ -48,6 +52,9 @@ sportsFest.factory("Sport", ["$q", "$http",
       },
       positions : function(id) {
         return $http.get('api/sports/' + id + '/positions')
+      },
+      getPlayers : function(id) {
+        return $http.get(url + '/players/noteam/' + id);
       }
   	}
 }])

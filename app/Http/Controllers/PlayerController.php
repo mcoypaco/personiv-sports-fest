@@ -7,6 +7,7 @@ use App\Team;
 use App\Sport;
 use App\Events\DraftPlayers;
 use App\Events\AddPlayers;
+use App\Draft;
 use Excel;
 
 use Illuminate\Http\Request;
@@ -58,9 +59,10 @@ class PlayerController extends Controller
      */
     public function show($id)
     {
-        $player = Player::find($id);
+        // $player = Player::find($id);
 
-        return response()->json($player);
+        // return response()->json($player);
+        return response()->json(Player::with('positions', 'team', 'sports')->find($id));
     }
 
     /**
@@ -86,7 +88,12 @@ class PlayerController extends Controller
       $team = new Team();
       event(new DraftPlayers(Team::all()));
       $team->addRemovePlayer($request , $id);
-      return response()->json($request->all());
+      $draft= new Draft();
+      $draft->addRemovePlayer($request->team_id , $id);
+      $player = Player::find($id);
+      $player->team_id = $request->team_id;
+      $player->push();
+      return response()->json(array('success' => true));
     }
 
     /**
@@ -104,8 +111,8 @@ class PlayerController extends Controller
 
     public function noTeam()
     {
-      $player = Player::with('positions', 'team', 'sports')->where('team_id', null);
-      return response()->json($player->get());
+        $player = Player::with('positions', 'team', 'sports')->where('team_id', null);
+        return response()->json($player->get());
     }
 
     public function exportExcel($type) {
