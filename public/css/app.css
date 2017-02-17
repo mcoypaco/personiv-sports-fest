@@ -40,6 +40,7 @@ md-nav-bar .md-nav-bar {
 
 .md-card-image {
 	width:100%;
+  height: 200px;
 }
 
 .capitalize {
@@ -347,4 +348,12 @@ lf-ng-md-file-input {
 .arrow-down {
   width: 0.5rem;
   height: 0.5rem;
+}
+
+.logout {
+  padding: 5px;
+  margin: 5px;
+}
+.md-container {
+  width: 20%;
 }
