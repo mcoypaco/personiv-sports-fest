@@ -83,8 +83,6 @@ class PlayerController extends Controller
     {
       $team = new Team();
       $team->addRemovePlayer($request , $id);
-      $draft= new Draft();
-      $draft->addRemovePlayer($request->team_id , $id);
       $player = Player::find($id);
       $player->team_id = $request->team_id;
       $player->push();

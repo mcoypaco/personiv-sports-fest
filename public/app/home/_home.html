@@ -7,7 +7,7 @@
        <h2>SPORTS NOT AVAILABLE</h2>
   </div>
   <md-progress-linear md-mode="indeterminate" ng-if="!home.loaded"></md-progress-linear>
-  <md-content class="md-padding" layout-xs="column" layout="row" ng-if="home.sports != ''">
+  <md-content class="md-padding whiteframe" layout-xs="column" layout="row" ng-if="home.sports != ''">
     <div ng-repeat="remainder in [0,1,2]" flex-xs="" flex-gt-xs="50" layout="column">
       <md-card ng-repeat="sport in home.sports" ng-if="$index % 3 == remainder">
         <img ng-if="sport.img_extension" ng-src="uploads/sports/{{sport.id}}.{{sport.img_extension}}" class="md-card-image" alt="No image">

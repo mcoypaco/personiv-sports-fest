@@ -111,20 +111,49 @@ sportsFest.controller('SportController',
         });
     }
 
-    $scope.showConfirm = function(ev) {
-        // Appending dialog to document.body to cover sidenav in docs app
+    vm.showConfirm = function(ev, item, type) {
         var confirm = $mdDialog.confirm()
-            .title('Would you like to delete this position?')
-            .textContent('"position..."')
-            .ariaLabel('Position')
+            .title('Would you like to delete ?')
+            .textContent(item.name)
+            .ariaLabel('Item')
             .targetEvent(ev)
             .ok('DELETE')
             .cancel('Cancel');
 
         $mdDialog.show(confirm).then(function() {
-          console.log("clicked delete")
+            if(type == "position"){
+                vm.deletePosition(item.id);
+            }
+            else{
+                vm.delete(item.id);
+            }            
         }, function() {
             console.log("clicked cancel")
         });
     };
+
+    vm.updateModal = function(ev, item) {
+        $mdDialog.show({
+            locals:{item: item},    
+            controller: UpdateModalController,
+            templateUrl: 'update.tmpl.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:false,
+        })
+        .then(function(data) {
+            vm.update(item.id, data);
+        });
+    }
+
+    function UpdateModalController($scope, item, $mdDialog) {
+        $scope.data={name:item.name, description:item.description};
+        $scope.cancel = function() {
+            $mdDialog.cancel();
+        };
+
+        $scope.update = function(data) {
+            $mdDialog.hide(data);
+        };
+    }
 }]);

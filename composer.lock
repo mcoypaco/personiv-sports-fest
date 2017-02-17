@@ -627,7 +627,6 @@
             "time": "2017-01-20T16:16:51+00:00"
         },
         {
-<<<<<<< HEAD
             "name": "maximebf/debugbar",
             "version": "1.13.1",
             "source": {
@@ -689,8 +688,6 @@
             "time": "2017-01-05T08:46:19+00:00"
         },
         {
-=======
->>>>>>> a4bd30bc30ae879fcfb06c5a471d1a0a8a4be431
             "name": "monolog/monolog",
             "version": "1.22.0",
             "source": {
