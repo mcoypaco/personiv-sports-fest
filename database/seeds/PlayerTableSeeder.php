@@ -47,7 +47,7 @@ class PlayerTableSeeder extends Seeder
        'height' => "123.2",
        'weight' => "100.3",
        'cellphone_number' => "09323156789"
-      ],
+      ]
      ];
 
      DB::table('players')->insert($players);

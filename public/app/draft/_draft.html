@@ -1,18 +1,7 @@
 <md-progress-linear md-mode="indeterminate" ng-if="!draft.loaded"></md-progress-linear>
 <md-content class="whiteframe md-padding" layout="row" ng-cloak>
-    <!--<div class="md-padding" layout="column" flex="30">
-        <md-list ng-init="draft.getTeams()">
-            <md-list-item class="md-3-line" ng-repeat="teamItem in draft.teams" ng-click="null">
-                <div class="md-list-item-text" layout="column">
-                    <h3>{{draft.teams.indexOf(teamItem) + 1}}. {{teamItem.name}}</h3>
-                </div>
-                <md-divider ng-if="!$last"></md-divider>               
-            </md-list-item>
-        </md-list>
-    </div>-->
     <div layout="column" flex=65>
         <div layout="row">
-            <!-- <md-button class="md-warn" ng-click="draft.getSport(2)">Start Basketball Draft!</md-button> -->
             <md-button class="md-raised md-warn" ng-repeat="sport in draft.sports" ng-click="draft.getSportPlayers(sport.id)" ng-if="sport.positions.length > 0">Start {{sport.name}} Draft!</md-button>
         </div>
         <div>
@@ -20,7 +9,6 @@
                 <input type="text" class="form-control input-sm" ng-model="draft.search" placeholder="Search Name">
             </md-input-container>   
         </div>
-
         <md-toolbar class="md-whiteframe-1dp" ng-init="draft.getPlayers()">
             <div class="md-toolbar-tools">
                 <div class="md-title">Draft</div>
@@ -77,6 +65,9 @@
                 <md-card-content>
                     <p ng-repeat="player in team.players">
                         {{player.last_name}}, {{player.first_name}}
+                        <a href="">
+                            <ng-md-icon icon="delete" ng-click="draft.removePlayer(player.id, player)"></ng-md-icon>
+                        </a>
                     </p>
                 </md-card-content>
             </md-card>

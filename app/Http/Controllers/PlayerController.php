@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Player;
 use App\Team;
 use App\Sport;
+use App\Draft;
 use Excel;
 
 use Illuminate\Http\Request;
@@ -83,11 +84,11 @@ class PlayerController extends Controller
     {
       $team = new Team();
       $team->addRemovePlayer($request , $id);
-
+      $draft= new Draft();
+      $draft->addRemovePlayer($request->team_id , $id);
       $player = Player::find($id);
       $player->team_id = $request->team_id;
       $player->push();
-      // return response()->json($request->all());
       return response()->json(array('success' => true));
     }
 
@@ -109,12 +110,6 @@ class PlayerController extends Controller
         $player = Player::with('positions', 'team', 'sports')->where('team_id', null);
         return response()->json($player->get());
     }
-
-    // public function getSportPlayers($sport)
-    // {
-    //     $players = Player::with('positions', 'team', 'sports')->where([['team_id', null], ['sports', $sport]]);
-    //     return response()->json($players->get());
-    // }
 
     public function exportExcel($type) {
         // $filename = 'players';
