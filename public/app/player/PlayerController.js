@@ -1,6 +1,6 @@
 sportsFest.controller('PlayerController',
-    ["$scope", "Player", "Sport","Position",
-        function($scope, Player, Sport, Position) {
+    ["$scope", "Player", "Sport","Position", "$auth",
+        function($scope, Player, Sport, Position, $auth) {
 
     var vm = this;
     vm.sports;
@@ -12,14 +12,16 @@ sportsFest.controller('PlayerController',
     vm.loaded = false;
     vm.players;
 
-    vm.getAllPlayers = function(){
-      Player.get().then(function (success) {
-        vm.players = success.data;
-        vm.loaded = true
-      })
-    }
+    if($auth.isAuthenticated()) {
+        vm.getAllPlayers = function(){
+          Player.get().then(function (success) {
+            vm.players = success.data;
+            vm.loaded = true
+          })
+        }
 
-    vm.getAllPlayers();
+        vm.getAllPlayers();
+    }
 
     vm.submit = function(data) {
         Player.store(data)

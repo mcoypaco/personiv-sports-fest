@@ -57,7 +57,6 @@ Route::group(['prefix' => 'api'], function()
 		Route::get('positions/{id}','PositionController@show');
 
 		//sports
-		Route::get('sports','SportController@index');
 		Route::post('sports','SportController@store');
 		Route::get('sports/{id}','SportController@show');
 		Route::get('sports/{id}/positions','SportController@positions');
@@ -102,6 +101,7 @@ Route::group(['prefix' => 'api'], function()
 
 		//register player
 		Route::post('players','PlayerController@store');
-
+		Route::get('sports','SportController@index');
+		
 
 });

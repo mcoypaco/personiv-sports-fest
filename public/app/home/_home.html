@@ -39,10 +39,11 @@
 
 <div class="md-padding" ng-if="isAuthenticated() && auth.isPoc">
   <h1><md-icon md-svg-src="img/icons/basketball.svg"></md-icon> {{home.team.name}}</h1>
-	<h3>Team Leader/POC:</h3><h1>{{home.team.poc.first_name}} {{home.team.poc.last_name}}</h1>
+	<strong>Team Leader/POC:</strong> {{home.team.poc.first_name}} {{home.team.poc.last_name}}
 	<h3>Players</h3>
 	<div ng-repeat="player in home.team.players">
 		{{player.first_name}} {{player.last_name}}
+    <md-divider></md-divider>
 	</div>
 
 </div>

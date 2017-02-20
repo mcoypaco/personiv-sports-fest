@@ -338,6 +338,10 @@ sportsFest.controller('HomeController', ["$scope", "$http", "Sport", "Team", "$a
 				vm.team = pocteam.data[0];
 				console.log(vm.team);
 			});
+
+			Sport.positions(team.data.id).then(function (positions) {
+				vm.positions = positions;
+			});
 		});
 	}
 }]);
@@ -496,7 +500,7 @@ sportsFest.service('MenuItemsService', ['$q', function ($q) {
 /* 9 */
 /***/ (function(module, exports) {
 
-sportsFest.controller('PlayerController', ["$scope", "Player", "Sport", "Position", function ($scope, Player, Sport, Position) {
+sportsFest.controller('PlayerController', ["$scope", "Player", "Sport", "Position", "$auth", function ($scope, Player, Sport, Position, $auth) {
 
     var vm = this;
     vm.sports;
@@ -508,14 +512,16 @@ sportsFest.controller('PlayerController', ["$scope", "Player", "Sport", "Positio
     vm.loaded = false;
     vm.players;
 
-    vm.getAllPlayers = function () {
-        Player.get().then(function (success) {
-            vm.players = success.data;
-            vm.loaded = true;
-        });
-    };
+    if ($auth.isAuthenticated()) {
+        vm.getAllPlayers = function () {
+            Player.get().then(function (success) {
+                vm.players = success.data;
+                vm.loaded = true;
+            });
+        };
 
-    vm.getAllPlayers();
+        vm.getAllPlayers();
+    }
 
     vm.submit = function (data) {
         Player.store(data).success(function (successData) {

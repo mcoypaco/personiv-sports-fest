@@ -1,5 +1,5 @@
-sportsFest.controller('HomeController', ["$scope", "$http", "Sport","Team","$auth","Position",
-	,function($scope, $http, Sport ,Team ,$auth , Position) {
+sportsFest.controller('HomeController', ["$scope", "$http", "Sport","Team","$auth",
+	function($scope, $http, Sport ,Team ,$auth) {
 	var vm = this;
 
 	let user = JSON.parse(localStorage.getItem('user'));
@@ -20,7 +20,7 @@ sportsFest.controller('HomeController', ["$scope", "$http", "Sport","Team","$aut
 				console.log(vm.team);
 			})
 
-			Position.positions(team.data.id).then(function(positions){
+			Sport.positions(team.data.id).then(function(positions){
 				vm.positions = positions
 			})
 		})
