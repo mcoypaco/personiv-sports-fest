@@ -1,6 +1,6 @@
-sportsFest.controller('AuthController', 
-    ["$scope", "$auth", "Auth", "$rootScope", "$state",
-        function($scope, $auth, Auth, $rootScope, $state) { 
+sportsFest.controller('AuthController',
+    ["$scope", "$auth", "Auth", "$rootScope", "$state", "$window",
+        function($scope, $auth, Auth, $rootScope, $state, $window) {
 
     var vm = this;
     vm.loginError = false;
@@ -18,6 +18,7 @@ sportsFest.controller('AuthController',
                     localStorage.setItem('user', JSON.stringify(response.data.user));
                     $rootScope.currentUser = response.data.user;
                     console.log($rootScope.currentUser)
+										$window.location.reload();
                     $state.go('home.home');
                 });
             }, function(error) {
@@ -27,6 +28,6 @@ sportsFest.controller('AuthController',
                 console.log(error.data.error)
                 vm.loginErrorText = error.data.error;
             });
-    }  
-    
+    }
+
 }]);

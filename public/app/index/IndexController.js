@@ -1,6 +1,6 @@
 sportsFest.controller('IndexController',
-    ["$scope", "$mdToast", "$mdDialog", "$log", "$mdSidenav", "$mdBottomSheet", "$q", "MenuItemsService", "$mdMenu", "$auth", "$state", "$window","Role",
-        function($scope, $mdToast, $mdDialog, $log, $mdSidenav, $mdBottomSheet, $q, MenuItemsService, $mdMenu, $auth, $state, $window , Role) {
+    ["$scope", "$mdToast", "$mdDialog", "$log", "$mdSidenav", "$mdBottomSheet", "$q", "MenuItemsService", "$mdMenu", "$auth", "$state", "$window","Role","Authorize",
+        function($scope, $mdToast, $mdDialog, $log, $mdSidenav, $mdBottomSheet, $q, MenuItemsService, $mdMenu, $auth, $state, $window , Role , Authorize) {
 
     var vm = this;
 	  vm.user;

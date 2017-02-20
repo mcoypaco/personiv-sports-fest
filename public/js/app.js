@@ -10,14 +10,6 @@ sportsFest.run(["$rootScope", "$state", "$stateParams", "$auth","Role", function
 
     $rootScope.user = JSON.parse(localStorage.getItem('user'));
 
-    $rootScope.isAdmin = function(){
-      Role.getAdminId().then(function(adminId){
-          id = parseInt(adminId.data)
-          $rootScope.access = ($rootScope.user.role_id === id)
-        })
-    }
-    $rootScope.isAdmin();
-
     $rootScope.routeName = toState.url.substring(1);
     var requireLogin = toState.data.requireLogin;
     if (requireLogin && !$auth.isAuthenticated()) {

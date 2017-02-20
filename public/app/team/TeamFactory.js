@@ -33,6 +33,10 @@ sportsFest.factory('Team', ['$q','$http', function($q , $http) {
       },
     destroy : function(id) {
 
-    }
+    },
+
+		getTeam : function(id){
+			return $http.get('api/users/'+ id + '/team')
+		}
   }
 }])

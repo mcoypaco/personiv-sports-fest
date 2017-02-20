@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html ng-app="Sportsfest">
     <head>
         <meta charset="utf-8">
 
@@ -14,8 +14,7 @@
         </script>
         <link rel="stylesheet" href="node_modules/angular-material-data-table/dist/md-data-table.min.css" type="text/css">
     </head>
-    <body ng-app="Sportsfest" ng-cloak>
-
+    <body ng-cloak ng-controller="AuthorizeController as auth">
         <div ui-view layout="row" layout-fill></div>
 
     <!-- Application Dependencies -->
@@ -35,6 +34,7 @@
       <script src="js/app.js"></script>
       <script src="js/app.routes.js"></script>
       <script src="js/components.js"></script>
+
     <!-- Application Scripts -->
 
 

@@ -1,5 +1,6 @@
 sportsFest.factory('Authorize',["Role",function(Role){
-  let user = JSON.parse(localStorage.getItem('user'));
+
+	let user = JSON.parse(localStorage.getItem('user'));
 
   return {
     isAdmin : function()  {
@@ -14,5 +15,6 @@ sportsFest.factory('Authorize',["Role",function(Role){
         return (user.role_id == id)
       })
     }
+
   }
 }]);
