@@ -14,7 +14,8 @@ const { mix } = require('laravel-mix');
 mix.js(
   ['public/app/auth/AuthController.js',
   'public/app/auth/AuthFactory.js',
-  'public/app/authorization/authorizeFactory.js',
+	'public/app/authorization/AuthorizeFactory.js',
+	'public/app/authorization/AuthorizeController.js',
   'public/app/draft/DraftController.js',
   'public/app/draft/DraftFactory.js',
   'public/app/home/HomeController.js',

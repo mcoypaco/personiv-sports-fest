@@ -111,6 +111,13 @@ class UserController extends Controller
       return response()->json($user->poc());
     }
 
+		public function pocTeam($id)
+		{
+			$poc = User::find($id);
+
+			return $poc->team;
+		}
+
     public function changePassword(Request $request, $id)
     {
         $user = User::find($id);
