@@ -63,14 +63,14 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 20);
+/******/ 	return __webpack_require__(__webpack_require__.s = 21);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports) {
 
-sportsFest.controller('AuthController', ["$scope", "$auth", "Auth", "$rootScope", "$state", function ($scope, $auth, Auth, $rootScope, $state) {
+sportsFest.controller('AuthController', ["$scope", "$auth", "Auth", "$rootScope", "$state", "$window", function ($scope, $auth, Auth, $rootScope, $state, $window) {
 
     var vm = this;
     vm.loginError = false;
@@ -87,6 +87,7 @@ sportsFest.controller('AuthController', ["$scope", "$auth", "Auth", "$rootScope"
                 localStorage.setItem('user', JSON.stringify(response.data.user));
                 $rootScope.currentUser = response.data.user;
                 console.log($rootScope.currentUser);
+                $window.location.reload();
                 $state.go('home.home');
             });
         }, function (error) {
@@ -145,7 +146,27 @@ sportsFest.factory("Auth", ["$q", "$http", function ($q, $http) {
 /* 2 */
 /***/ (function(module, exports) {
 
+sportsFest.controller('AuthorizeController', ["Authorize", "$auth", function (Authorize, $auth) {
+
+	var vm = this;
+
+	if ($auth.isAuthenticated()) {
+		Authorize.isAdmin().then(function (admin) {
+			vm.isAdmin = admin;
+		});
+
+		Authorize.isPoc().then(function (poc) {
+			vm.isPoc = poc;
+		});
+	}
+}]);
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
 sportsFest.factory('Authorize', ["Role", function (Role) {
+
   var user = JSON.parse(localStorage.getItem('user'));
 
   return {
@@ -161,11 +182,12 @@ sportsFest.factory('Authorize', ["Role", function (Role) {
         return user.role_id == id;
       });
     }
+
   };
 }]);
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports) {
 
 sportsFest.controller('DraftController', ["$scope", "Player", "Team", "Sport", "Draft", "$mdDialog", function ($scope, Player, Team, Sport, Draft, $mdDialog) {
@@ -272,7 +294,7 @@ sportsFest.controller('DraftController', ["$scope", "Player", "Team", "Sport", "
 }]);
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
 sportsFest.factory("Draft", ["$q", "$http", function ($q, $http) {
@@ -295,25 +317,36 @@ sportsFest.factory("Draft", ["$q", "$http", function ($q, $http) {
 }]);
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-sportsFest.controller('HomeController', ["$scope", "$http", "Sport", function ($scope, $http, Sport) {
-	var vm = this;
-
-	vm.loaded = false;
-
-	Sport.get().then(function (data) {
-		vm.sports = data.data;
-		vm.loaded = true;
-	});
-}]);
-
-/***/ }),
 /* 6 */
 /***/ (function(module, exports) {
 
-sportsFest.controller('IndexController', ["$scope", "$mdToast", "$mdDialog", "$log", "$mdSidenav", "$mdBottomSheet", "$q", "MenuItemsService", "$mdMenu", "$auth", "$state", "$window", "Role", function ($scope, $mdToast, $mdDialog, $log, $mdSidenav, $mdBottomSheet, $q, MenuItemsService, $mdMenu, $auth, $state, $window, Role) {
+sportsFest.controller('HomeController', ["$scope", "$http", "Sport", "Team", "$auth", function ($scope, $http, Sport, Team, $auth) {
+	var vm = this;
+
+	var user = JSON.parse(localStorage.getItem('user'));
+
+	vm.loaded = false;
+
+	if ($auth.isAuthenticated()) {
+		Sport.get().then(function (data) {
+			vm.sports = data.data;
+			vm.loaded = true;
+		});
+
+		Team.getTeam(user.id).then(function (team) {
+			Team.show(team.data.id).then(function (pocteam) {
+				vm.team = pocteam.data[0];
+				console.log(vm.team);
+			});
+		});
+	}
+}]);
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+sportsFest.controller('IndexController', ["$scope", "$mdToast", "$mdDialog", "$log", "$mdSidenav", "$mdBottomSheet", "$q", "MenuItemsService", "$mdMenu", "$auth", "$state", "$window", "Role", "Authorize", function ($scope, $mdToast, $mdDialog, $log, $mdSidenav, $mdBottomSheet, $q, MenuItemsService, $mdMenu, $auth, $state, $window, Role, Authorize) {
 
     var vm = this;
     vm.user;
@@ -392,7 +425,7 @@ sportsFest.controller('IndexController', ["$scope", "$mdToast", "$mdDialog", "$l
 }]);
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports) {
 
 // angular.module('app.services', [])
@@ -460,7 +493,7 @@ sportsFest.service('MenuItemsService', ['$q', function ($q) {
 }]);
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 sportsFest.controller('PlayerController', ["$scope", "Player", "Sport", "Position", function ($scope, Player, Sport, Position) {
@@ -570,7 +603,7 @@ sportsFest.controller('PlayerController', ["$scope", "Player", "Sport", "Positio
 }]);
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 sportsFest.factory("Player", ["$q", "$http", function ($q, $http) {
@@ -674,7 +707,7 @@ sportsFest.factory("Player", ["$q", "$http", function ($q, $http) {
 }]);
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 sportsFest.factory("Position", ["$q", "$http", function ($q, $http) {
@@ -722,7 +755,7 @@ sportsFest.factory("Position", ["$q", "$http", function ($q, $http) {
 }]);
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 sportsFest.controller('SportController', ["$scope", "$mdDialog", "Sport", "Position", function ($scope, $mdDialog, Sport, Position) {
@@ -865,7 +898,7 @@ sportsFest.controller('SportController', ["$scope", "$mdDialog", "Sport", "Posit
 }]);
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports) {
 
 sportsFest.factory("Sport", ["$q", "$http", function ($q, $http) {
@@ -929,7 +962,7 @@ sportsFest.factory("Sport", ["$q", "$http", function ($q, $http) {
 }]);
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports) {
 
 
@@ -1009,7 +1042,7 @@ sportsFest.controller('TeamController', ["$http", "User", "Team", "$state", "$st
 }]);
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports) {
 
 sportsFest.factory('Team', ['$q', '$http', function ($q, $http) {
@@ -1045,12 +1078,16 @@ sportsFest.factory('Team', ['$q', '$http', function ($q, $http) {
         headers: { 'Content-Type': 'application/json' }
       });
     },
-    destroy: function destroy(id) {}
+    destroy: function destroy(id) {},
+
+    getTeam: function getTeam(id) {
+      return $http.get('api/users/' + id + '/team');
+    }
   };
 }]);
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports) {
 
 sportsFest.factory("Role", ["$q", "$http", function ($q, $http) {
@@ -1097,12 +1134,16 @@ sportsFest.factory("Role", ["$q", "$http", function ($q, $http) {
         method: 'GET',
         url: 'api/roles/admin'
       });
+    },
+
+    getPocId: function getPocId() {
+      return $http.get('api/roles/poc');
     }
   };
 }]);
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports) {
 
 sportsFest.controller('UserController', ["$scope", "User", "Role", "$mdDialog", function ($scope, User, Role, $mdDialog) {
@@ -1188,7 +1229,7 @@ sportsFest.controller('UserController', ["$scope", "User", "Role", "$mdDialog", 
 }]);
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports) {
 
 sportsFest.factory("User", ["$q", "$http", function ($q, $http) {
@@ -1235,7 +1276,7 @@ sportsFest.factory("User", ["$q", "$http", function ($q, $http) {
 }]);
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports) {
 
 sportsFest.directive('menuLink', function () {
@@ -1255,7 +1296,7 @@ sportsFest.directive('menuLink', function () {
 });
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports) {
 
 sportsFest.directive('menuToggle', ['$timeout', function ($timeout) {
@@ -1284,13 +1325,13 @@ sportsFest.directive('menuToggle', ['$timeout', function ($timeout) {
 }]);
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(0);
 __webpack_require__(1);
-__webpack_require__(2);
 __webpack_require__(3);
+__webpack_require__(2);
 __webpack_require__(4);
 __webpack_require__(5);
 __webpack_require__(6);
@@ -1300,13 +1341,14 @@ __webpack_require__(9);
 __webpack_require__(10);
 __webpack_require__(11);
 __webpack_require__(12);
-__webpack_require__(14);
 __webpack_require__(13);
 __webpack_require__(15);
+__webpack_require__(14);
 __webpack_require__(16);
 __webpack_require__(17);
 __webpack_require__(18);
-module.exports = __webpack_require__(19);
+__webpack_require__(19);
+module.exports = __webpack_require__(20);
 
 
 /***/ })

@@ -2,7 +2,7 @@
   <img ng-src="img/Personiv_Horizontal_hi-res_2Color_tag.png" >
 </div>
 
-<div ng-if="isAuthenticated()">
+<div ng-if="isAuthenticated() && auth.isAdmin">
   <div ng-if="home.sports == ''" id="emptyData">
        <h2>SPORTS NOT AVAILABLE</h2>
   </div>
@@ -33,10 +33,15 @@
   <md-button>MANAGE USERS</md-button>
   <md-button>ETC</md-button> -->
 </div>
-
 <!-- if poc -->
 <!-- ng if..... -->
-<div class="md-padding">
-  <h1><md-icon md-svg-src="img/icons/basketball.svg"></md-icon>Your Team</h1>
-  //list of POC players
+
+
+<div class="md-padding" ng-if="isAuthenticated() && auth.isPoc">
+  <h1><md-icon md-svg-src="img/icons/basketball.svg"></md-icon> {{home.team.name}}</h1>
+	<h3>Players</h3>
+	<div ng-repeat="player in home.team.players">
+		{{player.first_name}} {{player.last_name}}
+	</div>
+
 </div>

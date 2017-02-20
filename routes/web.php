@@ -22,10 +22,10 @@ Route::get('/', function () {
 Route::group(['prefix' => 'api'], function()
 {
 
-  Route::post('teams', 'TeamController@store');
-  Route::get('teams', 'TeamController@index');
-  Route::post('teams/{id}', 'TeamController@update');
-  Route::get('teams/{id}', 'TeamController@show');
+  Route::post('teams', 'TeamController@store')->middleware('role:admin');
+  Route::get('teams', 'TeamController@index')->middleware('role:admin,poc');
+  Route::post('teams/{id}', 'TeamController@update')->middleware('role:admin');
+  Route::get('teams/{id}', 'TeamController@show')->middleware('role:poc,admin');
 
   Route::get('players/noteam' , 'PlayerController@noTeam');
   Route::get('players/sport/{sport}' , 'PlayerController@getSportPlayers');
@@ -36,14 +36,15 @@ Route::group(['prefix' => 'api'], function()
   Route::post('players/{id}','PlayerController@update');
   Route::get('players/{id}','PlayerController@show');
 
+	Route::get('roles/poc','RoleController@getPocId');
   Route::get('roles/admin','RoleController@getAdminId');
   Route::post('roles','RoleController@store');
   Route::get('roles/{id}','RoleController@show');
   Route::get('roles','RoleController@index');
-  Route::get('roles/poc','RoleController@getPocId');
 
   Route::get('players/exportPlayers','PlayerController@exportPlayers');
 
+	Route::get('users/{id}/team','UserController@pocTeam');
   Route::get('users/poc','UserController@poc');
   Route::post('users','UserController@store');
   Route::get('users','UserController@index');

@@ -43,6 +43,10 @@ sportsFest.factory("Role", ["$q", "$http",
           method: 'GET',
           url: 'api/roles/admin'
         });
-      }
+      },
+
+			getPocId : function() {
+				return $http.get('api/roles/poc');
+			}
   	}
 }])

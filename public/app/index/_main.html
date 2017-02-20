@@ -12,7 +12,7 @@
       <md-button layout="column" layout-align="center center"
                 flex class="capitalize"
                 ui-sref-active="md-warn" ui-sref="home.home"
-                ng-if="vm.isAuthenticated() && !access">
+                ng-if="vm.isAuthenticated() && auth.isPoc">
           <div hide-sm hide-md class="md-tile-content">
               <i class="material-icons md-36">dashboard</i>
           </div>
@@ -24,7 +24,7 @@
                 layout="column" layout-align="center center"
                 flex class="capitalize" ng-click="vm.selectItem(item)"
                 ui-sref-active="md-warn" ui-sref="{{item.sref}}"
-                ng-if="vm.isAuthenticated() && access">
+                ng-if="vm.isAuthenticated() && auth.isAdmin">
           <div hide-sm hide-md class="md-tile-content">
               <i class="material-icons md-36">{{item.icon}}</i>
           </div>
@@ -33,7 +33,7 @@
           </div>
       </md-button>
       <md-divider ng-repeat-end></md-divider>
-      <ul ng-if="vm.isAuthenticated()">
+      <ul ng-if="vm.isAuthenticated() && auth.isAdmin">
         <li ng-repeat="section in vm.menu.sections" class="parent-list-item"
             ng-class="{'parentActive' : vm.isSectionSelected(section)}" layout="column" layout-align="center center">
           <h2 class="menu-heading" ng-if="section.type === 'heading'"
@@ -101,7 +101,7 @@
       </section>
     </md-toolbar>
 
-    <md-content flex class="page-content" >
+    <md-content flex class="page-content">
         <div ui-view></div>
     </md-content>
 </div>
