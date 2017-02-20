@@ -22,7 +22,6 @@ Route::get('/', function () {
 Route::group(['prefix' => 'api'], function()
 {
 
-
 	Route::group(['middleware' => 'role:admin'], function() {
 		//team
 		Route::post('teams/{id}', 'TeamController@update');
@@ -37,9 +36,8 @@ Route::group(['prefix' => 'api'], function()
 		Route::get('players/exportPlayers','PlayerController@exportPlayers');
 
 		//role
-
 		Route::post('roles','RoleController@store');
-			Route::get('roles','RoleController@index');
+		Route::get('roles','RoleController@index');
 
 		//user
 		Route::get('users/poc','UserController@poc');
@@ -64,9 +62,10 @@ Route::group(['prefix' => 'api'], function()
 		Route::get('sports/{id}/players' , 'SportController@players');
 		Route::post('sports/upload/{id}', 'SportController@upload');
 		Route::get('sports/players/noteam/{id}', 'SportController@noTeamPlayers');
+		
 		//draft
-		Route::resource('drafts', 'DraftController',
-								['only' => ['index', 'store', 'destroy']]);
+		Route::resource('drafts', 'DraftController',['only' => ['index', 'store', 'destroy']]);
+
 
 	});
 

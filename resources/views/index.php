@@ -10,7 +10,8 @@
         <link rel="stylesheet" href="node_modules/lf-ng-md-file-input/dist/lf-ng-md-file-input.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.2/socket.io.js"></script>
         <script type="text/javascript">
-          var socket = io('http://localhost:3000');
+          // var socket = io('http://localhost:3000');
+					var socket = io('http://192.168.1.131:3000');
         </script>
         <link rel="stylesheet" href="node_modules/angular-material-data-table/dist/md-data-table.min.css" type="text/css">
     </head>
