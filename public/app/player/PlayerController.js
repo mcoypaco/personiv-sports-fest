@@ -9,10 +9,10 @@ sportsFest.controller('PlayerController',
     vm.selectedSport;
     vm.i = 0;
     vm.filteredPlayersId = [];
-    vm.loaded = false
+    vm.loaded = false;
     vm.players;
 
-    vm.getAllPlayers =function(){
+    vm.getAllPlayers = function(){
       Player.get().then(function (success) {
         vm.players = success.data;
         vm.loaded = true
@@ -52,7 +52,7 @@ sportsFest.controller('PlayerController',
     vm.sportPlayers = function(id) {
         vm.loaded = false
       if(id == "all"){
-        vm.loaded = true
+        // vm.loaded = true
         vm.getAllPlayers();
       }
       else{
@@ -67,8 +67,8 @@ sportsFest.controller('PlayerController',
     vm.positionPlayers = function(id){
         vm.loaded = false
       if(id == "all"){
-        vm.loaded = true
         vm.players = vm.sportPlayerList;
+        vm.loaded = true
       }
       else{
         Position.players(id).then(function(players){
