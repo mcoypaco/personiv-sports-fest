@@ -41,6 +41,7 @@ sportsFest.controller('PlayerController',
                 console.log(error.data)
             })
     }
+    vm.getSports();
 
     vm.getSport = function(id) {
         return vm.sports.filter(function(item){
