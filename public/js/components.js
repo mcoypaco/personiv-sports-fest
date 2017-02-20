@@ -331,7 +331,6 @@ sportsFest.controller('HomeController', ["$scope", "$http", "Sport", "Team", "$a
 		Sport.get().then(function (data) {
 			vm.sports = data.data;
 			vm.loaded = true;
-			console.log("ASsssssssssssssssss");
 		});
 
 		Team.getTeam(user.id).then(function (team) {
@@ -535,6 +534,7 @@ sportsFest.controller('PlayerController', ["$scope", "Player", "Sport", "Positio
             console.log(error.data);
         });
     };
+    vm.getSports();
 
     vm.getSport = function (id) {
         return vm.sports.filter(function (item) {
