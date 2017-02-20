@@ -117,6 +117,7 @@ class PlayerController extends Controller
 
 
     public function exportExcel($type) {
+        $data = Player::get()->toArray();
         return Excel::create('Players', function($excel) use ($data) {
             $excel->sheet('sheet1', function($sheet) use ($data)
             {
