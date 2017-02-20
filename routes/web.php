@@ -78,7 +78,6 @@ Route::group(['prefix' => 'api'], function()
 	;
 			//player
 			Route::get('players/{id}','PlayerController@show');
-			Route::post('players','PlayerController@store');
 
 			//role
 			Route::get('roles/poc','RoleController@getPocId');
@@ -100,6 +99,9 @@ Route::group(['prefix' => 'api'], function()
 		//auth
 		Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
 		Route::post('authenticate', 'AuthenticateController@authenticate');
+
+		//register player
+		Route::post('players','PlayerController@store');
 
 
 });
