@@ -22,59 +22,84 @@ Route::get('/', function () {
 Route::group(['prefix' => 'api'], function()
 {
 
-  Route::post('teams', 'TeamController@store')->middleware('role:admin');
-  Route::get('teams', 'TeamController@index')->middleware('role:admin,poc');
-  Route::post('teams/{id}', 'TeamController@update')->middleware('role:admin');
-  Route::get('teams/{id}', 'TeamController@show')->middleware('role:poc,admin');
 
-  Route::get('players/noteam' , 'PlayerController@noTeam');
-  Route::get('players/sport/{sport}' , 'PlayerController@getSportPlayers');
-  Route::get('players/export/{type}','PlayerController@exportExcel');
+	Route::group(['middleware' => 'role:admin'], function() {
+		//team
+		Route::post('teams/{id}', 'TeamController@update');
+		Route::post('teams', 'TeamController@store');
 
-  Route::post('players','PlayerController@store');
-  Route::get('players','PlayerController@index');
-  Route::post('players/{id}','PlayerController@update');
-  Route::get('players/{id}','PlayerController@show');
+		//players
+		Route::get('players/noteam' , 'PlayerController@noTeam');
+		Route::get('players/sport/{sport}' , 'PlayerController@getSportPlayers');
+		Route::get('players/export/{type}','PlayerController@exportExcel');
+	  Route::get('players','PlayerController@index');
+	  Route::post('players/{id}','PlayerController@update');
+		Route::get('players/exportPlayers','PlayerController@exportPlayers');
 
-	Route::get('roles/poc','RoleController@getPocId');
-  Route::get('roles/admin','RoleController@getAdminId');
-  Route::post('roles','RoleController@store');
-  Route::get('roles/{id}','RoleController@show');
-  Route::get('roles','RoleController@index');
+		//role
 
-  Route::get('players/exportPlayers','PlayerController@exportPlayers');
+		Route::post('roles','RoleController@store');
+			Route::get('roles','RoleController@index');
 
-	Route::get('users/{id}/team','UserController@pocTeam');
-  Route::get('users/poc','UserController@poc');
-  Route::post('users','UserController@store');
-  Route::get('users','UserController@index');
-  Route::get('users/{id}','UserController@show');
-  Route::put('users/{id}','UserController@update');
-  Route::put('users/{id}/changePassword', 'UserController@changePassword');
+		//user
+		Route::get('users/poc','UserController@poc');
+	  Route::post('users','UserController@store');
+	  Route::get('users','UserController@index');
+	  Route::get('users/{id}','UserController@show');
+	  Route::put('users/{id}','UserController@update');
 
+		//upload
+		Route::post('upload/image/{id}', 'SportController@upload');
 
-  Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
-  Route::post('authenticate', 'AuthenticateController@authenticate');
-  Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
+		//position
+		Route::get('positions','PositionController@index');
+		Route::post('positions','PositionController@store');
+		Route::get('positions/{id}','PositionController@show');
 
-  Route::post('upload/image/{id}', 'SportController@upload');
+		//sports
+		Route::get('sports','SportController@index');
+		Route::post('sports','SportController@store');
+		Route::get('sports/{id}','SportController@show');
+		Route::get('sports/{id}/positions','SportController@positions');
+		Route::get('sports/{id}/players' , 'SportController@players');
+		Route::post('sports/upload/{id}', 'SportController@upload');
+		Route::get('sports/players/noteam/{id}', 'SportController@noTeamPlayers');
+		//draft
+		Route::resource('drafts', 'DraftController',
+								['only' => ['index', 'store', 'destroy']]);
 
-  Route::get('positions','PositionController@index');
-  Route::post('positions','PositionController@store');
-  Route::get('positions/{id}','PositionController@show');
-  Route::get('positions/{id}/players' , 'PositionController@players');
+	});
 
-  Route::get('sports','SportController@index');
-  Route::post('sports','SportController@store');
-  Route::get('sports/{id}','SportController@show');
-  Route::get('sports/{id}/positions','SportController@positions');
-  Route::get('sports/{id}/players' , 'SportController@players');
+		Route::group(['middleware' => 'role:admin,poc'], function() {
 
-  Route::get('sports/players/noteam/{id}', 'SportController@noTeamPlayers');
+			//team
+			Route::get('teams', 'TeamController@index');
+		  Route::get('teams/{id}', 'TeamController@show');
+	;
+			//player
+			Route::get('players/{id}','PlayerController@show');
+			Route::post('players','PlayerController@store');
 
-  Route::resource('drafts', 'DraftController',
-              ['only' => ['index', 'store', 'destroy']]);
+			//role
+			Route::get('roles/poc','RoleController@getPocId');
+			Route::get('roles/admin','RoleController@getAdminId');
+			Route::get('roles/{id}','RoleController@show');
 
-  Route::post('sports/upload/{id}', 'SportController@upload');
+			//user
+			Route::get('users/{id}/team','UserController@pocTeam');
+			Route::put('users/{id}/changePassword', 'UserController@changePassword');
+
+			//auth
+			Route::get('authenticate/user', 'AuthenticateController@getAuthenticatedUser');
+
+			//position
+			Route::get('positions/{id}/players' , 'PositionController@players');
+
+		});
+
+		//auth
+		Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
+		Route::post('authenticate', 'AuthenticateController@authenticate');
+
 
 });
